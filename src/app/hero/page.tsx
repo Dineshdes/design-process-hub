@@ -155,183 +155,162 @@ function Services() {
   );
 }
 
-// ── Impact Stats — bento card layout (reference style) ───────────────────────
+// ── Impact Stats — editorial card style ──────────────────────────────────────
 
-/** Card A — CO₂: hero number + ascending bar chart */
+/** Card 1 — Light lime — big number + staircase bar chart (ref: card 1) */
 function CardCO2() {
-  const bars = [28, 38, 45, 55, 62, 74, 88, 100];
+  const steps = [
+    { year: "2022", h: 22 },
+    { year: "2023", h: 40 },
+    { year: "2024", h: 62 },
+    { year: "2025", h: 88 },
+  ];
   return (
-    <div className="group flex h-full flex-col justify-between rounded-3xl bg-white/[0.05] p-8 ring-1 ring-white/[0.08] transition-colors duration-300 hover:bg-white/[0.08]">
-      {/* Top */}
-      <div>
-        <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-white/30">CO₂ avoided</p>
-        <div className="flex items-baseline gap-2">
-          <span className="text-[44px] font-normal leading-none tracking-[-0.03em] text-[#e1fcad]">2.4M</span>
-          <span className="text-sm font-medium uppercase tracking-widest text-white/30">tonnes</span>
-        </div>
-        <p className="mt-3 max-w-[200px] text-sm leading-relaxed text-white/40">
-          Measured against business-as-usual baselines, annually.
-        </p>
+    <div className="flex h-full min-h-[420px] flex-col justify-between rounded-2xl bg-[#eaf9d0] p-8">
+      {/* Top label */}
+      <div className="flex items-center gap-1.5 text-base text-[#122023]/45">
+        <span>→</span>
+        <span className="font-medium">Carbon Impact</span>
       </div>
 
-      {/* Bar chart */}
-      <div className="mt-8 flex items-end gap-[5px]">
-        {bars.map((h, i) => (
-          <div key={i} className="flex flex-1 flex-col items-center gap-1">
+      {/* Hero number */}
+      <div className="mt-6">
+        <p className="text-[72px] font-normal leading-[0.9] tracking-[-0.04em] text-[#122023]">2.4M</p>
+        <p className="mt-3 text-base text-[#122023]/55">Tonnes of CO₂<br />avoided annually</p>
+      </div>
+
+      {/* Staircase bar chart */}
+      <div className="mt-8 flex items-end gap-3">
+        {steps.map((s) => (
+          <div key={s.year} className="flex flex-1 flex-col gap-2">
+            <span className="text-base font-medium text-[#122023]/40">{s.year}</span>
             <div
-              className="w-full rounded-sm"
-              style={{
-                height: `${(h / 100) * 72}px`,
-                background: i === bars.length - 1
-                  ? "#e1fcad"
-                  : i >= bars.length - 3
-                  ? "rgba(225,252,173,0.45)"
-                  : "rgba(255,255,255,0.08)",
-              }}
+              className="w-full rounded-md bg-[#122023]/15"
+              style={{ height: `${s.h}px` }}
             />
           </div>
         ))}
       </div>
-      <div className="mt-2 flex justify-between text-base text-white/20">
-        <span>2018</span><span>2025</span>
+    </div>
+  );
+}
+
+/** Card 2 — Dark — big number + triangle SVG (ref: card 2) */
+function CardProjects() {
+  return (
+    <div className="flex h-full min-h-[420px] flex-col justify-between rounded-2xl bg-[#122023] p-8">
+      {/* Top label */}
+      <div className="flex items-center gap-1.5 text-base text-[#e1fcad]/50">
+        <span>→</span>
+        <span className="font-medium">Global Reach</span>
+      </div>
+
+      {/* Hero number + desc */}
+      <div className="mt-6">
+        <p className="text-[72px] font-normal leading-[0.9] tracking-[-0.04em] text-[#e1fcad]">340+</p>
+        <p className="mt-3 max-w-[200px] text-base leading-relaxed text-white/45">
+          Projects deployed<br />across 42 countries
+        </p>
+      </div>
+
+      {/* Triangle SVG — upward growth symbol */}
+      <div className="mt-6 flex justify-center">
+        <svg width="160" height="110" viewBox="0 0 160 110" fill="none">
+          {/* Main triangle */}
+          <polygon
+            points="80,12 152,98 8,98"
+            fill="none"
+            stroke="#e1fcad"
+            strokeWidth="2"
+            opacity="0.35"
+          />
+          {/* Inner triangle */}
+          <polygon
+            points="80,34 132,98 28,98"
+            fill="#e1fcad"
+            fillOpacity="0.06"
+            stroke="#e1fcad"
+            strokeWidth="1.5"
+            opacity="0.5"
+          />
+          {/* Apex marker */}
+          <circle cx="80" cy="12" r="4" fill="#e1fcad" opacity="0.9" />
+          <path d="M77 9 L80 5 L83 9" fill="none" stroke="#e1fcad" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
+          {/* Base markers */}
+          <circle cx="8"   cy="98" r="4" fill="#e1fcad" fillOpacity="0.45" />
+          <circle cx="152" cy="98" r="4" fill="#e1fcad" fillOpacity="0.45" />
+          {/* Base line */}
+          <line x1="8" y1="98" x2="152" y2="98" stroke="#e1fcad" strokeWidth="1" opacity="0.18" />
+        </svg>
       </div>
     </div>
   );
 }
 
-/** Card B — Projects: donut chart + country count */
-function CardProjects() {
-  // Donut: Solar 45%, Wind 28%, Storage 15%, Other 12%
-  const segments = [
-    { pct: 45, color: "#e1fcad",        label: "Solar" },
-    { pct: 28, color: "rgba(225,252,173,0.5)", label: "Wind" },
-    { pct: 15, color: "rgba(225,252,173,0.25)", label: "Storage" },
-    { pct: 12, color: "rgba(255,255,255,0.08)", label: "Other" },
-  ];
-  // Build SVG arc paths for a donut
-  const cx = 70, cy = 70, r = 52, inner = 32;
-  let cursor = -90; // start from top
-  function arc(pct: number) {
-    const deg = (pct / 100) * 360;
-    const start = (cursor * Math.PI) / 180;
-    cursor += deg;
-    const end = (cursor * Math.PI) / 180;
-    const x1 = cx + r * Math.cos(start), y1 = cy + r * Math.sin(start);
-    const x2 = cx + r * Math.cos(end),   y2 = cy + r * Math.sin(end);
-    const ix1 = cx + inner * Math.cos(start), iy1 = cy + inner * Math.sin(start);
-    const ix2 = cx + inner * Math.cos(end),   iy2 = cy + inner * Math.sin(end);
-    const large = deg > 180 ? 1 : 0;
-    return `M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} L ${ix2} ${iy2} A ${inner} ${inner} 0 ${large} 0 ${ix1} ${iy1} Z`;
-  }
-
+/** Card 3 — Muted teal — editorial all-caps heading + big number (ref: card 3) */
+function CardInvestment() {
   return (
-    <div className="group flex h-full flex-col justify-between rounded-3xl bg-white/[0.05] p-8 ring-1 ring-white/[0.08] transition-colors duration-300 hover:bg-white/[0.08]">
-      {/* Donut */}
-      <div className="flex justify-center">
-        <svg width="140" height="140" viewBox="0 0 140 140">
-          {segments.map((s) => (
-            <path key={s.label} d={arc(s.pct)} fill={s.color} />
-          ))}
-          {/* Centre label */}
-          <text x="70" y="68" textAnchor="middle" fontSize="26" fontWeight="400" fill="#e1fcad">340+</text>
-          <text x="70" y="82" textAnchor="middle" fontSize="16" fill="rgba(255,255,255,0.35)" letterSpacing="1.5" fontFamily="ui-monospace,monospace">PROJECTS</text>
+    <div className="relative flex h-full min-h-[420px] flex-col justify-between overflow-hidden rounded-2xl bg-[#1e3530] p-8">
+      {/* Watermark arrow — large background element */}
+      <div className="pointer-events-none absolute -bottom-6 -right-6 opacity-[0.07]">
+        <svg width="180" height="180" viewBox="0 0 180 180" fill="none">
+          <path d="M20 160 L160 20 M120 20 L160 20 L160 60" stroke="#e1fcad" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </div>
 
-      {/* Legend */}
-      <div className="mt-4 space-y-2">
-        {segments.map((s) => (
-          <div key={s.label} className="flex items-center justify-between text-xs">
-            <div className="flex items-center gap-2">
-              <div className="h-2 w-2 rounded-full" style={{ background: s.color }} />
-              <span className="text-white/40">{s.label}</span>
-            </div>
-            <span className="font-mono text-white/50">{s.pct}%</span>
-          </div>
-        ))}
+      {/* Top label */}
+      <div className="flex items-center gap-1.5 text-base text-[#e1fcad]/45">
+        <span>→</span>
+        <span className="font-medium">Clean Energy Finance</span>
       </div>
 
-      <p className="mt-4 text-xs text-white/30">Deployed across <span className="text-white/60">42 countries</span></p>
-    </div>
-  );
-}
-
-/** Card C — Investment: large heading + sparkline area */
-function CardInvestment() {
-  // Sparkline points
-  const pts = [
-    { x: 0,   y: 70 },
-    { x: 40,  y: 62 },
-    { x: 80,  y: 55 },
-    { x: 120, y: 44 },
-    { x: 160, y: 38 },
-    { x: 200, y: 28 },
-    { x: 240, y: 18 },
-    { x: 280, y: 8  },
-  ];
-  const lineD = pts.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
-  const areaD = `${lineD} L 280 80 L 0 80 Z`;
-
-  return (
-    <div className="group flex h-full flex-col justify-between rounded-3xl bg-[#e1fcad] p-8 transition-opacity duration-300">
-      {/* Top — inverted colours on lime card */}
-      <div>
-        <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-[#122023]/50">Clean energy assets</p>
-        <div className="flex items-baseline gap-1">
-          <span className="text-[44px] font-normal leading-none tracking-[-0.03em] text-[#122023]">$8.2B</span>
-        </div>
-        <p className="mt-3 max-w-[200px] text-sm leading-relaxed text-[#122023]/55">
+      {/* All-caps editorial heading */}
+      <div className="mt-6 flex-1">
+        <h3 className="text-[40px] font-bold uppercase leading-[1.0] tracking-[-0.01em] text-white">
+          Clean<br />Energy<br />Invested
+        </h3>
+        <p className="mt-4 max-w-[180px] text-base leading-relaxed text-white/40">
           Capital mobilised through Verdant-advised financing structures.
         </p>
       </div>
 
-      {/* Sparkline */}
-      <div className="mt-6 overflow-hidden rounded-xl">
-        <svg width="100%" viewBox="0 0 280 80" preserveAspectRatio="none" className="h-20 w-full">
-          <defs>
-            <linearGradient id="spark-grad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#122023" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="#122023" stopOpacity="0.03" />
-            </linearGradient>
-          </defs>
-          <path d={areaD} fill="url(#spark-grad)" />
-          <path d={lineD} fill="none" stroke="#122023" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
-          <circle cx="280" cy="8" r="4" fill="#122023" opacity="0.7" />
-        </svg>
-      </div>
-      <div className="flex justify-between text-base text-[#122023]/40 font-mono">
-        <span>2018</span><span>2025</span>
+      {/* Number + CTA */}
+      <div className="mt-6 flex items-end justify-between">
+        <p className="text-[44px] font-normal leading-none tracking-[-0.03em] text-[#e1fcad]">$8.2B</p>
+        <a href="/product" className="rounded-full border border-white/20 px-5 py-2.5 text-base font-medium text-white/60 transition-colors hover:border-white/40 hover:text-white">
+          Explore →
+        </a>
       </div>
     </div>
   );
 }
 
-/** Card D — Teams: hero number + sector breakdown rows (like reference card 3) */
+/** Card 4 — Dark — teams number + sector rows */
 function CardTeams() {
   const rows = [
-    { label: "Enterprise",    count: "8,400+", bg: "bg-white/[0.04]",  text: "text-white/70"  },
-    { label: "SME",           count: "5,200+", bg: "bg-[#e1fcad]/10",  text: "text-[#e1fcad]" },
-    { label: "Government",    count: "1,400+", bg: "bg-[#122023]",     text: "text-[#e1fcad]" },
+    { label: "Enterprise",  count: "8,400+", shade: "bg-white/[0.04]",   text: "text-white/65"  },
+    { label: "SME",         count: "5,200+", shade: "bg-[#e1fcad]/[0.08]", text: "text-[#e1fcad]/80" },
+    { label: "Government",  count: "1,400+", shade: "bg-[#e1fcad]/[0.14]", text: "text-[#e1fcad]" },
   ];
   return (
-    <div className="group flex h-full flex-col justify-between rounded-3xl bg-white/[0.05] p-8 ring-1 ring-white/[0.08] transition-colors duration-300 hover:bg-white/[0.08]">
-      {/* Top */}
-      <div>
-        <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-white/30">Teams onboard</p>
-        <div className="flex items-baseline gap-2">
-          <span className="text-[44px] font-normal leading-none tracking-[-0.03em] text-[#e1fcad]">15K+</span>
-        </div>
-        <p className="mt-2 text-sm text-white/40">Making the transition</p>
+    <div className="flex h-full min-h-[420px] flex-col justify-between rounded-2xl bg-[#122023] p-8">
+      {/* Top label */}
+      <div className="flex items-center gap-1.5 text-base text-[#e1fcad]/50">
+        <span>→</span>
+        <span className="font-medium">Teams &amp; Organisations</span>
       </div>
 
-      {/* Sector breakdown rows — mirrors reference's table style */}
-      <div className="mt-6 overflow-hidden rounded-2xl">
+      {/* Hero number */}
+      <div className="mt-6">
+        <p className="text-[72px] font-normal leading-[0.9] tracking-[-0.04em] text-[#e1fcad]">15K+</p>
+        <p className="mt-3 text-base text-white/45">Making the transition</p>
+      </div>
+
+      {/* Sector rows */}
+      <div className="mt-6 overflow-hidden rounded-xl">
         {rows.map((r) => (
-          <div
-            key={r.label}
-            className={`flex items-center justify-between px-5 py-4 ${r.bg}`}
-          >
-            <span className={`text-sm font-medium ${r.text}`}>{r.label}</span>
+          <div key={r.label} className={`flex items-center justify-between px-5 py-4 ${r.shade}`}>
+            <span className={`text-base font-medium ${r.text}`}>{r.label}</span>
             <span className={`font-mono text-base font-semibold ${r.text}`}>{r.count}</span>
           </div>
         ))}
@@ -342,13 +321,12 @@ function CardTeams() {
 
 function ImpactStats() {
   return (
-    <section className={`bg-[#122023] ${SEC} flex flex-col justify-center`}>
+    <section className={`bg-[#f2f1ef] ${SEC} flex flex-col justify-center`}>
       <div className={G}>
         <div className={COL}>
-          <SectionHeader label="Our impact" heading="The numbers that matter" light />
+          <SectionHeader label="Our impact" heading="The numbers that matter" />
 
-          {/* Bento grid — 2 × 2 on desktop */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <CardCO2 />
             <CardProjects />
             <CardInvestment />
