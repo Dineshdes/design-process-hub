@@ -9,12 +9,13 @@ import {
   CheckCircle2,
   TrendingDown,
 } from "lucide-react";
-import { PrimaryCTA, SecondaryCTA, GhostCTA, PreFooterBanner } from "@/components/ui/cta";
+import { PrimaryCTA, SecondaryCTA, GhostCTA } from "@/components/ui/cta";
+import Footer from "@/components/ui/footer";
 
 // ── 12-col grid constants ────────────────────────────────────────────────────
 const G   = "grid grid-cols-12";
 const COL = "col-start-2 col-span-10";
-const SEC = "py-20";
+const SEC = "py-[100px] min-h-[740px]";
 const HDR = "mb-12";
 
 // ── Isometric cube SVG path helpers ──────────────────────────────────────────
@@ -40,15 +41,15 @@ function SectionHeader({
   center?: boolean;
 }) {
   return (
-    <div className={`${HDR} ${center ? "text-center" : ""}`}>
-      <span className={`mb-3 block text-[11px] font-bold uppercase tracking-[0.18em] ${light ? "text-[#e1fcad]/50" : "text-black/40"}`}>
+    <div className={`mb-12 ${center ? "flex flex-col items-center text-center" : ""}`}>
+      <span className={`mb-3 block text-sm font-bold uppercase tracking-[0.18em] ${light ? "text-[#e1fcad]/50" : "text-black/40"}`}>
         {label}
       </span>
-      <h2 className={`max-w-2xl text-4xl font-normal leading-[1.08] tracking-[-0.03em] md:text-5xl ${center ? "mx-auto" : ""} ${light ? "text-white" : "text-black"}`}>
+      <h2 className={`text-4xl font-normal leading-[1.08] tracking-[-0.03em] md:text-5xl ${center ? "max-w-2xl" : ""} ${light ? "text-white" : "text-black"}`}>
         {heading}
       </h2>
       {sub && (
-        <p className={`mt-5 max-w-xl text-base leading-relaxed ${center ? "mx-auto" : ""} ${light ? "text-white/45" : "text-black/50"}`}>
+        <p className={`mt-5 text-base leading-relaxed ${center ? "max-w-xl" : "max-w-xl"} ${light ? "text-white/45" : "text-black/50"}`}>
           {sub}
         </p>
       )}
@@ -96,7 +97,7 @@ function ProductHero() {
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
             {/* Left: copy */}
             <div>
-              <span className="mb-5 inline-block rounded-full border border-[#e1fcad]/20 bg-[#e1fcad]/10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#e1fcad]/80">
+              <span className="mb-5 inline-block rounded-full border border-[#e1fcad]/20 bg-[#e1fcad]/10 px-4 py-1.5 text-sm font-bold uppercase tracking-[0.18em] text-[#e1fcad]/80">
                 Verdant Platform
               </span>
               <h1 className="mb-6 text-5xl font-normal leading-[1.04] tracking-[-0.03em] text-white md:text-6xl">
@@ -108,7 +109,7 @@ function ProductHero() {
               </p>
               <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                 <PrimaryCTA label="Start free trial" href="/hero" />
-                <SecondaryCTA label="See how it works" href="#capabilities" />
+                <SecondaryCTA label="See how it works" href="#capabilities" dark />
               </div>
               <p className="mt-5 text-xs text-white/25">No credit card required. 14-day free trial.</p>
             </div>
@@ -257,7 +258,7 @@ function FeatureDetail1() {
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
             {/* Text */}
             <div>
-              <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.18em] text-black/40">
+              <span className="mb-4 block text-sm font-bold uppercase tracking-[0.18em] text-black/40">
                 Carbon Intelligence
               </span>
               <h2 className="mb-5 text-4xl font-normal leading-[1.08] tracking-[-0.03em] md:text-5xl">
@@ -372,7 +373,7 @@ function FeatureDetail2() {
 
             {/* Text — right side */}
             <div className="order-1 lg:order-2">
-              <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.18em] text-black/40">
+              <span className="mb-4 block text-sm font-bold uppercase tracking-[0.18em] text-black/40">
                 AI Strategy Engine
               </span>
               <h2 className="mb-5 text-4xl font-normal leading-[1.08] tracking-[-0.03em] md:text-5xl">
@@ -411,7 +412,7 @@ function FeatureDetail3() {
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
             {/* Text */}
             <div>
-              <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.18em] text-black/40">
+              <span className="mb-4 block text-sm font-bold uppercase tracking-[0.18em] text-black/40">
                 Automated Reporting
               </span>
               <h2 className="mb-5 text-4xl font-normal leading-[1.08] tracking-[-0.03em] md:text-5xl">
@@ -629,7 +630,7 @@ function SocialProof() {
     <section className={`bg-[#122023] ${SEC}`}>
       <div className={G}>
         <div className={COL}>
-          <SectionHeader label="Our impact" heading="The numbers behind the mission" light center />
+          <SectionHeader label="Our impact" heading="The numbers behind the mission" light />
           <div className="grid grid-cols-2 gap-px bg-white/10 md:grid-cols-4">
             {STATS.map((s) => (
               <div key={s.value} className="flex flex-col gap-3 bg-[#122023] p-8">
@@ -706,61 +707,7 @@ function Testimonials() {
 
 // ProductCTA replaced by shared PreFooterBanner
 
-// ── Footer ────────────────────────────────────────────────────────────────────
-const FOOTER_LINKS = {
-  Product:   ["Carbon Intelligence", "AI Strategy", "Reporting", "Team Workspace"],
-  Company:   ["About", "Team", "Careers", "Press"],
-  Resources: ["Documentation", "Case Studies", "Blog", "Webinars"],
-  Legal:     ["Privacy", "Terms", "Cookie Policy"],
-};
-
-function Footer() {
-  return (
-    <footer className="border-t border-black/[0.08] bg-white py-16">
-      <div className={G}>
-        <div className={COL}>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 md:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
-            <div className="col-span-2 space-y-5 sm:col-span-3 md:col-span-1 md:max-w-[200px]">
-              <a href="/hero" className="flex items-center gap-2.5">
-                <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#122023]">
-                  <Leaf className="h-4 w-4 text-[#e1fcad]" />
-                </div>
-                <span className="text-base font-semibold tracking-tight">Verdant</span>
-              </a>
-              <p className="text-[13px] leading-relaxed text-black/40">
-                The AI platform for sustainability teams that move at product speed.
-              </p>
-            </div>
-            {Object.entries(FOOTER_LINKS).map(([group, links]) => (
-              <div key={group} className="space-y-4">
-                <h4 className="text-[11px] font-bold uppercase tracking-[0.18em] text-black/30">{group}</h4>
-                <ul className="space-y-3">
-                  {links.map((l) => (
-                    <li key={l}>
-                      <a href="#" className="text-[13px] text-black/45 transition-colors duration-200 hover:text-black">
-                        {l}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-black/[0.08] pt-8 md:flex-row md:items-center">
-            <span className="text-xs text-black/30">© 2026 Verdant Energy Ltd. All rights reserved.</span>
-            <div className="flex items-center gap-8">
-              {["Twitter / X", "LinkedIn", "Instagram"].map((s) => (
-                <a key={s} href="#" className="text-xs text-black/30 transition-colors duration-200 hover:text-black">
-                  {s}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
+// Footer imported from @/components/ui/footer
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function ProductPage() {
@@ -776,7 +723,6 @@ export default function ProductPage() {
       <FeatureDetail3 />
       <SocialProof />
       <Testimonials />
-      <PreFooterBanner />
       <Footer />
     </main>
   );

@@ -5,7 +5,12 @@ import { ArrowUpRight, Leaf, CircleCheck } from "lucide-react";
 //  Pattern: lime text area (#e1fcad) + dark arrow circle (#122023)
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** Primary CTA — lime text + dark arrow circle (works on light & dark bgs) */
+/**
+ * Primary CTA
+ * Shape: fully-rounded lime pill  +  dark circle that overlaps the pill's right edge.
+ * The circle sits on top (z-10) with a negative left margin so it appears to
+ * "punch through" the pill — exactly as in the reference image.
+ */
 export function PrimaryCTA({
   label,
   href = "/hero",
@@ -14,14 +19,13 @@ export function PrimaryCTA({
   href?: string;
 }) {
   return (
-    <a
-      href={href}
-      className="group flex cursor-pointer items-center gap-0 overflow-hidden rounded-full"
-    >
-      <span className="rounded-l-full bg-[#e1fcad] py-4 pl-8 pr-6 text-sm font-semibold text-black transition-colors duration-300 group-hover:bg-[#d4f59a]">
+    <a href={href} className="group inline-flex cursor-pointer items-center">
+      {/* Complete rounded pill — extra right padding keeps text clear of the circle */}
+      <span className="rounded-full bg-[#e1fcad] py-[14px] pl-8 pr-12 text-sm font-semibold text-[#122023] transition-colors duration-300 group-hover:bg-[#d4f59a]">
         {label}
       </span>
-      <div className="relative flex size-[52px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#122023] text-[#e1fcad] transition-colors duration-300 group-hover:bg-[#1a2f33]">
+      {/* Dark circle overlaps ~20 px into the pill's right end */}
+      <div className="relative z-10 -ml-5 flex size-[52px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#122023] text-[#e1fcad] transition-colors duration-300 group-hover:bg-[#1a2f33]">
         <ArrowUpRight className="absolute h-5 w-5 -translate-x-1/2 transition-all duration-500 group-hover:translate-x-10" />
         <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 transition-all duration-500 group-hover:-translate-x-1/2" />
       </div>
@@ -29,23 +33,44 @@ export function PrimaryCTA({
   );
 }
 
-/** Secondary CTA — ghost/outline, for dark backgrounds */
+/**
+ * Secondary CTA
+ * Shape: fully-rounded outlined pill  +  separate outlined circle with a small gap.
+ * Circle does NOT overlap — it sits beside the pill with gap-2.
+ * dark=true  → white borders (for dark section backgrounds)
+ * dark=false → dark borders (default, for light backgrounds)
+ */
 export function SecondaryCTA({
   label,
   href = "#",
+  dark = false,
 }: {
   label: string;
   href?: string;
+  dark?: boolean;
 }) {
+  const border   = dark
+    ? "border-white/25 group-hover:border-white/50"
+    : "border-[#122023]/25 group-hover:border-[#122023]/60";
+  const textCol  = dark
+    ? "text-white/65 group-hover:text-white"
+    : "text-[#122023]/75 group-hover:text-[#122023]";
+  const arrowCol = dark
+    ? "text-white/50 group-hover:text-white"
+    : "text-[#122023]/55 group-hover:text-[#122023]";
+
   return (
-    <a
-      href={href}
-      className="group flex cursor-pointer items-center gap-0 overflow-hidden rounded-full border border-white/20"
-    >
-      <span className="rounded-l-full py-4 pl-8 pr-6 text-sm font-semibold text-white/70 transition-colors duration-300 group-hover:text-white">
+    <a href={href} className="group inline-flex cursor-pointer items-center gap-2">
+      {/* Outlined pill */}
+      <span
+        className={`rounded-full border ${border} py-[13px] pl-8 pr-7 text-sm font-semibold ${textCol} transition-all duration-300`}
+      >
         {label}
       </span>
-      <div className="relative flex size-[52px] shrink-0 items-center justify-center overflow-hidden rounded-full text-white/50 transition-colors duration-300 group-hover:text-white">
+      {/* Outlined circle — separate, NOT overlapping */}
+      <div
+        className={`relative flex size-[52px] shrink-0 items-center justify-center overflow-hidden rounded-full border ${border} ${arrowCol} transition-all duration-300`}
+      >
         <ArrowUpRight className="absolute h-5 w-5 -translate-x-1/2 transition-all duration-500 group-hover:translate-x-10" />
         <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 transition-all duration-500 group-hover:-translate-x-1/2" />
       </div>

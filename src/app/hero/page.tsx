@@ -1,7 +1,8 @@
 import Hero from "@/components/ui/hero";
 import Navbar from "@/components/ui/navbar";
 import { Leaf, Zap, BarChart3, Globe, ChevronRight } from "lucide-react";
-import { InlineCTA, PreFooterBanner } from "@/components/ui/cta";
+import Footer from "@/components/ui/footer";
+import { InlineCTA } from "@/components/ui/cta";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  12-COLUMN GRID SYSTEM
@@ -17,7 +18,7 @@ import { InlineCTA, PreFooterBanner } from "@/components/ui/cta";
 // ─────────────────────────────────────────────────────────────────────────────
 const G   = "grid grid-cols-12";
 const COL = "col-start-2 col-span-10";
-const SEC = "py-20";
+const SEC = "py-[100px] min-h-[740px]";
 const HDR = "mb-12";
 
 // ── Section label + h2 ───────────────────────────────────────────────────────
@@ -31,8 +32,8 @@ function SectionHeader({
   light?: boolean;
 }) {
   return (
-    <div className={HDR}>
-      <span className={`mb-3 block text-[11px] font-bold uppercase tracking-[0.18em] ${light ? "text-[#e1fcad]/50" : "text-black/40"}`}>
+    <div className="mb-12">
+      <span className={`mb-3 block text-sm font-bold uppercase tracking-[0.18em] ${light ? "text-[#e1fcad]/50" : "text-black/40"}`}>
         {label}
       </span>
       <h2 className={`text-4xl font-normal leading-[1.08] tracking-[-0.03em] md:text-5xl ${light ? "text-white" : "text-black"}`}>
@@ -50,7 +51,7 @@ function TrustedBy() {
     <section className="border-b border-black/10 bg-white py-7">
       <div className={G}>
         <div className={`${COL} flex flex-wrap items-center gap-x-10 gap-y-4`}>
-          <span className="whitespace-nowrap text-[11px] font-bold uppercase tracking-[0.18em] text-black/30">
+          <span className="whitespace-nowrap text-sm font-bold uppercase tracking-[0.18em] text-black/30">
             Trusted by
           </span>
           <div className="h-4 w-px shrink-0 bg-black/10" />
@@ -75,28 +76,28 @@ const SERVICES = [
     num: "01",
     title: "Clean Energy Transition",
     desc: "End-to-end advisory for businesses moving to renewables — solar, wind, storage, and beyond.",
-    img: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=90",
   },
   {
     icon: <BarChart3 className="h-5 w-5" />,
     num: "02",
     title: "Carbon Strategy & Reporting",
     desc: "Science-based targets, Scope 1–3 mapping, and board-ready sustainability reporting aligned to TCFD.",
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=90",
   },
   {
     icon: <Globe className="h-5 w-5" />,
     num: "03",
     title: "Community Energy Programs",
     desc: "Design and launch community microgrids, co-operative ownership models, and equitable access initiatives.",
-    img: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=90",
   },
   {
     icon: <Leaf className="h-5 w-5" />,
     num: "04",
     title: "Nature-Based Solutions",
     desc: "Verified carbon offsets, biodiversity credits, and regenerative land-use projects with measurable impact.",
-    img: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=90",
   },
 ];
 
@@ -105,10 +106,10 @@ function Services() {
     <section className={`bg-white ${SEC}`}>
       <div className={G}>
         <div className={COL}>
-          {/* Section header row with inline CTA button */}
-          <div className={`${HDR} flex items-end justify-between gap-8`}>
+          {/* Section header row */}
+          <div className="mb-12 flex items-end justify-between gap-8">
             <div>
-              <span className="mb-3 block text-[11px] font-bold uppercase tracking-[0.18em] text-black/40">
+              <span className="mb-3 block text-sm font-bold uppercase tracking-[0.18em] text-black/40">
                 What we do
               </span>
               <h2 className="text-4xl font-normal leading-[1.08] tracking-[-0.03em] md:text-5xl">
@@ -136,7 +137,7 @@ function Services() {
                 </div>
                 <div className="flex flex-1 flex-col p-6">
                   <div className="mb-4 flex items-center justify-between">
-                    <span className="font-mono text-[11px] font-bold tracking-widest text-black/25">{s.num}</span>
+                    <span className="font-mono text-sm font-bold tracking-widest text-black/25">{s.num}</span>
                     <span className="text-black/25">{s.icon}</span>
                   </div>
                   <h3 className="mb-2 text-base font-semibold leading-snug tracking-tight">{s.title}</h3>
@@ -224,7 +225,7 @@ function HowItWorks() {
                 className="group relative flex flex-col gap-6 p-8 transition-colors duration-300 hover:bg-[#f7f7f5]"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] font-bold tracking-[0.2em] text-black/30">
+                  <span className="font-mono text-sm font-bold tracking-[0.2em] text-black/30">
                     STEP {step.num}
                   </span>
                   <span className="size-2 rounded-full bg-[#e1fcad] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -304,9 +305,9 @@ function Integrations() {
       <div className={G}>
         <div className={COL}>
           {/* Section header */}
-          <div className={`${HDR} flex flex-col gap-3 md:flex-row md:items-end md:justify-between`}>
+          <div className="mb-12 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <span className="mb-3 block text-[11px] font-bold uppercase tracking-[0.18em] text-[#e1fcad]/50">
+              <span className="mb-3 block text-sm font-bold uppercase tracking-[0.18em] text-[#e1fcad]/50">
                 Integrations
               </span>
               <h2 className="max-w-xl text-4xl font-normal leading-[1.08] tracking-[-0.03em] text-white md:text-5xl">
@@ -327,7 +328,7 @@ function Integrations() {
                 <div className="flex size-16 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.06] shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
                   {INTEGRATIONS[0].icon}
                 </div>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-white/30">Google</span>
+                <span className="text-sm font-bold uppercase tracking-widest text-white/30">Google</span>
               </div>
 
               {/* Line Google → center */}
@@ -355,7 +356,7 @@ function Integrations() {
                 <div className="flex size-16 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.06]">
                   {INTEGRATIONS[1].icon}
                 </div>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-white/30">Microsoft</span>
+                <span className="text-sm font-bold uppercase tracking-widest text-white/30">Microsoft</span>
               </div>
             </div>
 
@@ -371,7 +372,7 @@ function Integrations() {
               <div className="flex h-16 min-w-[90px] items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.06] px-4">
                 {INTEGRATIONS[2].icon}
               </div>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-white/30">Zoho</span>
+              <span className="text-sm font-bold uppercase tracking-widest text-white/30">Zoho</span>
             </div>
           </div>
 
@@ -401,7 +402,7 @@ function Integrations() {
                   {intg.metrics.map((m) => (
                     <span
                       key={m}
-                      className="rounded-full border border-[#e1fcad]/15 bg-[#e1fcad]/[0.07] px-3 py-1 text-[11px] font-medium text-[#e1fcad]/70"
+                      className="rounded-full border border-[#e1fcad]/15 bg-[#e1fcad]/[0.07] px-3 py-1 text-sm font-medium text-[#e1fcad]/70"
                     >
                       {m}
                     </span>
@@ -481,65 +482,7 @@ function Testimonials() {
 
 // CTA section replaced by shared PreFooterBanner component
 
-// ── Footer ────────────────────────────────────────────────────────────────────
-const FOOTER_LINKS = {
-  Solutions: ["Clean Energy", "Carbon Strategy", "Community Programs", "Nature Solutions"],
-  Company:   ["About", "Team", "Careers", "Press"],
-  Resources: ["Case Studies", "Reports", "Blog", "Webinars"],
-  Legal:     ["Privacy", "Terms", "Cookie Policy"],
-};
-
-function Footer() {
-  return (
-    <footer className="border-t border-black/[0.08] bg-white py-16">
-      <div className={G}>
-        <div className={COL}>
-          {/* Brand + 4 link columns */}
-          <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 md:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
-            <div className="col-span-2 space-y-5 sm:col-span-3 md:col-span-1 md:max-w-[200px]">
-              <div className="flex items-center gap-2.5">
-                <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#122023]">
-                  <Leaf className="h-4 w-4 text-[#e1fcad]" />
-                </div>
-                <span className="text-base font-semibold tracking-tight">Verdant</span>
-              </div>
-              <p className="text-[13px] leading-relaxed text-black/40">
-                Empowering a just and sustainable future through clean energy solutions.
-              </p>
-            </div>
-
-            {Object.entries(FOOTER_LINKS).map(([group, links]) => (
-              <div key={group} className="space-y-4">
-                <h4 className="text-[11px] font-bold uppercase tracking-[0.18em] text-black/30">{group}</h4>
-                <ul className="space-y-3">
-                  {links.map((l) => (
-                    <li key={l}>
-                      <a href="#" className="text-[13px] text-black/45 transition-colors duration-200 hover:text-black">
-                        {l}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          {/* Bottom bar */}
-          <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-black/[0.08] pt-8 md:flex-row md:items-center">
-            <span className="text-xs text-black/30">© 2026 Verdant Energy Ltd. All rights reserved.</span>
-            <div className="flex items-center gap-8">
-              {["Twitter / X", "LinkedIn", "Instagram"].map((s) => (
-                <a key={s} href="#" className="text-xs text-black/30 transition-colors duration-200 hover:text-black">
-                  {s}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
+// Footer imported from @/components/ui/footer
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function HeroPage() {
@@ -553,7 +496,6 @@ export default function HeroPage() {
       <HowItWorks />
       <Integrations />
       <Testimonials />
-      <PreFooterBanner />
       <Footer />
     </main>
   );

@@ -1,13 +1,15 @@
 import Navbar from "@/components/ui/navbar";
 import { Leaf, Globe, Zap, Heart, ChevronRight } from "lucide-react";
-import { PrimaryCTA, GhostCTA, PreFooterBanner } from "@/components/ui/cta";
+import { GhostCTA } from "@/components/ui/cta";
+import { GsapTimeline } from "@/components/ui/gsap-timeline";
+import SharedFooter from "@/components/ui/footer";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Same 12-col grid system as /hero
 // ─────────────────────────────────────────────────────────────────────────────
 const G   = "grid grid-cols-12";
 const COL = "col-start-2 col-span-10";
-const SEC = "py-20";
+const SEC = "py-[100px] min-h-[740px]";
 const HDR = "mb-12";
 
 function SectionHeader({
@@ -20,8 +22,8 @@ function SectionHeader({
   light?: boolean;
 }) {
   return (
-    <div className={HDR}>
-      <span className={`mb-3 block text-[11px] font-bold uppercase tracking-[0.18em] ${light ? "text-[#e1fcad]/50" : "text-black/40"}`}>
+    <div className="mb-12">
+      <span className={`mb-3 block text-sm font-bold uppercase tracking-[0.18em] ${light ? "text-[#e1fcad]/50" : "text-black/40"}`}>
         {label}
       </span>
       <h2 className={`text-4xl font-normal leading-[1.08] tracking-[-0.03em] md:text-5xl ${light ? "text-white" : "text-black"}`}>
@@ -113,7 +115,7 @@ function AboutHero() {
 
       <div className={`relative ${G} w-full`}>
         <div className={COL}>
-          <span className="mb-6 block text-[11px] font-bold uppercase tracking-[0.18em] text-[#e1fcad]/50">
+          <span className="mb-6 block text-sm font-bold uppercase tracking-[0.18em] text-[#e1fcad]/50">
             About Verdant
           </span>
           <h1 className="mb-8 max-w-3xl text-5xl font-normal leading-[1.04] tracking-[-0.03em] text-white md:text-7xl">
@@ -135,63 +137,39 @@ function AboutHero() {
 // ── Our Story ─────────────────────────────────────────────────────────────────
 function OurStory() {
   return (
-    <section className={`bg-white ${SEC}`}>
-      <div className={G}>
-        <div className={COL}>
-          <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:gap-24">
-            {/* Text */}
-            <div>
-              <SectionHeader label="Our story" heading="Born out of urgency, built for scale" />
-              <div className="space-y-5 text-[15px] leading-[1.75] text-black/55">
-                <p>
-                  Verdant was founded by a team of energy engineers, climate
-                  scientists, and policy experts who watched promising net-zero
-                  commitments stall inside spreadsheets and boardroom decks.
-                </p>
-                <p>
-                  We built the tools and advisory practice we wished existed —
-                  combining rigorous financial modelling, best-in-class data
-                  pipelines, and on-the-ground implementation expertise so
-                  organisations could stop planning and start doing.
-                </p>
-                <p>
-                  Today, Verdant operates across 42 countries, helping utilities,
-                  corporates, governments, and communities make the energy
-                  transition real, measurable, and just.
-                </p>
-              </div>
+    <section className="bg-white py-[100px] min-h-[740px] flex items-center">
+      <div className="grid grid-cols-12 w-full">
+        <div className="col-start-2 col-span-10">
 
-              <div className="mt-10">
-                <GhostCTA label="See our platform" href="/product" />
-              </div>
+          {/* ── Centred heading block ── */}
+          <div className="mb-16 flex flex-col items-center text-center">
+            <span className="mb-4 block font-mono text-sm font-bold uppercase tracking-[0.18em] text-black/40">
+              Our story
+            </span>
+            <h2 className="mb-8 max-w-3xl text-5xl font-normal leading-[1.06] tracking-[-0.03em] text-black md:text-6xl">
+              Born out of urgency,{" "}
+              <span className="italic text-black/40">built for scale</span>
+            </h2>
+            <div className="max-w-2xl space-y-5 text-base leading-[1.8] text-black/50">
+              <p>
+                Verdant was founded by a team of energy engineers, climate scientists, and policy
+                experts who watched promising net-zero commitments stall inside spreadsheets and
+                boardroom decks.
+              </p>
+              <p>
+                We built the tools and advisory practice we wished existed — combining rigorous
+                financial modelling, best-in-class data pipelines, and on-the-ground
+                implementation expertise so organisations could stop planning and start doing.
+              </p>
             </div>
-
-            {/* Timeline */}
-            <div className="space-y-0">
-              {[
-                { year: "2018", label: "Founded in Copenhagen with a team of 6" },
-                { year: "2019", label: "First 50 enterprise clients across Europe" },
-                { year: "2021", label: "Expanded to North America & APAC" },
-                { year: "2023", label: "Launched the Verdant carbon data platform" },
-                { year: "2025", label: "2.4M tonnes CO\u2082 avoided \u2014 and counting" },
-              ].map((item, i, arr) => (
-                <div key={item.year} className="flex gap-6">
-                  {/* Line + dot */}
-                  <div className="flex flex-col items-center">
-                    <div className="size-3 shrink-0 rounded-full border-2 border-[#122023] bg-[#e1fcad] mt-1" />
-                    {i < arr.length - 1 && (
-                      <div className="mt-1 flex-1 w-px bg-black/10" style={{ minHeight: 40 }} />
-                    )}
-                  </div>
-                  {/* Content */}
-                  <div className="pb-10">
-                    <span className="font-mono text-[11px] font-bold tracking-widest text-black/30">{item.year}</span>
-                    <p className="mt-1 text-[15px] font-medium leading-snug text-black">{item.label}</p>
-                  </div>
-                </div>
-              ))}
+            <div className="mt-10">
+              <GhostCTA label="See our platform" href="/product" />
             </div>
           </div>
+
+          {/* ── GSAP centred alternating timeline ── */}
+          <GsapTimeline />
+
         </div>
       </div>
     </section>
@@ -315,8 +293,8 @@ function Team() {
                 />
                 <div className="min-w-0">
                   <p className="text-sm font-semibold text-white">{member.name}</p>
-                  <p className="mb-2 text-xs text-[#e1fcad]/60">{member.role}</p>
-                  <p className="text-xs leading-relaxed text-white/40">{member.bio}</p>
+                  <p className="mb-2 text-sm text-[#e1fcad]/60">{member.role}</p>
+                  <p className="text-sm leading-relaxed text-white/40">{member.bio}</p>
                 </div>
               </div>
             ))}
@@ -343,70 +321,12 @@ function StatsBar() {
           {STATS.map((s) => (
             <div key={s.value} className="flex flex-col items-center gap-1 bg-white px-6 py-8 text-center">
               <span className="text-4xl font-normal tracking-[-0.03em] text-[#122023]">{s.value}</span>
-              <span className="text-xs font-medium uppercase tracking-widest text-black/35">{s.label}</span>
+              <span className="text-sm font-medium uppercase tracking-widest text-black/35">{s.label}</span>
             </div>
           ))}
         </div>
       </div>
     </section>
-  );
-}
-
-// ── Footer ────────────────────────────────────────────────────────────────────
-const FOOTER_LINKS = {
-  Solutions: ["Clean Energy", "Carbon Strategy", "Community Programs", "Nature Solutions"],
-  Company:   ["About", "Team", "Careers", "Press"],
-  Resources: ["Case Studies", "Reports", "Blog", "Webinars"],
-  Legal:     ["Privacy", "Terms", "Cookie Policy"],
-};
-
-function Footer() {
-  return (
-    <footer className="border-t border-black/[0.08] bg-white py-16">
-      <div className={G}>
-        <div className={COL}>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 md:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
-            <div className="col-span-2 space-y-5 sm:col-span-3 md:col-span-1 md:max-w-[200px]">
-              <div className="flex items-center gap-2.5">
-                <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#122023]">
-                  <Leaf className="h-4 w-4 text-[#e1fcad]" />
-                </div>
-                <span className="text-base font-semibold tracking-tight">Verdant</span>
-              </div>
-              <p className="text-[13px] leading-relaxed text-black/40">
-                Empowering a just and sustainable future through clean energy solutions.
-              </p>
-            </div>
-
-            {Object.entries(FOOTER_LINKS).map(([group, links]) => (
-              <div key={group} className="space-y-4">
-                <h4 className="text-[11px] font-bold uppercase tracking-[0.18em] text-black/30">{group}</h4>
-                <ul className="space-y-3">
-                  {links.map((l) => (
-                    <li key={l}>
-                      <a href="#" className="text-[13px] text-black/45 transition-colors duration-200 hover:text-black">
-                        {l}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-black/[0.08] pt-8 md:flex-row md:items-center">
-            <span className="text-xs text-black/30">&copy; 2026 Verdant Energy Ltd. All rights reserved.</span>
-            <div className="flex items-center gap-8">
-              {["Twitter / X", "LinkedIn", "Instagram"].map((s) => (
-                <a key={s} href="#" className="text-xs text-black/30 transition-colors duration-200 hover:text-black">
-                  {s}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
   );
 }
 
@@ -420,8 +340,7 @@ export default function AboutPage() {
       <OurStory />
       <Values />
       <Team />
-      <PreFooterBanner />
-      <Footer />
+      <SharedFooter />
     </main>
   );
 }

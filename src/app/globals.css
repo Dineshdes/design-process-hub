@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: 'Space Grotesk', system-ui, sans-serif;
-  --font-mono: 'Space Mono', 'Courier New', monospace;
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -34,8 +34,8 @@
   --mid:      #64647A;
   --dim:      #ABABBE;
   --rule:     #E6E6F0;
-  --font:     'Space Grotesk', system-ui, sans-serif;
-  --mono:     'Space Mono', 'Courier New', monospace;
+  --font:     ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --mono:     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
   --shadow-md: 0 4px 20px rgba(0,0,0,0.09);
   --shadow-lg: 0 24px 64px rgba(0,0,0,0.14);
@@ -408,3 +408,20 @@ body {
 }
 .btn-ghost:hover { border-color: var(--text); }
 .btn-ghost:disabled { color: var(--dim); border-color: var(--rule); cursor: not-allowed; }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Global heading typography
+   Written outside @layer so these rules take precedence over Tailwind utilities.
+   --font-sans / --font-serif / --font-mono map to the system-font stacks above.
+───────────────────────────────────────────────────────────────────────────── */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: ui-sans-serif, system-ui, sans-serif,
+               "Apple Color Emoji", "Segoe UI Emoji",
+               "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+h2 {
+  font-size: 2.75rem; /* 44px */
+  max-width: 560px;
+}
