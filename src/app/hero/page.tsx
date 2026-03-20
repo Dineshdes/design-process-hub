@@ -213,7 +213,7 @@ const STEPS = [
 
 function HowItWorks() {
   return (
-    <section className={`bg-[#f7f7f5] ${SEC}`}>
+    <section className={`bg-[#f7f7f5] ${SEC} flex flex-col justify-center`}>
       <div className={G}>
         <div className={COL}>
           <SectionHeader label="How it works" heading="A proven process, end to end" />
