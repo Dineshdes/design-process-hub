@@ -1,0 +1,63 @@
+{
+  "questionnaires": [],
+  "projects": [
+    {
+      "id": "1773218718578",
+      "name": "Smiles",
+      "client": "dekfef",
+      "websiteType": "saas",
+      "createdAt": "11 Mar 2026",
+      "activePhase": 2
+    },
+    {
+      "id": "1773222725044",
+      "name": "dinesh",
+      "client": "client name",
+      "websiteType": "branding",
+      "createdAt": "11 Mar 2026",
+      "activePhase": 5,
+      "status": "in-progress",
+      "scopeDoc": "1773222725037.pdf"
+    }
+  ],
+  "designers": [
+    {
+      "id": "1773219184282",
+      "name": "Dinesh",
+      "role": "Creative Lead",
+      "color": "#0500FF"
+    },
+    {
+      "id": "1773223060815",
+      "name": "Harshita",
+      "role": "UI designer",
+      "color": "#E53935"
+    },
+    {
+      "id": "1773224659692",
+      "name": "Bishwarup",
+      "role": "Graphic Designer",
+      "color": "#00897B"
+    },
+    {
+      "id": "1773224775124",
+      "name": "Rithu",
+      "role": "Mid Level Product Designer",
+      "color": "#8E24AA"
+    }
+  ],
+  "projectDesigners": [
+    {
+      "projectId": "1773218718578",
+      "designerId": "1773223060815"
+    },
+    {
+      "projectId": "1773218718578",
+      "designerId": "1773219184282"
+    },
+    {
+      "projectId": "1773218718578",
+      "designerId": "1773224659692"
+    }
+  ]
+}
