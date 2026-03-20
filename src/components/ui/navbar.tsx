@@ -24,7 +24,7 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[#0d1a1c]/90 backdrop-blur-xl shadow-[0_1px_0_rgba(255,255,255,0.06)]"
+          ? "bg-white/95 backdrop-blur-xl shadow-[0_1px_0_rgba(0,0,0,0.06),0_4px_24px_rgba(0,0,0,0.06)]"
           : "bg-transparent"
       }`}
     >
@@ -33,10 +33,24 @@ export default function Navbar() {
 
           {/* ── Logo ── */}
           <a href="#" className="group flex items-center gap-3">
-            <div className="relative flex size-9 shrink-0 items-center justify-center rounded-full bg-[#e1fcad] shadow-[0_0_0_3px_rgba(225,252,173,0.15)] transition-all duration-300 group-hover:shadow-[0_0_0_5px_rgba(225,252,173,0.2)]">
-              <Leaf className="h-[18px] w-[18px] text-[#122023]" />
+            <div
+              className={`relative flex size-9 shrink-0 items-center justify-center rounded-full transition-all duration-300 group-hover:shadow-[0_0_0_5px_rgba(18,32,35,0.08)] ${
+                scrolled
+                  ? "bg-[#122023] shadow-[0_0_0_3px_rgba(18,32,35,0.06)]"
+                  : "bg-[#e1fcad] shadow-[0_0_0_3px_rgba(225,252,173,0.15)]"
+              }`}
+            >
+              <Leaf
+                className={`h-[18px] w-[18px] transition-colors duration-300 ${
+                  scrolled ? "text-[#e1fcad]" : "text-[#122023]"
+                }`}
+              />
             </div>
-            <span className="text-[15px] font-semibold tracking-tight text-white">
+            <span
+              className={`text-[15px] font-semibold tracking-tight transition-colors duration-300 ${
+                scrolled ? "text-[#122023]" : "text-white"
+              }`}
+            >
               Verdant
             </span>
           </a>
@@ -47,7 +61,11 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                className="rounded-full px-4 py-2 text-[13px] font-medium text-white transition-colors duration-200 hover:bg-white/[0.07]"
+                className={`rounded-full px-4 py-2 text-[13px] font-medium transition-colors duration-200 ${
+                  scrolled
+                    ? "text-[#122023]/70 hover:bg-black/[0.04] hover:text-[#122023]"
+                    : "text-white hover:bg-white/[0.07]"
+                }`}
               >
                 {link.label}
               </a>
@@ -58,18 +76,22 @@ export default function Navbar() {
           <div className="hidden items-center gap-3 md:flex">
             <a
               href="#"
-              className="text-[13px] font-medium text-white/50 transition-colors duration-200 hover:text-white"
+              className={`text-[13px] font-medium transition-colors duration-200 ${
+                scrolled
+                  ? "text-[#122023]/50 hover:text-[#122023]"
+                  : "text-white/60 hover:text-white"
+              }`}
             >
               Sign in
             </a>
             <a
               href="#"
-              className="group flex items-center overflow-hidden rounded-full bg-[#e1fcad] transition-all duration-300 hover:bg-white"
+              className="group flex items-center overflow-hidden rounded-full bg-[#122023] transition-all duration-300 hover:bg-[#1a2f33]"
             >
-              <span className="pl-5 pr-4 text-[13px] font-semibold text-[#122023]">
+              <span className="pl-5 pr-4 text-[13px] font-semibold text-[#e1fcad]">
                 Get started
               </span>
-              <span className="flex size-8 items-center justify-center rounded-full bg-[#122023] text-[#e1fcad] transition-colors duration-300 group-hover:bg-[#e1fcad] group-hover:text-[#122023]">
+              <span className="flex size-8 items-center justify-center rounded-full bg-[#e1fcad] text-[#122023] transition-colors duration-300 group-hover:bg-[#d4f59a]">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="14"
@@ -89,7 +111,11 @@ export default function Navbar() {
 
           {/* ── Mobile hamburger ── */}
           <button
-            className="flex size-9 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white md:hidden"
+            className={`flex size-9 items-center justify-center rounded-full transition-colors md:hidden ${
+              scrolled
+                ? "text-[#122023]/60 hover:bg-black/[0.05] hover:text-[#122023]"
+                : "text-white/70 hover:bg-white/10 hover:text-white"
+            }`}
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -104,22 +130,41 @@ export default function Navbar() {
           mobileOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="border-t border-white/[0.08] bg-[#0d1a1c]/95 backdrop-blur-xl px-6 py-5 space-y-1">
+        <div
+          className={`px-6 py-5 space-y-1 border-t backdrop-blur-xl ${
+            scrolled
+              ? "bg-white/98 border-black/[0.06]"
+              : "bg-[#0d1a1c]/95 border-white/[0.08]"
+          }`}
+        >
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="block rounded-xl px-4 py-3 text-[14px] font-medium text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white"
+              className={`block rounded-xl px-4 py-3 text-[14px] font-medium transition-colors ${
+                scrolled
+                  ? "text-[#122023]/70 hover:bg-black/[0.04] hover:text-[#122023]"
+                  : "text-white/70 hover:bg-white/[0.06] hover:text-white"
+              }`}
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
             </a>
           ))}
-          <div className="pt-3 border-t border-white/[0.08] mt-3 flex flex-col gap-2">
-            <a href="#" className="block rounded-xl px-4 py-3 text-[14px] font-medium text-white/50 hover:text-white transition-colors">
+          <div
+            className={`pt-3 mt-3 flex flex-col gap-2 border-t ${
+              scrolled ? "border-black/[0.06]" : "border-white/[0.08]"
+            }`}
+          >
+            <a
+              href="#"
+              className={`block rounded-xl px-4 py-3 text-[14px] font-medium transition-colors ${
+                scrolled ? "text-[#122023]/50 hover:text-[#122023]" : "text-white/50 hover:text-white"
+              }`}
+            >
               Sign in
             </a>
-            <a href="#" className="flex items-center justify-center rounded-full bg-[#e1fcad] py-3 text-[14px] font-semibold text-[#122023]">
+            <a href="#" className="flex items-center justify-center rounded-full bg-[#122023] py-3 text-[14px] font-semibold text-[#e1fcad]">
               Get started
             </a>
           </div>
