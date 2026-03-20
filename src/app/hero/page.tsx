@@ -197,6 +197,117 @@ function Services() {
   );
 }
 
+// ── Industries ────────────────────────────────────────────────────────────────
+
+const INDUSTRIES = [
+  {
+    tag: "Energy & Utilities",
+    title: "Power grids & renewables",
+    desc: "We help utilities and energy producers decarbonise generation, modernise grid infrastructure, and meet evolving regulatory targets.",
+    img: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=900&q=90",
+  },
+  {
+    tag: "Real Estate & Construction",
+    title: "Built environment",
+    desc: "From net-zero building design to retrofit programmes, we guide developers and asset managers through every stage of sustainable construction.",
+    img: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=90",
+  },
+  {
+    tag: "Manufacturing & Industry",
+    title: "Industrial decarbonisation",
+    desc: "We identify Scope 1 & 2 reduction levers across heavy industry — electrification, process heat, and supply chain emission mapping.",
+    img: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=900&q=90",
+  },
+  {
+    tag: "Finance & Investment",
+    title: "Sustainable capital",
+    desc: "We support banks, funds, and insurers in ESG integration, green bond frameworks, and climate risk disclosure aligned to TCFD.",
+    img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=90",
+  },
+];
+
+function Industries() {
+  return (
+    <section className={`bg-[#122023] ${SEC} flex flex-col justify-center`}>
+      <div className={G}>
+        <div className={COL}>
+
+          {/* Header */}
+          <div className="mb-10 flex items-end justify-between gap-8">
+            <div>
+              <span className="mb-3 block font-mono text-base font-bold uppercase tracking-[0.18em] text-[#e1fcad]/40">
+                Industries
+              </span>
+              <h2 className="leading-[1.06] tracking-[-0.03em] text-white">
+                Sectors we serve
+              </h2>
+            </div>
+            <a href="/about" className="hidden shrink-0 text-base font-medium text-white/40 transition-colors hover:text-white md:block">
+              All industries →
+            </a>
+          </div>
+
+          {/* 4 cards */}
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {INDUSTRIES.map((ind) => (
+              <a
+                key={ind.tag}
+                href="/product"
+                className="group relative flex h-[420px] flex-col overflow-hidden rounded-2xl bg-[#0d1a1c]"
+              >
+                {/* Photo */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={ind.img}
+                  alt={ind.tag}
+                  className="absolute inset-0 h-full w-full object-cover opacity-55 transition-all duration-700 group-hover:scale-105 group-hover:opacity-40"
+                />
+
+                {/* Always-on gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a1618]/95 via-[#0a1618]/30 to-transparent" />
+
+                {/* Content */}
+                <div className="relative flex h-full flex-col justify-between p-7">
+
+                  {/* Top tag */}
+                  <div className="flex items-center gap-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-[#e1fcad]" />
+                    <span className="text-base font-medium text-[#e1fcad]/70">{ind.tag}</span>
+                  </div>
+
+                  {/* Bottom — title + desc slides up on hover */}
+                  <div className="flex flex-col gap-3">
+                    <h3 className="text-xl font-semibold leading-snug text-white">
+                      {ind.title}
+                    </h3>
+
+                    {/* Description — hidden by default, slides up on hover */}
+                    <p className="max-h-0 overflow-hidden text-base leading-relaxed text-white/50 transition-all duration-500 group-hover:max-h-24">
+                      {ind.desc}
+                    </p>
+
+                    {/* Learn more */}
+                    <div className="flex items-center gap-2 text-base font-semibold text-[#e1fcad] opacity-0 transition-all duration-300 group-hover:opacity-100">
+                      Learn more
+                      <span className="inline-flex size-7 items-center justify-center rounded-full bg-[#e1fcad] text-[#122023] transition-transform duration-300 group-hover:translate-x-1">
+                        <ChevronRight className="h-3.5 w-3.5" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Subtle lime border glow on hover */}
+                <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-[#e1fcad]/0 transition-all duration-300 group-hover:ring-[#e1fcad]/15" />
+              </a>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ── Impact Stats ─────────────────────────────────────────────────────────────
 
 const STATS = [
@@ -605,6 +716,7 @@ export default function HeroPage() {
       <Hero />
       <TrustedBy />
       <Services />
+      <Industries />
       <ImpactStats />
       <HowItWorks />
       <Integrations />
