@@ -279,10 +279,10 @@ function Industries() {
                 </div>
 
                 {/* Inner height container — transitions from collapsed to 480px */}
-                <div className="relative h-[88px] transition-[height] duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:h-[480px]">
+                <div className="relative h-[88px] transition-[height] duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:h-[360px]">
 
                   {/* Content — fills height, right padding reserves space for image */}
-                  <div className="flex h-full flex-col justify-between py-6 pr-4 lg:pr-[42%]">
+                  <div className="flex h-full flex-col justify-between px-2 py-8 pr-4 lg:pr-[42%]">
 
                     {/* Top row — always visible */}
                     <div className="flex items-center gap-5 md:gap-8">
