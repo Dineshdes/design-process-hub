@@ -166,7 +166,7 @@ function CardCO2() {
       <div>
         <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-white/30">CO₂ avoided</p>
         <div className="flex items-baseline gap-2">
-          <span className="text-2xl font-normal leading-none tracking-[-0.02em] text-[#e1fcad]">2.4M</span>
+          <span className="text-[44px] font-normal leading-none tracking-[-0.03em] text-[#e1fcad]">2.4M</span>
           <span className="text-sm font-medium uppercase tracking-widest text-white/30">tonnes</span>
         </div>
         <p className="mt-3 max-w-[200px] text-sm leading-relaxed text-white/40">
@@ -233,7 +233,7 @@ function CardProjects() {
             <path key={s.label} d={arc(s.pct)} fill={s.color} />
           ))}
           {/* Centre label */}
-          <text x="70" y="68" textAnchor="middle" fontSize="16" fontWeight="400" fill="#e1fcad">340+</text>
+          <text x="70" y="68" textAnchor="middle" fontSize="26" fontWeight="400" fill="#e1fcad">340+</text>
           <text x="70" y="82" textAnchor="middle" fontSize="9" fill="rgba(255,255,255,0.35)" letterSpacing="1.5" fontFamily="ui-monospace,monospace">PROJECTS</text>
         </svg>
       </div>
@@ -278,7 +278,7 @@ function CardInvestment() {
       <div>
         <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-[#122023]/50">Clean energy assets</p>
         <div className="flex items-baseline gap-1">
-          <span className="text-2xl font-normal leading-none tracking-[-0.02em] text-[#122023]">$8.2B</span>
+          <span className="text-[44px] font-normal leading-none tracking-[-0.03em] text-[#122023]">$8.2B</span>
         </div>
         <p className="mt-3 max-w-[200px] text-sm leading-relaxed text-[#122023]/55">
           Capital mobilised through Verdant-advised financing structures.
@@ -319,7 +319,7 @@ function CardTeams() {
       <div>
         <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-white/30">Teams onboard</p>
         <div className="flex items-baseline gap-2">
-          <span className="text-2xl font-normal leading-none tracking-[-0.02em] text-[#e1fcad]">15K+</span>
+          <span className="text-[44px] font-normal leading-none tracking-[-0.03em] text-[#e1fcad]">15K+</span>
         </div>
         <p className="mt-2 text-sm text-white/40">Making the transition</p>
       </div>
