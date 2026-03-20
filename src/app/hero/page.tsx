@@ -69,85 +69,127 @@ function TrustedBy() {
   );
 }
 
-// ── Services ──────────────────────────────────────────────────────────────────
-const SERVICES = [
-  {
-    icon: <Zap className="h-5 w-5" />,
-    num: "01",
-    title: "Clean Energy Transition",
-    desc: "End-to-end advisory for businesses moving to renewables — solar, wind, storage, and beyond.",
-    img: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=90",
-  },
-  {
-    icon: <BarChart3 className="h-5 w-5" />,
-    num: "02",
-    title: "Carbon Strategy & Reporting",
-    desc: "Science-based targets, Scope 1–3 mapping, and board-ready sustainability reporting aligned to TCFD.",
-    img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=90",
-  },
-  {
-    icon: <Globe className="h-5 w-5" />,
-    num: "03",
-    title: "Community Energy Programs",
-    desc: "Design and launch community microgrids, co-operative ownership models, and equitable access initiatives.",
-    img: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=90",
-  },
-  {
-    icon: <Leaf className="h-5 w-5" />,
-    num: "04",
-    title: "Nature-Based Solutions",
-    desc: "Verified carbon offsets, biodiversity credits, and regenerative land-use projects with measurable impact.",
-    img: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=90",
-  },
-];
-
+// ── Services — bento mosaic grid ─────────────────────────────────────────────
 function Services() {
   return (
-    <section className={`bg-white ${SEC}`}>
+    <section className={`bg-[#f7f7f5] ${SEC}`}>
       <div className={G}>
         <div className={COL}>
-          {/* Section header row */}
-          <div className="mb-12 flex items-end justify-between gap-8">
+
+          {/* Header */}
+          <div className="mb-10 flex items-end justify-between gap-8">
             <div>
-              <span className="mb-3 block text-sm font-bold uppercase tracking-[0.18em] text-black/40">
+              <span className="mb-3 block font-mono text-base font-bold uppercase tracking-[0.18em] text-black/35">
                 What we do
               </span>
-              <h2 className="text-4xl font-normal leading-[1.08] tracking-[-0.03em] md:text-5xl">
-                Solutions built for a low-carbon economy
+              <h2 className="leading-[1.06] tracking-[-0.03em] text-black">
+                Solutions built for a<br />low-carbon economy
               </h2>
             </div>
             <InlineCTA label="See the platform" href="/product" />
           </div>
 
-          {/* 4-col service cards */}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {SERVICES.map((s) => (
-              <div
-                key={s.num}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-black/[0.06] bg-[#f7f7f5] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.10)]"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={s.img}
-                    alt={s.title}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#f7f7f5]/70 via-transparent" />
+          {/* ── Bento grid ── */}
+          <div className="grid auto-rows-[220px] grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+
+            {/* A — Clean Energy: tall image card, spans 2 rows */}
+            <div className="group relative row-span-2 overflow-hidden rounded-2xl bg-[#122023] sm:col-span-1">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=90"
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover opacity-40 transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#122023] via-[#122023]/40 to-transparent" />
+              <div className="absolute inset-0 flex flex-col justify-between p-7">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-base font-bold tracking-[0.2em] text-white/30">01</span>
+                  <Zap className="h-4 w-4 text-[#e1fcad]/60" />
                 </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <div className="mb-4 flex items-center justify-between">
-                    <span className="font-mono text-sm font-bold tracking-widest text-black/25">{s.num}</span>
-                    <span className="text-black/25">{s.icon}</span>
-                  </div>
-                  <h3 className="mb-2 text-base font-semibold leading-snug tracking-tight">{s.title}</h3>
-                  <p className="flex-1 text-sm leading-relaxed text-black/50">{s.desc}</p>
-                  <div className="mt-5 flex items-center gap-1.5 text-xs font-semibold text-[#122023] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    Learn more <ChevronRight className="h-3.5 w-3.5" />
+                <div>
+                  <h3 className="mb-2 text-2xl font-semibold leading-tight text-white">
+                    Clean Energy<br />Transition
+                  </h3>
+                  <p className="text-base leading-relaxed text-white/50">
+                    End-to-end advisory for businesses moving to renewables.
+                  </p>
+                  <div className="mt-5 flex items-center gap-1.5 text-base font-semibold text-[#e1fcad] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    Learn more <ChevronRight className="h-4 w-4" />
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* B — Carbon Strategy: light warm card with arc stat */}
+            <div className="group relative overflow-hidden rounded-2xl bg-[#f0ece4] p-7">
+              <div className="flex h-full flex-col justify-between">
+                <div className="flex items-start justify-between">
+                  <span className="font-mono text-base font-bold tracking-[0.2em] text-black/30">02</span>
+                  <BarChart3 className="h-4 w-4 text-black/25" />
+                </div>
+                <div>
+                  <p className="mb-1 text-base font-medium text-black/40">Scope 1–3 coverage</p>
+                  <p className="text-[56px] font-normal leading-none tracking-[-0.04em] text-[#122023]">94<span className="text-[32px]">%</span></p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-black/80">Carbon Strategy<br />&amp; Reporting</h3>
+                </div>
+              </div>
+            </div>
+
+            {/* C — Accent stat card: dark, avg time to net-zero */}
+            <div className="group relative overflow-hidden rounded-2xl bg-[#122023] p-7">
+              <div className="flex h-full flex-col justify-between">
+                <div className="flex items-start justify-between">
+                  <span className="font-mono text-base font-bold tracking-[0.2em] text-white/25">—</span>
+                  <span className="rounded-full bg-[#e1fcad]/10 px-3 py-1 text-base font-medium text-[#e1fcad]/70">Live</span>
+                </div>
+                <div>
+                  <p className="mb-1 text-base text-white/40">Avg. time to first milestone</p>
+                  <p className="text-[56px] font-normal leading-none tracking-[-0.04em] text-[#e1fcad]">6<span className="text-2xl font-normal text-white/40"> mo</span></p>
+                </div>
+              </div>
+            </div>
+
+            {/* D — Community Programs: image card */}
+            <div className="group relative overflow-hidden rounded-2xl bg-[#1a2e30]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=90"
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover opacity-50 transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+              <div className="absolute inset-0 flex flex-col justify-between p-7">
+                <span className="font-mono text-base font-bold tracking-[0.2em] text-white/30">03</span>
+                <div>
+                  <Globe className="mb-2 h-4 w-4 text-[#e1fcad]/60" />
+                  <h3 className="text-lg font-semibold leading-snug text-white">Community<br />Energy Programs</h3>
+                </div>
+              </div>
+            </div>
+
+            {/* E — Nature-Based Solutions: muted light card */}
+            <div className="group relative overflow-hidden rounded-2xl bg-white p-7 ring-1 ring-black/[0.06]">
+              <div className="flex h-full flex-col justify-between">
+                <div className="flex items-start justify-between">
+                  <span className="font-mono text-base font-bold tracking-[0.2em] text-black/25">04</span>
+                  <Leaf className="h-4 w-4 text-[#122023]/30" />
+                </div>
+                {/* Minimal tree SVG */}
+                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" className="my-2">
+                  <path d="M28 48 C14 38 10 20 28 8 C46 20 42 38 28 48Z" fill="#122023" fillOpacity="0.07" stroke="#122023" strokeWidth="1.2" strokeLinejoin="round"/>
+                  <line x1="28" y1="8" x2="28" y2="48" stroke="#122023" strokeWidth="0.8" opacity="0.25"/>
+                  <path d="M28 20 L22 28 M28 20 L34 28" stroke="#122023" strokeWidth="0.8" opacity="0.2" strokeLinecap="round"/>
+                  <line x1="28" y1="48" x2="28" y2="54" stroke="#122023" strokeWidth="1.5" strokeLinecap="round" opacity="0.3"/>
+                </svg>
+                <div>
+                  <h3 className="mb-1 text-lg font-semibold leading-snug text-black">Nature-Based<br />Solutions</h3>
+                  <p className="text-base leading-relaxed text-black/45">Verified offsets &amp; biodiversity credits.</p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
