@@ -22,6 +22,14 @@ const COL = "col-start-2 col-span-10";
 const SEC = "py-20";
 const HDR = "mb-12";
 
+// ── Isometric cube SVG path helpers ──────────────────────────────────────────
+const isoTop   = (cx: number, cy: number, w: number) =>
+  `M${cx},${cy} L${cx+w},${cy+w*0.5} L${cx},${cy+w} L${cx-w},${cy+w*0.5} Z`;
+const isoRight = (cx: number, cy: number, w: number, h: number) =>
+  `M${cx+w},${cy+w*0.5} L${cx+w},${cy+w*0.5+h} L${cx},${cy+w+h} L${cx},${cy+w} Z`;
+const isoLeft  = (cx: number, cy: number, w: number, h: number) =>
+  `M${cx-w},${cy+w*0.5} L${cx},${cy+w} L${cx},${cy+w+h} L${cx-w},${cy+w*0.5+h} Z`;
+
 // ── Shared: Section header ───────────────────────────────────────────────────
 function SectionHeader({
   label,
@@ -551,6 +559,135 @@ function FeatureDetail3() {
   );
 }
 
+// ── Platform Architecture Diagram ─────────────────────────────────────────────
+function PlatformDiagram() {
+  const IW = 50, IH = 38; // input cube half-width / face height
+  const HCX = 450, HCY = 108, HW = 88, HH = 68; // hub cube
+  const SCX = 735, SW = 60, SH = 13, SN = 8; // stack params
+  const SSY = 101; // stack start cy — centers stack at ~183px matching hub
+
+  const hubLX = HCX - HW;          // 362
+  const hubLY = HCY + HW*0.5 + HH*0.5; // 183
+  const hubRX = HCX + HW;          // 538
+  const hubRY = hubLY;              // 183
+
+  const INPUT_CUBES = [
+    { cx: 155, cy: 68,  label: "Energy Meters" },
+    { cx: 155, cy: 198, label: "Supply Chain"  },
+    { cx: 155, cy: 328, label: "Finance Data"  },
+  ];
+
+  const stackColors = [
+    { top: "#e1fcad", r: "#b3d168", l: "#8aad4e" }, // top layer — lime
+    { top: "#2a4a50", r: "#1d3035", l: "#122023" },
+    { top: "#233f44", r: "#1a3038", l: "#102028" },
+    { top: "#2a4a50", r: "#1d3035", l: "#122023" },
+    { top: "#233f44", r: "#1a3038", l: "#102028" },
+    { top: "#2a4a50", r: "#1d3035", l: "#122023" },
+    { top: "#233f44", r: "#1a3038", l: "#102028" },
+    { top: "#1a3238", r: "#122023", l: "#0d1a1c" }, // bottom
+  ];
+
+  return (
+    <section className={`bg-[#f7f7f5] ${SEC}`}>
+      <div className={G}>
+        <div className={COL}>
+          <SectionHeader
+            label="Platform architecture"
+            heading="Every layer, working as one"
+            sub="From raw data inputs to board-ready outputs — Verdant connects, analyses, and delivers your entire sustainability operation through one intelligent system."
+          />
+
+          <div className="overflow-hidden rounded-3xl border border-black/[0.06] bg-white p-6 lg:p-12">
+            <svg viewBox="0 0 900 450" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full" style={{ maxHeight: 420 }}>
+
+              {/* ── subtle dot grid ── */}
+              {Array.from({ length: 12 }, (_, col) =>
+                Array.from({ length: 8 }, (_, row) => (
+                  <circle key={`d-${col}-${row}`} cx={40 + col * 76} cy={28 + row * 56} r="1.5" fill="#122023" opacity="0.06" />
+                ))
+              )}
+
+              {/* ── column header labels ── */}
+              <text x="155" y="26" textAnchor="middle" fontSize="9.5" fontWeight="700" fill="#122023" opacity="0.3" letterSpacing="0.14em" fontFamily="system-ui,sans-serif">DATA INPUTS</text>
+              <text x="450" y="60" textAnchor="middle" fontSize="9.5" fontWeight="700" fill="#122023" opacity="0.3" letterSpacing="0.14em" fontFamily="system-ui,sans-serif">PLATFORM CORE</text>
+              <text x={SCX} y="60" textAnchor="middle" fontSize="9.5" fontWeight="700" fill="#122023" opacity="0.3" letterSpacing="0.14em" fontFamily="system-ui,sans-serif">OUTPUTS</text>
+
+              {/* ── dashed connector: hub → stack ── */}
+              <line x1={hubRX} y1={hubRY} x2={SCX - SW} y2={SSY + SW*0.5 + (SN*SH)*0.5} stroke="#122023" strokeOpacity="0.2" strokeWidth="1.5" strokeDasharray="5 5" />
+
+              {/* ── dashed connectors: input cubes → hub ── */}
+              {INPUT_CUBES.map((c, i) => (
+                <line key={`l-${i}`}
+                  x1={c.cx + IW} y1={c.cy + IW*0.5 + IH*0.5}
+                  x2={hubLX}     y2={hubLY}
+                  stroke="#122023" strokeOpacity="0.18" strokeWidth="1.5" strokeDasharray="5 5"
+                />
+              ))}
+
+              {/* ── connection dots ── */}
+              {INPUT_CUBES.map((c, i) => (
+                <circle key={`dot-${i}`} cx={c.cx + IW} cy={c.cy + IW*0.5 + IH*0.5} r="4" fill="#122023" opacity="0.22" />
+              ))}
+              <circle cx={hubLX} cy={hubLY} r="5.5" fill="#e1fcad" opacity="0.85" />
+              <circle cx={hubRX} cy={hubRY} r="5.5" fill="#e1fcad" opacity="0.85" />
+              <circle cx={SCX - SW} cy={SSY + SW*0.5 + (SN*SH)*0.5} r="4" fill="#122023" opacity="0.22" />
+
+              {/* ── input cubes (wireframe) ── */}
+              {INPUT_CUBES.map((c) => (
+                <g key={c.label}>
+                  <path d={isoTop(c.cx, c.cy, IW)}     stroke="#122023" strokeOpacity="0.22" strokeWidth="1.2" fill="rgba(18,32,35,0.035)" />
+                  <path d={isoRight(c.cx, c.cy, IW, IH)} stroke="#122023" strokeOpacity="0.14" strokeWidth="1.2" fill="rgba(18,32,35,0.02)" />
+                  <path d={isoLeft(c.cx, c.cy, IW, IH)}  stroke="#122023" strokeOpacity="0.09" strokeWidth="1.2" fill="rgba(18,32,35,0.012)" />
+                  <text x={c.cx} y={c.cy + IW + IH + 18} textAnchor="middle" fontSize="10" fill="#122023" opacity="0.42" fontFamily="system-ui,sans-serif">{c.label}</text>
+                </g>
+              ))}
+
+              {/* ── main hub cube (solid — lime top, dark sides) ── */}
+              <path d={isoLeft(HCX, HCY, HW, HH)}  fill="#8aad4e" />
+              <path d={isoRight(HCX, HCY, HW, HH)} fill="#b3d168" />
+              <path d={isoTop(HCX, HCY, HW)}        fill="#e1fcad" />
+              {/* leaf silhouette on top face */}
+              <path d="M450,126 C464,132 467,150 450,157 C433,150 436,132 450,126 Z" fill="#122023" opacity="0.4" />
+              <text x={HCX} y={HCY + HW + HH + 18} textAnchor="middle" fontSize="12" fontWeight="600" fill="#122023" opacity="0.65" fontFamily="system-ui,sans-serif">Verdant Core</text>
+
+              {/* ── output stack (bottom layer first so top renders over) ── */}
+              {Array.from({ length: SN }, (_, i) => SN - 1 - i).map((i) => {
+                const cy = SSY + i * SH;
+                const c  = stackColors[i];
+                return (
+                  <g key={`sl-${i}`}>
+                    <path d={isoLeft(SCX, cy, SW, SH)}  fill={c.l} />
+                    <path d={isoRight(SCX, cy, SW, SH)} fill={c.r} />
+                    <path d={isoTop(SCX, cy, SW)}        fill={c.top} />
+                  </g>
+                );
+              })}
+              <text x={SCX} y={SSY + SW + SN*SH + 18} textAnchor="middle" fontSize="12" fontWeight="600" fill="#122023" opacity="0.65" fontFamily="system-ui,sans-serif">Unified Outputs</text>
+
+            </svg>
+          </div>
+
+          {/* 3-col legend */}
+          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3">
+            {[
+              { num: "01", title: "Data Inputs",    desc: "Carbon meters, energy APIs, supply chain feeds — ingested automatically with zero manual effort." },
+              { num: "02", title: "Verdant Core",   desc: "AI engine that normalises, analyses, and turns fragmented signals into actionable sustainability intelligence." },
+              { num: "03", title: "Unified Outputs", desc: "Dashboards, reports, alerts, and roadmaps — structured and delivered for every stakeholder from ops to board." },
+            ].map((item) => (
+              <div key={item.num} className="flex flex-col gap-3 rounded-2xl border border-black/[0.06] bg-[#f7f7f5] p-6">
+                <span className="font-mono text-[11px] font-bold tracking-widest text-black/25">{item.num}</span>
+                <h4 className="text-base font-semibold tracking-tight">{item.title}</h4>
+                <p className="text-sm leading-relaxed text-black/50">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ── Social Proof (Stats) ──────────────────────────────────────────────────────
 const STATS = [
   { value: "2.4M",  unit: "tonnes",   label: "CO₂ avoided annually" },
@@ -733,6 +870,7 @@ export default function ProductPage() {
       <ProductHero />
       <TrustedBy />
       <Capabilities />
+      <PlatformDiagram />
       <FeatureDetail1 />
       <FeatureDetail2 />
       <FeatureDetail3 />
