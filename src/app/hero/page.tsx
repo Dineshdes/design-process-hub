@@ -717,9 +717,9 @@ export default function HeroPage() {
       <TrustedBy />
       <Services />
       <Industries />
-      <ImpactStats />
       <HowItWorks />
       <Integrations />
+      <ImpactStats />
       <Testimonials />
       <Footer />
     </main>
