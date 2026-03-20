@@ -228,8 +228,6 @@ export default function Footer() {
         />
         {/* Fade card into image */}
         <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#0a1618] via-[#0a1618]/60 to-transparent" />
-        {/* Darken bottom for nav card */}
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0a1618]/90 to-transparent" />
       </div>
 
       {/* ── Bottom navigation card ── */}
