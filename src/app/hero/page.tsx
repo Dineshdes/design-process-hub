@@ -201,103 +201,121 @@ function Services() {
 
 const INDUSTRIES = [
   {
+    num: "01",
     tag: "Energy & Utilities",
     title: "Power grids & renewables",
     desc: "We help utilities and energy producers decarbonise generation, modernise grid infrastructure, and meet evolving regulatory targets.",
     img: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=900&q=90",
+    stat: "68% avg. carbon reduction",
   },
   {
+    num: "02",
     tag: "Real Estate & Construction",
     title: "Built environment",
-    desc: "From net-zero building design to retrofit programmes, we guide developers and asset managers through every stage of sustainable construction.",
+    desc: "From net-zero building design to retrofit programmes, we guide developers through every stage of sustainable construction.",
     img: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=90",
+    stat: "140+ certified buildings",
   },
   {
+    num: "03",
     tag: "Manufacturing & Industry",
     title: "Industrial decarbonisation",
     desc: "We identify Scope 1 & 2 reduction levers across heavy industry — electrification, process heat, and supply chain emission mapping.",
     img: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=900&q=90",
+    stat: "Scope 1–3 coverage",
   },
   {
+    num: "04",
     tag: "Finance & Investment",
     title: "Sustainable capital",
     desc: "We support banks, funds, and insurers in ESG integration, green bond frameworks, and climate risk disclosure aligned to TCFD.",
     img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=90",
+    stat: "$8.2B mobilised",
   },
 ];
 
 function Industries() {
   return (
-    <section className={`bg-[#122023] ${SEC} flex flex-col justify-center`}>
+    <section className="bg-white py-[100px]">
       <div className={G}>
         <div className={COL}>
 
           {/* Header */}
-          <div className="mb-10 flex items-end justify-between gap-8">
+          <div className="mb-2 flex items-end justify-between gap-8">
             <div>
-              <span className="mb-3 block font-mono text-base font-bold uppercase tracking-[0.18em] text-[#e1fcad]/40">
+              <span className="mb-4 block font-mono text-base font-bold uppercase tracking-[0.18em] text-black/30">
                 Industries
               </span>
-              <h2 className="leading-[1.06] tracking-[-0.03em] text-white">
+              <h2 className="leading-[1.06] tracking-[-0.03em] text-black">
                 Sectors we serve
               </h2>
             </div>
-            <a href="/about" className="hidden shrink-0 text-base font-medium text-white/40 transition-colors hover:text-white md:block">
-              All industries →
+            <a href="/about" className="hidden shrink-0 text-base font-medium text-black/35 underline-offset-4 transition-colors hover:text-black md:block">
+              View all →
             </a>
           </div>
 
-          {/* 4 cards */}
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Row list — top border */}
+          <div className="mt-10 border-t border-black/[0.08]">
             {INDUSTRIES.map((ind) => (
               <a
-                key={ind.tag}
+                key={ind.num}
                 href="/product"
-                className="group relative flex h-[420px] flex-col overflow-hidden rounded-2xl bg-[#0d1a1c]"
+                className="group relative block overflow-hidden border-b border-black/[0.08]"
               >
-                {/* Photo */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={ind.img}
-                  alt={ind.tag}
-                  className="absolute inset-0 h-full w-full object-cover opacity-55 transition-all duration-700 group-hover:scale-105 group-hover:opacity-40"
-                />
+                {/* Hover bg fill — slides up from bottom */}
+                <div className="absolute inset-0 translate-y-full bg-[#122023] transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" />
 
-                {/* Always-on gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a1618]/95 via-[#0a1618]/30 to-transparent" />
+                {/* Photo — slides in from right on hover */}
+                <div className="pointer-events-none absolute right-0 top-0 h-full w-[280px] translate-x-8 opacity-0 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-x-0 group-hover:opacity-100">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={ind.img}
+                    alt={ind.tag}
+                    className="h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#122023]/80 to-transparent" />
+                </div>
 
-                {/* Content */}
-                <div className="relative flex h-full flex-col justify-between p-7">
+                {/* Row content */}
+                <div className="relative px-0 py-7 transition-colors duration-300">
 
-                  {/* Top tag */}
-                  <div className="flex items-center gap-2">
-                    <div className="h-1.5 w-1.5 rounded-full bg-[#e1fcad]" />
-                    <span className="text-base font-medium text-[#e1fcad]/70">{ind.tag}</span>
-                  </div>
+                  {/* Main row — always visible */}
+                  <div className="flex items-center gap-6 md:gap-10">
+                    {/* Number */}
+                    <span className="w-8 shrink-0 font-mono text-base font-bold text-black/25 transition-colors duration-300 group-hover:text-white/30">
+                      {ind.num}
+                    </span>
 
-                  {/* Bottom — title + desc slides up on hover */}
-                  <div className="flex flex-col gap-3">
-                    <h3 className="text-xl font-semibold leading-snug text-white">
+                    {/* Title — large */}
+                    <h3 className="flex-1 text-2xl font-normal leading-snug tracking-tight text-black transition-colors duration-300 group-hover:text-white md:text-3xl">
                       {ind.title}
                     </h3>
 
-                    {/* Description — hidden by default, slides up on hover */}
-                    <p className="max-h-0 overflow-hidden text-base leading-relaxed text-white/50 transition-all duration-500 group-hover:max-h-24">
-                      {ind.desc}
-                    </p>
+                    {/* Tag — center, hidden on small */}
+                    <span className="hidden shrink-0 rounded-full border border-black/10 px-4 py-1.5 text-base text-black/40 transition-all duration-300 group-hover:border-white/15 group-hover:text-white/40 md:block">
+                      {ind.tag}
+                    </span>
 
-                    {/* Learn more */}
-                    <div className="flex items-center gap-2 text-base font-semibold text-[#e1fcad] opacity-0 transition-all duration-300 group-hover:opacity-100">
-                      Learn more
-                      <span className="inline-flex size-7 items-center justify-center rounded-full bg-[#e1fcad] text-[#122023] transition-transform duration-300 group-hover:translate-x-1">
-                        <ChevronRight className="h-3.5 w-3.5" />
-                      </span>
+                    {/* Stat */}
+                    <span className="hidden shrink-0 text-base text-black/30 transition-colors duration-300 group-hover:text-[#e1fcad]/70 lg:block">
+                      {ind.stat}
+                    </span>
+
+                    {/* Arrow */}
+                    <div className="ml-auto flex size-10 shrink-0 items-center justify-center rounded-full border border-black/10 text-black/30 transition-all duration-300 group-hover:border-[#e1fcad] group-hover:bg-[#e1fcad] group-hover:text-[#122023]">
+                      <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </div>
                   </div>
-                </div>
 
-                {/* Subtle lime border glow on hover */}
-                <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-[#e1fcad]/0 transition-all duration-300 group-hover:ring-[#e1fcad]/15" />
+                  {/* Description — expands on hover */}
+                  <div className="max-h-0 overflow-hidden pl-14 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:max-h-16 md:pl-[72px]">
+                    <p className="pt-3 text-base leading-relaxed text-white/45">
+                      {ind.desc}
+                    </p>
+                  </div>
+
+                </div>
               </a>
             ))}
           </div>
