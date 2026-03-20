@@ -224,10 +224,7 @@ export default function Footer() {
           alt=""
           aria-hidden
           className="absolute inset-0 h-full w-full object-cover object-[center_60%]"
-          style={{ filter: "saturate(1.1) brightness(0.55)" }}
         />
-        {/* Fade card into image */}
-        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#0a1618] via-[#0a1618]/60 to-transparent" />
       </div>
 
       {/* ── Bottom navigation card ── */}
