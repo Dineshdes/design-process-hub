@@ -5,8 +5,8 @@ import { Leaf, Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Solutions", href: "#" },
+  { label: "Product",   href: "/product" },
   { label: "Impact",    href: "#" },
-  { label: "Process",   href: "#" },
   { label: "About",     href: "#" },
 ];
 
@@ -32,7 +32,7 @@ export default function Navbar() {
         <div className="col-start-2 col-span-10 flex h-[68px] items-center justify-between">
 
           {/* ── Logo ── */}
-          <a href="#" className="group flex items-center gap-3">
+          <a href="/hero" className="group flex items-center gap-3">
             <div
               className={`relative flex size-9 shrink-0 items-center justify-center rounded-full transition-all duration-300 group-hover:shadow-[0_0_0_5px_rgba(18,32,35,0.08)] ${
                 scrolled
