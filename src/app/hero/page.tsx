@@ -164,7 +164,7 @@ const STATS = [
     unit: "tonnes",
     desc: "CO₂ avoided against business-as-usual baselines annually",
     svg: (
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
         <path d="M18 30 C10 24 8 14 18 6 C28 14 26 24 18 30Z" fill="#e1fcad" fillOpacity="0.15" stroke="#e1fcad" strokeWidth="1.2" strokeLinejoin="round"/>
         <line x1="18" y1="6" x2="18" y2="30" stroke="#e1fcad" strokeWidth="0.8" opacity="0.4"/>
         <path d="M18 12 L14 17 M18 12 L22 17" stroke="#e1fcad" strokeWidth="0.8" opacity="0.35" strokeLinecap="round"/>
@@ -178,7 +178,7 @@ const STATS = [
     unit: "projects",
     desc: "Clean energy projects deployed across 42 countries",
     svg: (
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
         <circle cx="18" cy="18" r="13" stroke="#e1fcad" strokeWidth="1.2" opacity="0.3"/>
         <ellipse cx="18" cy="18" rx="13" ry="5" stroke="#e1fcad" strokeWidth="0.8" opacity="0.15"/>
         <line x1="5" y1="18" x2="31" y2="18" stroke="#e1fcad" strokeWidth="0.8" opacity="0.12"/>
@@ -196,7 +196,7 @@ const STATS = [
     unit: "invested",
     desc: "Capital mobilised through Verdant-advised financing structures",
     svg: (
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
         <line x1="6" y1="28" x2="30" y2="28" stroke="#e1fcad" strokeWidth="1" opacity="0.2"/>
         <rect x="7"  y="20" width="5" height="8" rx="1" fill="#e1fcad" fillOpacity="0.2"/>
         <rect x="15" y="15" width="5" height="13" rx="1" fill="#e1fcad" fillOpacity="0.45"/>
@@ -211,7 +211,7 @@ const STATS = [
     unit: "teams",
     desc: "Businesses actively tracking and reducing their emissions",
     svg: (
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
         <line x1="18" y1="18" x2="9"  y2="11" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
         <line x1="18" y1="18" x2="27" y2="11" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
         <line x1="18" y1="18" x2="9"  y2="25" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
