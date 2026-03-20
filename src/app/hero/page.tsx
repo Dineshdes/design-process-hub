@@ -521,7 +521,7 @@ function CTA() {
               <span className="rounded-l-full bg-[#e1fcad] py-4 pl-8 pr-6 text-sm font-medium text-black duration-500 group-hover:bg-white group-hover:text-[#122023]">
                 Start a Project
               </span>
-              <div className="relative flex size-[52px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#e1fcad] text-black duration-500 group-hover:bg-white group-hover:text-[#122023]">
+              <div className="relative flex size-[52px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#122023] text-[#e1fcad] duration-500 group-hover:bg-[#1a2f33]">
                 <ArrowUpRight className="absolute h-5 w-5 -translate-x-1/2 transition-all duration-500 group-hover:translate-x-10" />
                 <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 transition-all duration-500 group-hover:-translate-x-1/2" />
               </div>

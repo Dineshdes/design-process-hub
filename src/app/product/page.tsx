@@ -63,7 +63,7 @@ function PrimaryCTA({ label, href = "/hero" }: { label: string; href?: string })
       <span className="rounded-l-full bg-[#e1fcad] py-4 pl-8 pr-6 text-sm font-semibold text-black transition-colors duration-300 group-hover:bg-[#d4f59a]">
         {label}
       </span>
-      <div className="relative flex size-[52px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#e1fcad] text-black transition-colors duration-300 group-hover:bg-[#d4f59a]">
+      <div className="relative flex size-[52px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#122023] text-[#e1fcad] transition-colors duration-300 group-hover:bg-[#1a2f33]">
         <ArrowUpRight className="absolute h-5 w-5 -translate-x-1/2 transition-all duration-500 group-hover:translate-x-10" />
         <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 transition-all duration-500 group-hover:-translate-x-1/2" />
       </div>
