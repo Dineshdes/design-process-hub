@@ -263,58 +263,62 @@ function Industries() {
                 href="/product"
                 className="group relative block overflow-hidden border-b border-black/[0.08]"
               >
-                {/* Hover bg fill — slides up from bottom */}
+                {/* Hover bg — slides up from bottom */}
                 <div className="absolute inset-0 translate-y-full bg-[#122023] transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" />
 
-                {/* Photo — slides in from right on hover */}
-                <div className="pointer-events-none absolute right-0 top-0 h-full w-[280px] translate-x-8 opacity-0 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-x-0 group-hover:opacity-100">
+                {/* Image — occupies right ~38% (≈ 4-5 of 12 cols), full row height */}
+                <div className="pointer-events-none absolute right-0 top-0 h-full w-[38%] translate-x-full opacity-0 transition-all duration-600 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-x-0 group-hover:opacity-100">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={ind.img}
                     alt={ind.tag}
                     className="h-full w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#122023]/80 to-transparent" />
+                  {/* Left-edge fade so image bleeds into content */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#122023] via-[#122023]/50 to-transparent" />
                 </div>
 
-                {/* Row content */}
-                <div className="relative px-0 py-7 transition-colors duration-300">
+                {/* Inner height container — transitions from collapsed to 480px */}
+                <div className="relative h-[88px] transition-[height] duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:h-[480px]">
 
-                  {/* Main row — always visible */}
-                  <div className="flex items-center gap-6 md:gap-10">
-                    {/* Number */}
-                    <span className="w-8 shrink-0 font-mono text-base font-bold text-black/25 transition-colors duration-300 group-hover:text-white/30">
-                      {ind.num}
-                    </span>
+                  {/* Content — fills height, right padding reserves space for image */}
+                  <div className="flex h-full flex-col justify-between py-6 pr-4 lg:pr-[42%]">
 
-                    {/* Title — large */}
-                    <h3 className="flex-1 text-2xl font-normal leading-snug tracking-tight text-black transition-colors duration-300 group-hover:text-white md:text-3xl">
-                      {ind.title}
-                    </h3>
+                    {/* Top row — always visible */}
+                    <div className="flex items-center gap-5 md:gap-8">
 
-                    {/* Tag — center, hidden on small */}
-                    <span className="hidden shrink-0 rounded-full border border-black/10 px-4 py-1.5 text-base text-black/40 transition-all duration-300 group-hover:border-white/15 group-hover:text-white/40 md:block">
-                      {ind.tag}
-                    </span>
+                      <span className="w-8 shrink-0 font-mono text-base font-bold text-black/25 transition-colors duration-300 group-hover:text-white/30">
+                        {ind.num}
+                      </span>
 
-                    {/* Stat */}
-                    <span className="hidden shrink-0 text-base text-black/30 transition-colors duration-300 group-hover:text-[#e1fcad]/70 lg:block">
-                      {ind.stat}
-                    </span>
+                      <h3 className="flex-1 text-2xl font-normal leading-snug tracking-tight text-black transition-colors duration-300 group-hover:text-white md:text-[28px]">
+                        {ind.title}
+                      </h3>
 
-                    {/* Arrow */}
-                    <div className="ml-auto flex size-10 shrink-0 items-center justify-center rounded-full border border-black/10 text-black/30 transition-all duration-300 group-hover:border-[#e1fcad] group-hover:bg-[#e1fcad] group-hover:text-[#122023]">
-                      <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                      <span className="hidden shrink-0 rounded-full border border-black/10 px-4 py-1.5 text-base text-black/35 transition-all duration-300 group-hover:border-white/15 group-hover:text-white/40 md:block">
+                        {ind.tag}
+                      </span>
+
+                      <div className="ml-auto flex size-10 shrink-0 items-center justify-center rounded-full border border-black/10 text-black/30 transition-all duration-500 group-hover:border-[#e1fcad] group-hover:bg-[#e1fcad] group-hover:text-[#122023]">
+                        <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Description — expands on hover */}
-                  <div className="max-h-0 overflow-hidden pl-14 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:max-h-16 md:pl-[72px]">
-                    <p className="pt-3 text-base leading-relaxed text-white/45">
-                      {ind.desc}
-                    </p>
-                  </div>
+                    {/* Bottom — fades in when row is open */}
+                    <div className="translate-y-4 opacity-0 transition-all delay-150 duration-400 group-hover:translate-y-0 group-hover:opacity-100">
+                      <p className="mb-6 max-w-lg text-base leading-relaxed text-white/50">
+                        {ind.desc}
+                      </p>
+                      <div className="flex items-center gap-3">
+                        <span className="text-base font-semibold text-[#e1fcad]">Learn more</span>
+                        <span className="inline-flex size-8 items-center justify-center rounded-full bg-[#e1fcad] text-[#122023]">
+                          <ChevronRight className="h-4 w-4" />
+                        </span>
+                        <span className="ml-4 text-base text-[#e1fcad]/50">{ind.stat}</span>
+                      </div>
+                    </div>
 
+                  </div>
                 </div>
               </a>
             ))}
