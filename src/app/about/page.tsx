@@ -31,7 +31,7 @@ function SectionHeader({
   );
 }
 
-// ── Wireframe Globe SVG ──────────────────────────────────────────────────────
+// ── Wireframe Globe SVG with Continents ──────────────────────────────────────
 function WireframeGlobe({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -41,35 +41,60 @@ function WireframeGlobe({ className }: { className?: string }) {
         </clipPath>
       </defs>
 
-      {/* Outer ring */}
-      <circle cx="200" cy="200" r="180" stroke="#e1fcad" strokeWidth="0.8" opacity="0.18" />
-      <circle cx="200" cy="200" r="178" stroke="#e1fcad" strokeWidth="0.3" opacity="0.08" />
+      {/* Outer rings */}
+      <circle cx="200" cy="200" r="180" stroke="#e1fcad" strokeWidth="1" opacity="0.2" />
+      <circle cx="200" cy="200" r="177" stroke="#e1fcad" strokeWidth="0.4" opacity="0.08" />
 
       <g clipPath="url(#globe-clip)">
-        {/* Latitude lines (horizontal, clipped to globe) */}
-        <line x1="20" y1="200" x2="380" y2="200" stroke="#e1fcad" strokeWidth="0.6" opacity="0.15" /> {/* equator */}
-        <line x1="44" y1="110" x2="356" y2="110" stroke="#e1fcad" strokeWidth="0.4" opacity="0.08" /> {/* 30°N */}
-        <line x1="110" y1="44" x2="290" y2="44" stroke="#e1fcad" strokeWidth="0.4" opacity="0.06" /> {/* 60°N */}
-        <line x1="44" y1="290" x2="356" y2="290" stroke="#e1fcad" strokeWidth="0.4" opacity="0.08" /> {/* 30°S */}
-        <line x1="110" y1="356" x2="290" y2="356" stroke="#e1fcad" strokeWidth="0.4" opacity="0.06" /> {/* 60°S */}
-        {/* Additional finer latitudes */}
-        <line x1="26" y1="153" x2="374" y2="153" stroke="#e1fcad" strokeWidth="0.3" opacity="0.05" />
-        <line x1="73" y1="73" x2="327" y2="73" stroke="#e1fcad" strokeWidth="0.3" opacity="0.04" />
-        <line x1="26" y1="247" x2="374" y2="247" stroke="#e1fcad" strokeWidth="0.3" opacity="0.05" />
-        <line x1="73" y1="327" x2="327" y2="327" stroke="#e1fcad" strokeWidth="0.3" opacity="0.04" />
+        {/* ── Grid lines ── */}
+        {/* Latitude */}
+        <line x1="20" y1="200" x2="380" y2="200" stroke="#e1fcad" strokeWidth="0.5" opacity="0.12" />
+        <line x1="44" y1="110" x2="356" y2="110" stroke="#e1fcad" strokeWidth="0.4" opacity="0.07" />
+        <line x1="110" y1="44" x2="290" y2="44" stroke="#e1fcad" strokeWidth="0.4" opacity="0.05" />
+        <line x1="44" y1="290" x2="356" y2="290" stroke="#e1fcad" strokeWidth="0.4" opacity="0.07" />
+        <line x1="110" y1="356" x2="290" y2="356" stroke="#e1fcad" strokeWidth="0.4" opacity="0.05" />
+        <line x1="26" y1="153" x2="374" y2="153" stroke="#e1fcad" strokeWidth="0.3" opacity="0.04" />
+        <line x1="26" y1="247" x2="374" y2="247" stroke="#e1fcad" strokeWidth="0.3" opacity="0.04" />
+        {/* Longitude */}
+        <line x1="200" y1="20" x2="200" y2="380" stroke="#e1fcad" strokeWidth="0.5" opacity="0.12" />
+        <ellipse cx="200" cy="200" rx="90" ry="180" stroke="#e1fcad" strokeWidth="0.4" opacity="0.07" />
+        <ellipse cx="200" cy="200" rx="156" ry="180" stroke="#e1fcad" strokeWidth="0.4" opacity="0.07" />
+        <ellipse cx="200" cy="200" rx="47" ry="180" stroke="#e1fcad" strokeWidth="0.3" opacity="0.04" />
+        <ellipse cx="200" cy="200" rx="127" ry="180" stroke="#e1fcad" strokeWidth="0.3" opacity="0.04" />
 
-        {/* Longitude lines (vertical ellipses, clipped to globe) */}
-        <line x1="200" y1="20" x2="200" y2="380" stroke="#e1fcad" strokeWidth="0.6" opacity="0.15" /> {/* prime meridian */}
-        <ellipse cx="200" cy="200" rx="90" ry="180" stroke="#e1fcad" strokeWidth="0.4" opacity="0.08" /> {/* 30° */}
-        <ellipse cx="200" cy="200" rx="156" ry="180" stroke="#e1fcad" strokeWidth="0.4" opacity="0.08" /> {/* 60° */}
-        {/* Finer longitudes */}
-        <ellipse cx="200" cy="200" rx="47" ry="180" stroke="#e1fcad" strokeWidth="0.3" opacity="0.05" /> {/* 15° */}
-        <ellipse cx="200" cy="200" rx="127" ry="180" stroke="#e1fcad" strokeWidth="0.3" opacity="0.05" /> {/* 45° */}
-        <ellipse cx="200" cy="200" rx="174" ry="180" stroke="#e1fcad" strokeWidth="0.3" opacity="0.04" /> {/* 75° */}
+        {/* ── Simplified continent outlines (filled, low opacity) ── */}
+        <g fill="#e1fcad" opacity="0.12" stroke="#e1fcad" strokeWidth="0.5" strokeOpacity="0.2">
+          {/* Africa */}
+          <path d="M200,118 L210,98 L225,92 L240,95 L252,105 L260,122 L268,148 L268,175 L265,200 L260,225 L252,255 L242,278 L235,290 L228,285 L220,268 L215,248 L210,228 L205,208 L198,192 L193,175 L192,155 L195,138 Z" />
+          {/* Europe */}
+          <path d="M192,62 L202,55 L215,50 L228,52 L238,60 L240,72 L236,82 L228,90 L218,92 L208,90 L198,82 L190,72 Z" />
+          {/* British Isles */}
+          <path d="M180,50 L188,46 L192,52 L188,58 L182,56 Z" />
+          {/* Scandinavia */}
+          <path d="M215,30 L224,26 L230,35 L228,48 L222,52 L216,42 Z" />
+          {/* Arabian Peninsula */}
+          <path d="M252,105 L270,108 L280,120 L278,138 L268,148 L258,140 L252,125 Z" />
+          {/* India */}
+          <path d="M282,132 L296,128 L306,148 L300,172 L290,188 L280,178 L276,158 L280,140 Z" />
+          {/* SE Asia partial */}
+          <path d="M310,140 L325,132 L338,145 L335,162 L322,170 L312,160 Z" />
+          {/* North America */}
+          <path d="M110,58 L128,48 L148,44 L165,50 L176,62 L172,80 L165,92 L152,100 L138,106 L122,105 L112,96 L105,82 L108,68 Z" />
+          {/* Central America */}
+          <path d="M148,108 L158,105 L162,115 L158,128 L152,135 L145,128 L144,118 Z" />
+          {/* South America */}
+          <path d="M150,180 L162,175 L170,188 L172,205 L168,228 L162,252 L155,275 L145,295 L138,288 L135,268 L138,245 L140,225 L144,205 L148,192 Z" />
+          {/* Greenland */}
+          <path d="M138,28 L155,24 L165,32 L162,44 L152,48 L140,40 Z" />
+          {/* Northern Asia partial */}
+          <path d="M238,38 L262,32 L290,38 L320,52 L345,72 L352,92 L342,108 L325,105 L305,95 L282,82 L262,68 L248,55 Z" />
+          {/* Australia partial (bottom-right) */}
+          <path d="M318,248 L338,240 L352,252 L355,270 L345,282 L330,285 L318,275 L315,262 Z" />
+        </g>
       </g>
 
-      {/* Subtle glow at center */}
-      <circle cx="200" cy="200" r="60" fill="#e1fcad" opacity="0.03" />
+      {/* Subtle radial glow */}
+      <circle cx="200" cy="200" r="80" fill="#e1fcad" opacity="0.025" />
     </svg>
   );
 }
@@ -81,9 +106,9 @@ function AboutHero() {
       {/* Subtle bg gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#122023] via-[#122023]/95 to-[#0d1a1c]" />
 
-      {/* Wireframe globe — right side, partially clipped */}
-      <div className="pointer-events-none absolute -right-20 top-1/2 -translate-y-1/2 opacity-60 md:right-[5%]">
-        <WireframeGlobe className="h-[500px] w-[500px] md:h-[650px] md:w-[650px]" />
+      {/* Wireframe globe — huge, only ~1/3 visible from right edge */}
+      <div className="pointer-events-none absolute -right-[500px] top-1/2 -translate-y-1/2 md:-right-[380px]">
+        <WireframeGlobe className="h-[900px] w-[900px] md:h-[1100px] md:w-[1100px]" />
       </div>
 
       <div className={`relative ${G} w-full`}>

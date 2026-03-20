@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: 'Space Grotesk', system-ui, sans-serif;
-  --font-mono: 'Space Mono', 'Courier New', monospace;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), 'Space Mono', 'Courier New', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -34,8 +34,8 @@
   --mid:      #64647A;
   --dim:      #ABABBE;
   --rule:     #E6E6F0;
-  --font:     'Space Grotesk', system-ui, sans-serif;
-  --mono:     'Space Mono', 'Courier New', monospace;
+  --font:     var(--font-geist-sans), system-ui, sans-serif;
+  --mono:     var(--font-geist-mono), 'Space Mono', 'Courier New', monospace;
   --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
   --shadow-md: 0 4px 20px rgba(0,0,0,0.09);
   --shadow-lg: 0 24px 64px rgba(0,0,0,0.14);
