@@ -171,7 +171,19 @@ export default function Footer() {
   return (
     <footer className="relative w-full overflow-hidden bg-[#0a1618]">
 
-      {/* ── Top CTA section — dark bg with text centred ── */}
+      {/* ── Full-height background image — spans the entire footer ── */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1800&q=90"
+        alt=""
+        aria-hidden
+        className="absolute inset-0 h-full w-full object-cover object-[center_60%]"
+      />
+
+      {/* Top gradient — dark bg bleeds into the image seamlessly */}
+      <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-[#0a1618] via-[#0a1618]/75 to-transparent" />
+
+      {/* ── Top CTA section — sits over the gradient ── */}
       <div className="relative z-10 px-6 pt-24 pb-0 text-center md:pt-32">
 
         {/* Leaf badge */}
@@ -216,19 +228,8 @@ export default function Footer() {
         <DashboardPreview />
       </div>
 
-      {/* ── Scenic landscape — peeks up behind the card ── */}
-      <div className="relative h-[420px] w-full overflow-hidden md:h-[500px]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1800&q=90"
-          alt=""
-          aria-hidden
-          className="absolute inset-0 h-full w-full object-cover object-[center_60%]"
-        />
-      </div>
-
       {/* ── Bottom navigation card ── */}
-      <div className="relative z-10 mx-auto max-w-5xl px-5 pb-10 -mt-16">
+      <div className="relative z-10 mx-auto max-w-5xl px-5 pb-10 pt-10">
         <div className="rounded-3xl bg-[#111f22] px-8 py-10 ring-1 ring-white/[0.07] md:px-12">
 
           <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
