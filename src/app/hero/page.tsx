@@ -155,182 +155,107 @@ function Services() {
   );
 }
 
-// ── Impact Stats — editorial card style ──────────────────────────────────────
+// ── Impact Stats ─────────────────────────────────────────────────────────────
 
-/** Card 1 — Light lime — big number + staircase bar chart (ref: card 1) */
-function CardCO2() {
-  const steps = [
-    { year: "2022", h: 22 },
-    { year: "2023", h: 40 },
-    { year: "2024", h: 62 },
-    { year: "2025", h: 88 },
-  ];
-  return (
-    <div className="flex h-full min-h-[420px] flex-col justify-between rounded-2xl bg-[#eaf9d0] p-8">
-      {/* Top label */}
-      <div className="flex items-center gap-1.5 text-base text-[#122023]/45">
-        <span>→</span>
-        <span className="font-medium">Carbon Impact</span>
-      </div>
-
-      {/* Hero number */}
-      <div className="mt-6">
-        <p className="text-[72px] font-normal leading-[0.9] tracking-[-0.04em] text-[#122023]">2.4M</p>
-        <p className="mt-3 text-base text-[#122023]/55">Tonnes of CO₂<br />avoided annually</p>
-      </div>
-
-      {/* Staircase bar chart */}
-      <div className="mt-8 flex items-end gap-3">
-        {steps.map((s) => (
-          <div key={s.year} className="flex flex-1 flex-col gap-2">
-            <span className="text-base font-medium text-[#122023]/40">{s.year}</span>
-            <div
-              className="w-full rounded-md bg-[#122023]/15"
-              style={{ height: `${s.h}px` }}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/** Card 2 — Dark — big number + triangle SVG (ref: card 2) */
-function CardProjects() {
-  return (
-    <div className="flex h-full min-h-[420px] flex-col justify-between rounded-2xl bg-[#122023] p-8">
-      {/* Top label */}
-      <div className="flex items-center gap-1.5 text-base text-[#e1fcad]/50">
-        <span>→</span>
-        <span className="font-medium">Global Reach</span>
-      </div>
-
-      {/* Hero number + desc */}
-      <div className="mt-6">
-        <p className="text-[72px] font-normal leading-[0.9] tracking-[-0.04em] text-[#e1fcad]">340+</p>
-        <p className="mt-3 max-w-[200px] text-base leading-relaxed text-white/45">
-          Projects deployed<br />across 42 countries
-        </p>
-      </div>
-
-      {/* Triangle SVG — upward growth symbol */}
-      <div className="mt-6 flex justify-center">
-        <svg width="160" height="110" viewBox="0 0 160 110" fill="none">
-          {/* Main triangle */}
-          <polygon
-            points="80,12 152,98 8,98"
-            fill="none"
-            stroke="#e1fcad"
-            strokeWidth="2"
-            opacity="0.35"
-          />
-          {/* Inner triangle */}
-          <polygon
-            points="80,34 132,98 28,98"
-            fill="#e1fcad"
-            fillOpacity="0.06"
-            stroke="#e1fcad"
-            strokeWidth="1.5"
-            opacity="0.5"
-          />
-          {/* Apex marker */}
-          <circle cx="80" cy="12" r="4" fill="#e1fcad" opacity="0.9" />
-          <path d="M77 9 L80 5 L83 9" fill="none" stroke="#e1fcad" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
-          {/* Base markers */}
-          <circle cx="8"   cy="98" r="4" fill="#e1fcad" fillOpacity="0.45" />
-          <circle cx="152" cy="98" r="4" fill="#e1fcad" fillOpacity="0.45" />
-          {/* Base line */}
-          <line x1="8" y1="98" x2="152" y2="98" stroke="#e1fcad" strokeWidth="1" opacity="0.18" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-/** Card 3 — Muted teal — editorial all-caps heading + big number (ref: card 3) */
-function CardInvestment() {
-  return (
-    <div className="relative flex h-full min-h-[420px] flex-col justify-between overflow-hidden rounded-2xl bg-[#1e3530] p-8">
-      {/* Watermark arrow — large background element */}
-      <div className="pointer-events-none absolute -bottom-6 -right-6 opacity-[0.07]">
-        <svg width="180" height="180" viewBox="0 0 180 180" fill="none">
-          <path d="M20 160 L160 20 M120 20 L160 20 L160 60" stroke="#e1fcad" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      </div>
-
-      {/* Top label */}
-      <div className="flex items-center gap-1.5 text-base text-[#e1fcad]/45">
-        <span>→</span>
-        <span className="font-medium">Clean Energy Finance</span>
-      </div>
-
-      {/* All-caps editorial heading */}
-      <div className="mt-6 flex-1">
-        <h3 className="text-[40px] font-bold uppercase leading-[1.0] tracking-[-0.01em] text-white">
-          Clean<br />Energy<br />Invested
-        </h3>
-        <p className="mt-4 max-w-[180px] text-base leading-relaxed text-white/40">
-          Capital mobilised through Verdant-advised financing structures.
-        </p>
-      </div>
-
-      {/* Number + CTA */}
-      <div className="mt-6 flex items-end justify-between">
-        <p className="text-[44px] font-normal leading-none tracking-[-0.03em] text-[#e1fcad]">$8.2B</p>
-        <a href="/product" className="rounded-full border border-white/20 px-5 py-2.5 text-base font-medium text-white/60 transition-colors hover:border-white/40 hover:text-white">
-          Explore →
-        </a>
-      </div>
-    </div>
-  );
-}
-
-/** Card 4 — Dark — teams number + sector rows */
-function CardTeams() {
-  const rows = [
-    { label: "Enterprise",  count: "8,400+", shade: "bg-white/[0.04]",   text: "text-white/65"  },
-    { label: "SME",         count: "5,200+", shade: "bg-[#e1fcad]/[0.08]", text: "text-[#e1fcad]/80" },
-    { label: "Government",  count: "1,400+", shade: "bg-[#e1fcad]/[0.14]", text: "text-[#e1fcad]" },
-  ];
-  return (
-    <div className="flex h-full min-h-[420px] flex-col justify-between rounded-2xl bg-[#122023] p-8">
-      {/* Top label */}
-      <div className="flex items-center gap-1.5 text-base text-[#e1fcad]/50">
-        <span>→</span>
-        <span className="font-medium">Teams &amp; Organisations</span>
-      </div>
-
-      {/* Hero number */}
-      <div className="mt-6">
-        <p className="text-[72px] font-normal leading-[0.9] tracking-[-0.04em] text-[#e1fcad]">15K+</p>
-        <p className="mt-3 text-base text-white/45">Making the transition</p>
-      </div>
-
-      {/* Sector rows */}
-      <div className="mt-6 overflow-hidden rounded-xl">
-        {rows.map((r) => (
-          <div key={r.label} className={`flex items-center justify-between px-5 py-4 ${r.shade}`}>
-            <span className={`text-base font-medium ${r.text}`}>{r.label}</span>
-            <span className={`font-mono text-base font-semibold ${r.text}`}>{r.count}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+const STATS = [
+  {
+    tag: "Carbon Impact",
+    value: "2.4M",
+    unit: "tonnes",
+    desc: "CO₂ avoided against business-as-usual baselines annually",
+    svg: (
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <path d="M18 30 C10 24 8 14 18 6 C28 14 26 24 18 30Z" fill="#e1fcad" fillOpacity="0.15" stroke="#e1fcad" strokeWidth="1.2" strokeLinejoin="round"/>
+        <line x1="18" y1="6" x2="18" y2="30" stroke="#e1fcad" strokeWidth="0.8" opacity="0.4"/>
+        <path d="M18 12 L14 17 M18 12 L22 17" stroke="#e1fcad" strokeWidth="0.8" opacity="0.35" strokeLinecap="round"/>
+        <path d="M28 8 L28 3 M26 5 L28 3 L30 5" stroke="#e1fcad" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/>
+      </svg>
+    ),
+  },
+  {
+    tag: "Global Reach",
+    value: "340+",
+    unit: "projects",
+    desc: "Clean energy projects deployed across 42 countries",
+    svg: (
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="13" stroke="#e1fcad" strokeWidth="1.2" opacity="0.3"/>
+        <ellipse cx="18" cy="18" rx="13" ry="5" stroke="#e1fcad" strokeWidth="0.8" opacity="0.15"/>
+        <line x1="5" y1="18" x2="31" y2="18" stroke="#e1fcad" strokeWidth="0.8" opacity="0.12"/>
+        <line x1="18" y1="5" x2="18" y2="31" stroke="#e1fcad" strokeWidth="0.8" opacity="0.12"/>
+        <circle cx="14" cy="14" r="2.5" fill="#e1fcad" opacity="0.9"/>
+        <circle cx="22" cy="20" r="2" fill="#e1fcad" opacity="0.6"/>
+        <circle cx="14" cy="14" r="1" fill="#122023"/>
+        <circle cx="22" cy="20" r="0.8" fill="#122023"/>
+      </svg>
+    ),
+  },
+  {
+    tag: "Clean Finance",
+    value: "$8.2B",
+    unit: "invested",
+    desc: "Capital mobilised through Verdant-advised financing structures",
+    svg: (
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <line x1="6" y1="28" x2="30" y2="28" stroke="#e1fcad" strokeWidth="1" opacity="0.2"/>
+        <rect x="7"  y="20" width="5" height="8" rx="1" fill="#e1fcad" fillOpacity="0.2"/>
+        <rect x="15" y="15" width="5" height="13" rx="1" fill="#e1fcad" fillOpacity="0.45"/>
+        <rect x="23" y="9"  width="5" height="19" rx="1" fill="#e1fcad" fillOpacity="0.9"/>
+        <polyline points="9.5,20 17.5,15 25.5,9" stroke="#e1fcad" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.6"/>
+      </svg>
+    ),
+  },
+  {
+    tag: "Organisations",
+    value: "15K+",
+    unit: "teams",
+    desc: "Businesses actively tracking and reducing their emissions",
+    svg: (
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <line x1="18" y1="18" x2="9"  y2="11" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
+        <line x1="18" y1="18" x2="27" y2="11" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
+        <line x1="18" y1="18" x2="9"  y2="25" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
+        <line x1="18" y1="18" x2="27" y2="25" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
+        <circle cx="9"  cy="11" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
+        <circle cx="27" cy="11" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
+        <circle cx="9"  cy="25" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
+        <circle cx="27" cy="25" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
+        <circle cx="18" cy="18" r="5" fill="#e1fcad" fillOpacity="0.12" stroke="#e1fcad" strokeWidth="1.5"/>
+        <circle cx="18" cy="18" r="2" fill="#e1fcad"/>
+      </svg>
+    ),
+  },
+];
 
 function ImpactStats() {
   return (
-    <section className={`bg-[#f2f1ef] ${SEC} flex flex-col justify-center`}>
+    <section className={`bg-[#122023] ${SEC} flex flex-col justify-center`}>
       <div className={G}>
         <div className={COL}>
-          <SectionHeader label="Our impact" heading="The numbers that matter" />
+          <SectionHeader label="Our impact" heading="The numbers that matter" light />
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <CardCO2 />
-            <CardProjects />
-            <CardInvestment />
-            <CardTeams />
+          {/* 4 columns separated by 1px lines */}
+          <div className="grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+            {STATS.map((s) => (
+              <div key={s.value} className="flex flex-col gap-5 px-0 py-8 sm:px-8 sm:py-0 lg:first:pl-0 lg:last:pr-0">
+                {/* Illustration */}
+                {s.svg}
+
+                {/* Tag */}
+                <span className="text-base font-medium text-[#e1fcad]/50">{s.tag}</span>
+
+                {/* Number */}
+                <div className="flex items-baseline gap-2">
+                  <span className="text-[44px] font-normal leading-none tracking-[-0.04em] text-[#e1fcad]">
+                    {s.value}
+                  </span>
+                  <span className="text-base uppercase tracking-widest text-white/25">{s.unit}</span>
+                </div>
+
+                {/* One-line description */}
+                <p className="text-base leading-snug text-white/40">{s.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
