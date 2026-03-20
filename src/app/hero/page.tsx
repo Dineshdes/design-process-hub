@@ -1,4 +1,5 @@
 import Hero from "@/components/ui/hero";
+import Navbar from "@/components/ui/navbar";
 import { ArrowUpRight, Leaf, Zap, BarChart3, Globe, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -427,6 +428,7 @@ function Footer() {
 export default function HeroPage() {
   return (
     <main className="w-full">
+      <Navbar />
       <Hero />
       <TrustedBy />
       <Services />
