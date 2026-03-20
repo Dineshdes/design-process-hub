@@ -155,36 +155,204 @@ function Services() {
   );
 }
 
-// ── Impact Stats ──────────────────────────────────────────────────────────────
-const STATS = [
-  { value: "2.4M",  unit: "tonnes",   label: "CO₂ avoided annually" },
-  { value: "340+",  unit: "projects", label: "Deployed across 42 countries" },
-  { value: "$8.2B", unit: "invested", label: "In clean energy assets" },
-  { value: "15K+",  unit: "teams",    label: "Making the transition" },
-];
+// ── Impact Stats — bento card layout (reference style) ───────────────────────
+
+/** Card A — CO₂: hero number + ascending bar chart */
+function CardCO2() {
+  const bars = [28, 38, 45, 55, 62, 74, 88, 100];
+  return (
+    <div className="group flex h-full flex-col justify-between rounded-3xl bg-white/[0.05] p-8 ring-1 ring-white/[0.08] transition-colors duration-300 hover:bg-white/[0.08]">
+      {/* Top */}
+      <div>
+        <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-white/30">CO₂ avoided</p>
+        <div className="flex items-baseline gap-2">
+          <span className="text-[56px] font-normal leading-none tracking-[-0.04em] text-[#e1fcad]">2.4M</span>
+          <span className="text-sm font-medium uppercase tracking-widest text-white/30">tonnes</span>
+        </div>
+        <p className="mt-3 max-w-[200px] text-sm leading-relaxed text-white/40">
+          Measured against business-as-usual baselines, annually.
+        </p>
+      </div>
+
+      {/* Bar chart */}
+      <div className="mt-8 flex items-end gap-[5px]">
+        {bars.map((h, i) => (
+          <div key={i} className="flex flex-1 flex-col items-center gap-1">
+            <div
+              className="w-full rounded-sm"
+              style={{
+                height: `${(h / 100) * 72}px`,
+                background: i === bars.length - 1
+                  ? "#e1fcad"
+                  : i >= bars.length - 3
+                  ? "rgba(225,252,173,0.45)"
+                  : "rgba(255,255,255,0.08)",
+              }}
+            />
+          </div>
+        ))}
+      </div>
+      <div className="mt-2 flex justify-between text-[10px] text-white/20">
+        <span>2018</span><span>2025</span>
+      </div>
+    </div>
+  );
+}
+
+/** Card B — Projects: donut chart + country count */
+function CardProjects() {
+  // Donut: Solar 45%, Wind 28%, Storage 15%, Other 12%
+  const segments = [
+    { pct: 45, color: "#e1fcad",        label: "Solar" },
+    { pct: 28, color: "rgba(225,252,173,0.5)", label: "Wind" },
+    { pct: 15, color: "rgba(225,252,173,0.25)", label: "Storage" },
+    { pct: 12, color: "rgba(255,255,255,0.08)", label: "Other" },
+  ];
+  // Build SVG arc paths for a donut
+  const cx = 70, cy = 70, r = 52, inner = 32;
+  let cursor = -90; // start from top
+  function arc(pct: number) {
+    const deg = (pct / 100) * 360;
+    const start = (cursor * Math.PI) / 180;
+    cursor += deg;
+    const end = (cursor * Math.PI) / 180;
+    const x1 = cx + r * Math.cos(start), y1 = cy + r * Math.sin(start);
+    const x2 = cx + r * Math.cos(end),   y2 = cy + r * Math.sin(end);
+    const ix1 = cx + inner * Math.cos(start), iy1 = cy + inner * Math.sin(start);
+    const ix2 = cx + inner * Math.cos(end),   iy2 = cy + inner * Math.sin(end);
+    const large = deg > 180 ? 1 : 0;
+    return `M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} L ${ix2} ${iy2} A ${inner} ${inner} 0 ${large} 0 ${ix1} ${iy1} Z`;
+  }
+
+  return (
+    <div className="group flex h-full flex-col justify-between rounded-3xl bg-white/[0.05] p-8 ring-1 ring-white/[0.08] transition-colors duration-300 hover:bg-white/[0.08]">
+      {/* Donut */}
+      <div className="flex justify-center">
+        <svg width="140" height="140" viewBox="0 0 140 140">
+          {segments.map((s) => (
+            <path key={s.label} d={arc(s.pct)} fill={s.color} />
+          ))}
+          {/* Centre label */}
+          <text x="70" y="65" textAnchor="middle" fontSize="22" fontWeight="400" fill="#e1fcad">340+</text>
+          <text x="70" y="82" textAnchor="middle" fontSize="9" fill="rgba(255,255,255,0.35)" letterSpacing="1.5" fontFamily="ui-monospace,monospace">PROJECTS</text>
+        </svg>
+      </div>
+
+      {/* Legend */}
+      <div className="mt-4 space-y-2">
+        {segments.map((s) => (
+          <div key={s.label} className="flex items-center justify-between text-xs">
+            <div className="flex items-center gap-2">
+              <div className="h-2 w-2 rounded-full" style={{ background: s.color }} />
+              <span className="text-white/40">{s.label}</span>
+            </div>
+            <span className="font-mono text-white/50">{s.pct}%</span>
+          </div>
+        ))}
+      </div>
+
+      <p className="mt-4 text-xs text-white/30">Deployed across <span className="text-white/60">42 countries</span></p>
+    </div>
+  );
+}
+
+/** Card C — Investment: large heading + sparkline area */
+function CardInvestment() {
+  // Sparkline points
+  const pts = [
+    { x: 0,   y: 70 },
+    { x: 40,  y: 62 },
+    { x: 80,  y: 55 },
+    { x: 120, y: 44 },
+    { x: 160, y: 38 },
+    { x: 200, y: 28 },
+    { x: 240, y: 18 },
+    { x: 280, y: 8  },
+  ];
+  const lineD = pts.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
+  const areaD = `${lineD} L 280 80 L 0 80 Z`;
+
+  return (
+    <div className="group flex h-full flex-col justify-between rounded-3xl bg-[#e1fcad] p-8 transition-opacity duration-300">
+      {/* Top — inverted colours on lime card */}
+      <div>
+        <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-[#122023]/50">Clean energy assets</p>
+        <div className="flex items-baseline gap-1">
+          <span className="text-[56px] font-normal leading-none tracking-[-0.04em] text-[#122023]">$8.2B</span>
+        </div>
+        <p className="mt-3 max-w-[200px] text-sm leading-relaxed text-[#122023]/55">
+          Capital mobilised through Verdant-advised financing structures.
+        </p>
+      </div>
+
+      {/* Sparkline */}
+      <div className="mt-6 overflow-hidden rounded-xl">
+        <svg width="100%" viewBox="0 0 280 80" preserveAspectRatio="none" className="h-20 w-full">
+          <defs>
+            <linearGradient id="spark-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#122023" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#122023" stopOpacity="0.03" />
+            </linearGradient>
+          </defs>
+          <path d={areaD} fill="url(#spark-grad)" />
+          <path d={lineD} fill="none" stroke="#122023" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
+          <circle cx="280" cy="8" r="4" fill="#122023" opacity="0.7" />
+        </svg>
+      </div>
+      <div className="flex justify-between text-[10px] text-[#122023]/40 font-mono">
+        <span>2018</span><span>2025</span>
+      </div>
+    </div>
+  );
+}
+
+/** Card D — Teams: hero number + sector breakdown rows (like reference card 3) */
+function CardTeams() {
+  const rows = [
+    { label: "Enterprise",    count: "8,400+", bg: "bg-white/[0.04]",  text: "text-white/70"  },
+    { label: "SME",           count: "5,200+", bg: "bg-[#e1fcad]/10",  text: "text-[#e1fcad]" },
+    { label: "Government",    count: "1,400+", bg: "bg-[#122023]",     text: "text-[#e1fcad]" },
+  ];
+  return (
+    <div className="group flex h-full flex-col justify-between rounded-3xl bg-white/[0.05] p-8 ring-1 ring-white/[0.08] transition-colors duration-300 hover:bg-white/[0.08]">
+      {/* Top */}
+      <div>
+        <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-white/30">Teams onboard</p>
+        <div className="flex items-baseline gap-2">
+          <span className="text-[56px] font-normal leading-none tracking-[-0.04em] text-[#e1fcad]">15K+</span>
+        </div>
+        <p className="mt-2 text-sm text-white/40">Making the transition</p>
+      </div>
+
+      {/* Sector breakdown rows — mirrors reference's table style */}
+      <div className="mt-6 overflow-hidden rounded-2xl">
+        {rows.map((r) => (
+          <div
+            key={r.label}
+            className={`flex items-center justify-between px-5 py-4 ${r.bg}`}
+          >
+            <span className={`text-sm font-medium ${r.text}`}>{r.label}</span>
+            <span className={`font-mono text-base font-semibold ${r.text}`}>{r.count}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function ImpactStats() {
   return (
-    <section className={`bg-[#122023] ${SEC}`}>
+    <section className={`bg-[#122023] ${SEC} flex flex-col justify-center`}>
       <div className={G}>
         <div className={COL}>
           <SectionHeader label="Our impact" heading="The numbers that matter" light />
 
-          {/* 1px gap between cells acts as divider lines */}
-          <div className="grid grid-cols-2 gap-px bg-white/10 md:grid-cols-4">
-            {STATS.map((s) => (
-              <div key={s.value} className="flex flex-col gap-3 bg-[#122023] p-8">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-5xl font-normal leading-none tracking-[-0.04em] text-[#e1fcad] md:text-[56px]">
-                    {s.value}
-                  </span>
-                  <span className="text-xs font-medium uppercase tracking-widest text-white/30">
-                    {s.unit}
-                  </span>
-                </div>
-                <p className="text-sm leading-relaxed text-white/50">{s.label}</p>
-              </div>
-            ))}
+          {/* Bento grid — 2 × 2 on desktop */}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <CardCO2 />
+            <CardProjects />
+            <CardInvestment />
+            <CardTeams />
           </div>
         </div>
       </div>
