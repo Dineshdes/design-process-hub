@@ -1,10 +1,6 @@
 import Navbar from "@/components/ui/navbar";
 import {
-  ArrowUpRight,
   Leaf,
-  Zap,
-  BarChart3,
-  Globe,
   ChevronRight,
   BrainCircuit,
   FileBarChart2,
@@ -12,9 +8,8 @@ import {
   PlugZap,
   CheckCircle2,
   TrendingDown,
-  Target,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { PrimaryCTA, SecondaryCTA, GhostCTA, PreFooterBanner } from "@/components/ui/cta";
 
 // ── 12-col grid constants ────────────────────────────────────────────────────
 const G   = "grid grid-cols-12";
@@ -61,41 +56,7 @@ function SectionHeader({
   );
 }
 
-// ── Shared: Double-arrow primary CTA ─────────────────────────────────────────
-function PrimaryCTA({ label, href = "/hero" }: { label: string; href?: string }) {
-  return (
-    <a
-      href={href}
-      className="group flex cursor-pointer items-center gap-0 overflow-hidden rounded-full"
-    >
-      <span className="rounded-l-full bg-[#e1fcad] py-4 pl-8 pr-6 text-sm font-semibold text-black transition-colors duration-300 group-hover:bg-[#d4f59a]">
-        {label}
-      </span>
-      <div className="relative flex size-[52px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#122023] text-[#e1fcad] transition-colors duration-300 group-hover:bg-[#1a2f33]">
-        <ArrowUpRight className="absolute h-5 w-5 -translate-x-1/2 transition-all duration-500 group-hover:translate-x-10" />
-        <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 transition-all duration-500 group-hover:-translate-x-1/2" />
-      </div>
-    </a>
-  );
-}
-
-// ── Shared: Ghost secondary CTA ──────────────────────────────────────────────
-function SecondaryCTA({ label, href = "#" }: { label: string; href?: string }) {
-  return (
-    <a
-      href={href}
-      className="group flex cursor-pointer items-center gap-0 overflow-hidden rounded-full border border-white/20"
-    >
-      <span className="rounded-l-full py-4 pl-8 pr-6 text-sm font-semibold text-white/70 transition-colors duration-300 group-hover:text-white">
-        {label}
-      </span>
-      <div className="relative flex size-[52px] shrink-0 items-center justify-center overflow-hidden rounded-full text-white/50 transition-colors duration-300 group-hover:text-white">
-        <ArrowUpRight className="absolute h-5 w-5 -translate-x-1/2 transition-all duration-500 group-hover:translate-x-10" />
-        <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 transition-all duration-500 group-hover:-translate-x-1/2" />
-      </div>
-    </a>
-  );
-}
+// PrimaryCTA, SecondaryCTA, GhostCTA imported from @/components/ui/cta
 
 // ── Trusted By ───────────────────────────────────────────────────────────────
 const LOGOS = ["Vestas", "Ørsted", "Siemens", "Northvolt", "Enphase", "Tesla Energy"];
@@ -318,18 +279,7 @@ function FeatureDetail1() {
                   </li>
                 ))}
               </ul>
-              <a
-                href="#"
-                className="group flex w-fit cursor-pointer items-center gap-0 overflow-hidden rounded-full border border-black/10"
-              >
-                <span className="rounded-l-full bg-transparent py-3.5 pl-7 pr-5 text-sm font-semibold text-[#122023] transition-colors duration-300 group-hover:bg-black/[0.03]">
-                  Explore Carbon Intelligence
-                </span>
-                <div className="relative flex size-[46px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#122023] text-[#e1fcad]">
-                  <ArrowUpRight className="absolute h-4 w-4 -translate-x-1/2 transition-all duration-500 group-hover:translate-x-10" />
-                  <ArrowUpRight className="absolute h-4 w-4 -translate-x-10 transition-all duration-500 group-hover:-translate-x-1/2" />
-                </div>
-              </a>
+              <GhostCTA label="Explore Carbon Intelligence" />
             </div>
 
             {/* Visual mockup */}
@@ -444,18 +394,7 @@ function FeatureDetail2() {
                   </li>
                 ))}
               </ul>
-              <a
-                href="#"
-                className="group flex w-fit cursor-pointer items-center gap-0 overflow-hidden rounded-full border border-black/10"
-              >
-                <span className="rounded-l-full bg-transparent py-3.5 pl-7 pr-5 text-sm font-semibold text-[#122023] transition-colors duration-300 group-hover:bg-black/[0.03]">
-                  See the AI in action
-                </span>
-                <div className="relative flex size-[46px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#122023] text-[#e1fcad]">
-                  <ArrowUpRight className="absolute h-4 w-4 -translate-x-1/2 transition-all duration-500 group-hover:translate-x-10" />
-                  <ArrowUpRight className="absolute h-4 w-4 -translate-x-10 transition-all duration-500 group-hover:-translate-x-1/2" />
-                </div>
-              </a>
+              <GhostCTA label="See the AI in action" />
             </div>
           </div>
         </div>
@@ -494,18 +433,7 @@ function FeatureDetail3() {
                   </li>
                 ))}
               </ul>
-              <a
-                href="#"
-                className="group flex w-fit cursor-pointer items-center gap-0 overflow-hidden rounded-full border border-black/10"
-              >
-                <span className="rounded-l-full bg-transparent py-3.5 pl-7 pr-5 text-sm font-semibold text-[#122023] transition-colors duration-300 group-hover:bg-black/[0.03]">
-                  View reporting features
-                </span>
-                <div className="relative flex size-[46px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#122023] text-[#e1fcad]">
-                  <ArrowUpRight className="absolute h-4 w-4 -translate-x-1/2 transition-all duration-500 group-hover:translate-x-10" />
-                  <ArrowUpRight className="absolute h-4 w-4 -translate-x-10 transition-all duration-500 group-hover:-translate-x-1/2" />
-                </div>
-              </a>
+              <GhostCTA label="View reporting features" />
             </div>
 
             {/* Visual mockup */}
@@ -776,35 +704,7 @@ function Testimonials() {
   );
 }
 
-// ── Product CTA ───────────────────────────────────────────────────────────────
-function ProductCTA() {
-  return (
-    <section className={`relative overflow-hidden bg-[#122023] ${SEC}`}>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,rgba(225,252,173,0.06),transparent)]" />
-      <div className={`relative ${G}`}>
-        <div className={`${COL} flex flex-col gap-12 md:flex-row md:items-end md:justify-between`}>
-          <div className="space-y-5">
-            <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-[#e1fcad]/50">
-              Get started today
-            </span>
-            <h2 className="max-w-xl text-4xl font-normal leading-[1.08] tracking-[-0.03em] text-white md:text-5xl">
-              Ready to run sustainability like a product?
-            </h2>
-            <p className="max-w-lg text-base leading-relaxed text-white/45">
-              Join 15,000+ teams already on Verdant. Start your free 14-day trial — no credit card, no commitment.
-            </p>
-          </div>
-
-          <div className="flex shrink-0 flex-col items-start gap-4">
-            <PrimaryCTA label="Start free trial" href="/hero" />
-            <SecondaryCTA label="Talk to sales" href="#" />
-            <span className="pl-2 text-xs text-white/25">14-day trial · No credit card · Cancel any time</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+// ProductCTA replaced by shared PreFooterBanner
 
 // ── Footer ────────────────────────────────────────────────────────────────────
 const FOOTER_LINKS = {
@@ -876,7 +776,7 @@ export default function ProductPage() {
       <FeatureDetail3 />
       <SocialProof />
       <Testimonials />
-      <ProductCTA />
+      <PreFooterBanner />
       <Footer />
     </main>
   );

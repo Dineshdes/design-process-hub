@@ -1,7 +1,5 @@
-import { ArrowUpRight } from "lucide-react";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { PrimaryCTA } from "@/components/ui/cta";
 
 export default function Hero() {
   return (
@@ -21,7 +19,7 @@ export default function Hero() {
         <div className="grid grid-cols-12">
         <div className="col-start-2 col-span-10 flex items-end justify-between text-left">
           <div className="max-w-3xl space-y-6">
-            <h1 className="font-sans font-normal text-5xl text-white tracking-tighter md:text-7xl">
+            <h1 className="font-normal text-5xl leading-[1.04] tracking-[-0.03em] text-white md:text-7xl">
               Sustainable Solutions for a Better Future
             </h1>
             <p className="max-w-2xl font-light text-lg text-white/90 md:text-xl">
@@ -49,20 +47,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="flex w-fit gap-6">
-              <Button
-                variant="ghost"
-                className="group mx-auto flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent px-0 py-5 font-normal shadow-none hover:bg-transparent"
-              >
-                <span className="rounded-full bg-[#e1fcad] px-6 py-3 text-black duration-500 ease-in-out group-hover:bg-[#122023] group-hover:text-[#e1fcad] group-hover:transition-colors">
-                  Start a Project
-                </span>
-                <div className="relative flex h-fit cursor-pointer items-center overflow-hidden rounded-full bg-[#122023] p-5 text-[#e1fcad]">
-                  <ArrowUpRight className="absolute h-5 w-5 -translate-x-1/2 transition-all duration-500 ease-in-out group-hover:translate-x-10" />
-                  <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 transition-all duration-500 ease-in-out group-hover:-translate-x-1/2" />
-                </div>
-              </Button>
-            </div>
+            <PrimaryCTA label="Start a Project" href="/product" />
           </div>
         </div>
         </div>

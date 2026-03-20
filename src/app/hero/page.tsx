@@ -1,7 +1,7 @@
 import Hero from "@/components/ui/hero";
 import Navbar from "@/components/ui/navbar";
-import { ArrowUpRight, Leaf, Zap, BarChart3, Globe, ChevronRight, PlugZap, FileBarChart2, Users2, BrainCircuit } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Leaf, Zap, BarChart3, Globe, ChevronRight } from "lucide-react";
+import { InlineCTA, PreFooterBanner } from "@/components/ui/cta";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  12-COLUMN GRID SYSTEM
@@ -115,13 +115,7 @@ function Services() {
                 Solutions built for a low-carbon economy
               </h2>
             </div>
-            <a href="/product" className="group mb-1 hidden shrink-0 cursor-pointer items-center gap-0 overflow-hidden rounded-full border border-black/10 bg-transparent transition-colors hover:border-black/30 md:flex">
-              <span className="pl-5 pr-4 text-sm font-medium text-black">See the platform</span>
-              <div className="relative flex size-9 items-center justify-center overflow-hidden rounded-full bg-[#122023] text-[#e1fcad]">
-                <ArrowUpRight className="absolute h-4 w-4 -translate-x-1/2 transition-all duration-500 group-hover:translate-x-10" />
-                <ArrowUpRight className="absolute h-4 w-4 -translate-x-10 transition-all duration-500 group-hover:-translate-x-1/2" />
-              </div>
-            </a>
+            <InlineCTA label="See the platform" href="/product" />
           </div>
 
           {/* 4-col service cards */}
@@ -485,54 +479,7 @@ function Testimonials() {
   );
 }
 
-// ── CTA ───────────────────────────────────────────────────────────────────────
-function CTA() {
-  return (
-    <section className={`relative overflow-hidden bg-[#122023] ${SEC}`}>
-      <div
-        className="absolute inset-0 opacity-[0.08]"
-        style={{
-          backgroundImage: "url(https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920&q=50)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-br from-[#122023] via-[#122023]/95 to-[#0d1a1c]" />
-
-      <div className={`relative ${G}`}>
-        <div className={`${COL} flex flex-col gap-12 md:flex-row md:items-end md:justify-between`}>
-          <div className="space-y-5">
-            <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-[#e1fcad]/50">
-              Get started
-            </span>
-            <h2 className="text-4xl font-normal leading-[1.08] tracking-[-0.03em] text-white md:text-6xl">
-              Ready to build a cleaner future?
-            </h2>
-            <p className="max-w-lg text-base leading-relaxed text-white/45">
-              Join 15,000+ teams already making the transition. Our experts are ready to map your path to net-zero.
-            </p>
-          </div>
-
-          <div className="flex shrink-0 flex-col items-start gap-3">
-            <Button
-              variant="ghost"
-              className="group flex cursor-pointer items-center gap-0 rounded-full border-none bg-transparent px-0 shadow-none hover:bg-transparent"
-            >
-              <span className="rounded-l-full bg-[#e1fcad] py-4 pl-8 pr-6 text-sm font-medium text-black duration-500 group-hover:bg-white group-hover:text-[#122023]">
-                Start a Project
-              </span>
-              <div className="relative flex size-[52px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#122023] text-[#e1fcad] duration-500 group-hover:bg-[#1a2f33]">
-                <ArrowUpRight className="absolute h-5 w-5 -translate-x-1/2 transition-all duration-500 group-hover:translate-x-10" />
-                <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 transition-all duration-500 group-hover:-translate-x-1/2" />
-              </div>
-            </Button>
-            <span className="pl-2 text-xs text-white/30">No commitment. Free discovery call.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+// CTA section replaced by shared PreFooterBanner component
 
 // ── Footer ────────────────────────────────────────────────────────────────────
 const FOOTER_LINKS = {
@@ -606,7 +553,7 @@ export default function HeroPage() {
       <HowItWorks />
       <Integrations />
       <Testimonials />
-      <CTA />
+      <PreFooterBanner />
       <Footer />
     </main>
   );
