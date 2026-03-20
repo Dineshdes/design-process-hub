@@ -81,7 +81,7 @@ function DashboardPreview() {
               </div>
             ))}
           </div>
-          <div className="mt-3 flex justify-between text-[10px] text-white/20">
+          <div className="mt-3 flex justify-between text-base text-white/20">
             {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map((m) => (
               <span key={m}>{m}</span>
             ))}
@@ -100,7 +100,7 @@ function DashboardPreview() {
               className="flex items-center justify-between rounded-xl border border-white/[0.07] bg-white/[0.03] px-4 py-3"
             >
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/25">{kpi.label}</p>
+                <p className="text-base font-bold uppercase tracking-[0.14em] text-white/25">{kpi.label}</p>
                 <p className="mt-0.5 text-lg font-semibold text-white">{kpi.value}</p>
               </div>
               <span

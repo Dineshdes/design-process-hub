@@ -192,7 +192,7 @@ function CardCO2() {
           </div>
         ))}
       </div>
-      <div className="mt-2 flex justify-between text-[10px] text-white/20">
+      <div className="mt-2 flex justify-between text-base text-white/20">
         <span>2018</span><span>2025</span>
       </div>
     </div>
@@ -234,7 +234,7 @@ function CardProjects() {
           ))}
           {/* Centre label */}
           <text x="70" y="68" textAnchor="middle" fontSize="26" fontWeight="400" fill="#e1fcad">340+</text>
-          <text x="70" y="82" textAnchor="middle" fontSize="9" fill="rgba(255,255,255,0.35)" letterSpacing="1.5" fontFamily="ui-monospace,monospace">PROJECTS</text>
+          <text x="70" y="82" textAnchor="middle" fontSize="16" fill="rgba(255,255,255,0.35)" letterSpacing="1.5" fontFamily="ui-monospace,monospace">PROJECTS</text>
         </svg>
       </div>
 
@@ -299,7 +299,7 @@ function CardInvestment() {
           <circle cx="280" cy="8" r="4" fill="#122023" opacity="0.7" />
         </svg>
       </div>
-      <div className="flex justify-between text-[10px] text-[#122023]/40 font-mono">
+      <div className="flex justify-between text-base text-[#122023]/40 font-mono">
         <span>2018</span><span>2025</span>
       </div>
     </div>
@@ -626,7 +626,7 @@ function Testimonials() {
                 className="flex flex-col gap-6 rounded-2xl border border-black/[0.06] bg-[#f7f7f5] p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]"
               >
                 <span className="select-none font-serif text-6xl leading-[0.75] text-black/10">&ldquo;</span>
-                <p className="flex-1 text-[15px] leading-[1.7] text-black/65">{t.quote}</p>
+                <p className="flex-1 text-base leading-[1.7] text-black/65">{t.quote}</p>
                 <div className="flex items-center gap-3 border-t border-black/[0.08] pt-5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img

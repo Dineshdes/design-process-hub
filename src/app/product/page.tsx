@@ -67,7 +67,7 @@ function TrustedBy() {
     <section className="border-b border-black/10 bg-white py-7">
       <div className={G}>
         <div className={`${COL} flex flex-wrap items-center gap-x-10 gap-y-4`}>
-          <span className="whitespace-nowrap text-[11px] font-bold uppercase tracking-[0.18em] text-black/30">
+          <span className="whitespace-nowrap text-base font-bold uppercase tracking-[0.18em] text-black/30">
             Trusted by
           </span>
           <div className="h-4 w-px shrink-0 bg-black/10" />
@@ -125,7 +125,7 @@ function ProductHero() {
                     </div>
                     <span className="text-sm font-semibold text-white">Carbon Overview</span>
                   </div>
-                  <span className="flex items-center gap-1.5 rounded-full bg-[#e1fcad]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#e1fcad]/70">
+                  <span className="flex items-center gap-1.5 rounded-full bg-[#e1fcad]/10 px-3 py-1 text-base font-bold uppercase tracking-widest text-[#e1fcad]/70">
                     <span className="size-1.5 rounded-full bg-[#e1fcad] inline-block" />
                     Live
                   </span>
@@ -133,7 +133,7 @@ function ProductHero() {
 
                 {/* Big stat */}
                 <div className="mb-5 rounded-xl bg-white/[0.03] p-5">
-                  <p className="mb-1 text-[11px] font-bold uppercase tracking-widest text-white/30">
+                  <p className="mb-1 text-base font-bold uppercase tracking-widest text-white/30">
                     Total Scope 1–3 Emissions
                   </p>
                   <div className="flex items-baseline gap-3">
@@ -162,7 +162,7 @@ function ProductHero() {
                   ].map((s) => (
                     <div key={s.scope} className="rounded-lg bg-white/[0.04] p-3">
                       <div className={`mb-2 h-1 w-full rounded-full ${s.color}`} />
-                      <p className="text-[10px] text-white/30">{s.scope}</p>
+                      <p className="text-base text-white/30">{s.scope}</p>
                       <p className="text-sm font-semibold text-white">{s.val}</p>
                     </div>
                   ))}
@@ -176,8 +176,8 @@ function ProductHero() {
                     <TrendingDown className="h-4 w-4 text-[#e1fcad]" />
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold text-white">Target on track</p>
-                    <p className="text-[10px] text-white/40">Net-zero by 2030</p>
+                    <p className="text-base font-semibold text-white">Target on track</p>
+                    <p className="text-base text-white/40">Net-zero by 2030</p>
                   </div>
                 </div>
               </div>
@@ -285,7 +285,7 @@ function FeatureDetail1() {
 
             {/* Visual mockup */}
             <div className="rounded-2xl border border-black/[0.06] bg-[#f7f7f5] p-6">
-              <p className="mb-4 text-[11px] font-bold uppercase tracking-widest text-black/30">
+              <p className="mb-4 text-base font-bold uppercase tracking-widest text-black/30">
                 Supply Chain Emissions Map
               </p>
               <div className="space-y-3">
@@ -298,7 +298,7 @@ function FeatureDetail1() {
                   <div key={row.label} className="rounded-xl bg-white p-4">
                     <div className="mb-2 flex items-center justify-between">
                       <span className="text-xs font-medium text-black/60">{row.label}</span>
-                      <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest ${
+                      <span className={`rounded-full px-2.5 py-0.5 text-base font-bold uppercase tracking-widest ${
                         row.badge === "High" ? "bg-red-50 text-red-500" :
                         row.badge === "Medium" ? "bg-amber-50 text-amber-600" :
                         "bg-emerald-50 text-emerald-600"
@@ -330,7 +330,7 @@ function FeatureDetail2() {
             {/* Visual mockup — left side */}
             <div className="order-2 lg:order-1">
               <div className="rounded-2xl border border-white/[0.06] bg-[#122023] p-6">
-                <p className="mb-5 text-[11px] font-bold uppercase tracking-widest text-white/30">
+                <p className="mb-5 text-base font-bold uppercase tracking-widest text-white/30">
                   AI Roadmap Builder
                 </p>
                 {/* Chat-like interface */}
@@ -358,12 +358,12 @@ function FeatureDetail2() {
                   ].map((p) => (
                     <div key={p.phase} className="flex items-center justify-between rounded-xl bg-white/[0.04] px-4 py-3">
                       <div className="flex items-center gap-3">
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-[#e1fcad]/50">{p.phase}</span>
+                        <span className="text-base font-bold uppercase tracking-widest text-[#e1fcad]/50">{p.phase}</span>
                         <span className="text-sm text-white/70">{p.title}</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <span className="text-xs text-white/30">{p.year}</span>
-                        <span className="rounded-full bg-[#e1fcad]/10 px-2.5 py-0.5 text-[10px] font-bold text-[#e1fcad]">{p.impact}</span>
+                        <span className="rounded-full bg-[#e1fcad]/10 px-2.5 py-0.5 text-base font-bold text-[#e1fcad]">{p.impact}</span>
                       </div>
                     </div>
                   ))}
@@ -447,7 +447,7 @@ function FeatureDetail3() {
                 </div>
                 <div className="flex gap-2">
                   {["GRI", "CDP", "TCFD"].map((tag) => (
-                    <span key={tag} className="rounded-full bg-[#122023] px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-[#e1fcad]">
+                    <span key={tag} className="rounded-full bg-[#122023] px-2.5 py-1 text-base font-bold uppercase tracking-widest text-[#e1fcad]">
                       {tag}
                     </span>
                   ))}
@@ -473,7 +473,7 @@ function FeatureDetail3() {
                     </div>
                     <div className="text-right">
                       <p className="text-sm font-semibold text-[#122023]">{section.score}%</p>
-                      <p className={`text-[10px] font-medium ${section.status === "Complete" ? "text-emerald-600" : "text-amber-600"}`}>
+                      <p className={`text-base font-medium ${section.status === "Complete" ? "text-emerald-600" : "text-amber-600"}`}>
                         {section.status}
                       </p>
                     </div>
@@ -568,7 +568,7 @@ function PlatformDiagram() {
                   <path d={isoTop(c.cx, c.cy, IW)}     stroke="#122023" strokeOpacity="0.22" strokeWidth="1.2" fill="rgba(18,32,35,0.035)" />
                   <path d={isoRight(c.cx, c.cy, IW, IH)} stroke="#122023" strokeOpacity="0.14" strokeWidth="1.2" fill="rgba(18,32,35,0.02)" />
                   <path d={isoLeft(c.cx, c.cy, IW, IH)}  stroke="#122023" strokeOpacity="0.09" strokeWidth="1.2" fill="rgba(18,32,35,0.012)" />
-                  <text x={c.cx} y={c.cy + IW + IH + 18} textAnchor="middle" fontSize="10" fill="#122023" opacity="0.42" fontFamily="system-ui,sans-serif">{c.label}</text>
+                  <text x={c.cx} y={c.cy + IW + IH + 18} textAnchor="middle" fontSize="16" fill="#122023" opacity="0.42" fontFamily="system-ui,sans-serif">{c.label}</text>
                 </g>
               ))}
 
@@ -578,7 +578,7 @@ function PlatformDiagram() {
               <path d={isoTop(HCX, HCY, HW)}        fill="#e1fcad" />
               {/* leaf silhouette on top face */}
               <path d="M450,126 C464,132 467,150 450,157 C433,150 436,132 450,126 Z" fill="#122023" opacity="0.4" />
-              <text x={HCX} y={HCY + HW + HH + 18} textAnchor="middle" fontSize="12" fontWeight="600" fill="#122023" opacity="0.65" fontFamily="system-ui,sans-serif">Verdant Core</text>
+              <text x={HCX} y={HCY + HW + HH + 18} textAnchor="middle" fontSize="16" fontWeight="600" fill="#122023" opacity="0.65" fontFamily="system-ui,sans-serif">Verdant Core</text>
 
               {/* ── output stack (bottom layer first so top renders over) ── */}
               {Array.from({ length: SN }, (_, i) => SN - 1 - i).map((i) => {
@@ -592,7 +592,7 @@ function PlatformDiagram() {
                   </g>
                 );
               })}
-              <text x={SCX} y={SSY + SW + SN*SH + 18} textAnchor="middle" fontSize="12" fontWeight="600" fill="#122023" opacity="0.65" fontFamily="system-ui,sans-serif">Unified Outputs</text>
+              <text x={SCX} y={SSY + SW + SN*SH + 18} textAnchor="middle" fontSize="16" fontWeight="600" fill="#122023" opacity="0.65" fontFamily="system-ui,sans-serif">Unified Outputs</text>
 
             </svg>
           </div>
@@ -605,7 +605,7 @@ function PlatformDiagram() {
               { num: "03", title: "Unified Outputs", desc: "Dashboards, reports, alerts, and roadmaps — structured and delivered for every stakeholder from ops to board." },
             ].map((item) => (
               <div key={item.num} className="flex flex-col gap-3 rounded-2xl border border-black/[0.06] bg-[#f7f7f5] p-6">
-                <span className="font-mono text-[11px] font-bold tracking-widest text-black/25">{item.num}</span>
+                <span className="font-mono text-base font-bold tracking-widest text-black/25">{item.num}</span>
                 <h4 className="text-base font-semibold tracking-tight">{item.title}</h4>
                 <p className="text-sm leading-relaxed text-black/50">{item.desc}</p>
               </div>
@@ -687,7 +687,7 @@ function Testimonials() {
                 className="flex flex-col gap-6 rounded-2xl border border-black/[0.06] bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]"
               >
                 <span className="select-none font-serif text-6xl leading-[0.75] text-black/10">&ldquo;</span>
-                <p className="flex-1 text-[15px] leading-[1.7] text-black/65">{t.quote}</p>
+                <p className="flex-1 text-base leading-[1.7] text-black/65">{t.quote}</p>
                 <div className="flex items-center gap-3 border-t border-black/[0.08] pt-5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={t.img} alt={t.name} className="size-10 shrink-0 rounded-full object-cover ring-2 ring-[#e1fcad] ring-offset-2" />

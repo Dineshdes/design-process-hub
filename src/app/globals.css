@@ -5,9 +5,10 @@
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-  /* Floor all text utilities at 14px — text-xs remapped from 12px → 14px */
-  --text-xs: 0.875rem;   /* 14px */
-  --text-sm: 0.875rem;   /* 14px */
+  /* Floor all text utilities at 16px */
+  --text-xs: 1rem;   /* 16px */
+  --text-sm: 1rem;   /* 16px */
+  --text-base: 1rem; /* 16px */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -69,7 +70,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -429,3 +430,4 @@ h2 {
   font-size: 3.25rem; /* 52px — 44px + 8px */
   max-width: 560px;
 }
+

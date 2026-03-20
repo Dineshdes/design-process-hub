@@ -47,7 +47,7 @@ export default function Navbar() {
               />
             </div>
             <span
-              className={`text-[15px] font-semibold tracking-tight transition-colors duration-300 ${
+              className={`text-base font-semibold tracking-tight transition-colors duration-300 ${
                 scrolled ? "text-[#122023]" : "text-white"
               }`}
             >
@@ -61,7 +61,7 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                className={`rounded-full px-4 py-2 text-[13px] font-medium transition-colors duration-200 ${
+                className={`rounded-full px-4 py-2 text-base font-medium transition-colors duration-200 ${
                   scrolled
                     ? "text-[#122023]/70 hover:bg-black/[0.04] hover:text-[#122023]"
                     : "text-white hover:bg-white/[0.07]"
@@ -76,7 +76,7 @@ export default function Navbar() {
           <div className="hidden items-center gap-3 md:flex">
             <a
               href="#"
-              className={`text-[13px] font-medium transition-colors duration-200 ${
+              className={`text-base font-medium transition-colors duration-200 ${
                 scrolled
                   ? "text-[#122023]/50 hover:text-[#122023]"
                   : "text-white/60 hover:text-white"
@@ -88,7 +88,7 @@ export default function Navbar() {
               href="#"
               className="group flex items-center overflow-hidden rounded-full bg-[#122023] transition-all duration-300 hover:bg-[#1a2f33]"
             >
-              <span className="pl-5 pr-4 text-[13px] font-semibold text-[#e1fcad]">
+              <span className="pl-5 pr-4 text-base font-semibold text-[#e1fcad]">
                 Get started
               </span>
               <span className="flex size-8 items-center justify-center rounded-full bg-[#e1fcad] text-[#122023] transition-colors duration-300 group-hover:bg-[#d4f59a]">
@@ -141,7 +141,7 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className={`block rounded-xl px-4 py-3 text-[14px] font-medium transition-colors ${
+              className={`block rounded-xl px-4 py-3 text-base font-medium transition-colors ${
                 scrolled
                   ? "text-[#122023]/70 hover:bg-black/[0.04] hover:text-[#122023]"
                   : "text-white/70 hover:bg-white/[0.06] hover:text-white"
@@ -158,13 +158,13 @@ export default function Navbar() {
           >
             <a
               href="#"
-              className={`block rounded-xl px-4 py-3 text-[14px] font-medium transition-colors ${
+              className={`block rounded-xl px-4 py-3 text-base font-medium transition-colors ${
                 scrolled ? "text-[#122023]/50 hover:text-[#122023]" : "text-white/50 hover:text-white"
               }`}
             >
               Sign in
             </a>
-            <a href="#" className="flex items-center justify-center rounded-full bg-[#122023] py-3 text-[14px] font-semibold text-[#e1fcad]">
+            <a href="#" className="flex items-center justify-center rounded-full bg-[#122023] py-3 text-base font-semibold text-[#e1fcad]">
               Get started
             </a>
           </div>
