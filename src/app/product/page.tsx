@@ -7,7 +7,6 @@ import {
   Users2,
   PlugZap,
   CheckCircle2,
-  TrendingDown,
 } from "lucide-react";
 import { PrimaryCTA, SecondaryCTA, GhostCTA } from "@/components/ui/cta";
 import Footer from "@/components/ui/footer";
@@ -16,6 +15,9 @@ import Footer from "@/components/ui/footer";
 const G   = "grid grid-cols-12";
 const COL = "col-start-2 col-span-10";
 const SEC = "py-[100px] min-h-[740px]";
+
+// ── Grain noise texture overlay ───────────────────────────────────────────────
+const GRAIN = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
 
 // ── Isometric cube SVG path helpers ──────────────────────────────────────────
 const isoTop   = (cx: number, cy: number, w: number) =>
@@ -71,90 +73,68 @@ function TrustedBy() {
   );
 }
 
-// ── Product Hero ──────────────────────────────────────────────────────────────
+// ── Product Hero — full screen with image + grain ─────────────────────────────
 function ProductHero() {
   return (
-    <section className="relative overflow-hidden bg-[#122023] pt-36 pb-24">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(225,252,173,0.08),transparent)]" />
-      <div className={`relative ${G}`}>
-        <div className={COL}>
-          <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
-            <div>
-              <span className="mb-5 inline-block rounded-full border border-[#e1fcad]/20 bg-[#e1fcad]/10 px-4 py-1.5 text-sm font-bold uppercase tracking-[0.18em] text-[#e1fcad]/80">
-                Verdant Platform
-              </span>
-              <h1 className="mb-6 text-5xl font-normal leading-[1.04] tracking-[-0.03em] text-white md:text-6xl">
+    <section className="relative flex h-screen min-h-[700px] w-full flex-col justify-end">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url(https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1920&q=80)" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1618] via-[#0a1618]/60 to-[#122023]/25" />
+      </div>
+
+      {/* Grain overlay */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.35, mixBlendMode: "overlay" }}
+      />
+
+      {/* Content — pinned to bottom */}
+      <div className={`relative z-10 w-full pb-16`}>
+        <div className={G}>
+          <div className={COL}>
+            {/* Badge */}
+            <div className="mb-6 flex items-center gap-3">
+              <div className="flex size-7 items-center justify-center rounded-full bg-[#e1fcad]">
+                <Leaf className="h-3.5 w-3.5 text-[#122023]" />
+              </div>
+              <span className="text-sm font-bold uppercase tracking-[0.18em] text-[#e1fcad]/70">Verdant Platform</span>
+            </div>
+
+            {/* Headline + right side */}
+            <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+              <h1 className="max-w-3xl text-5xl font-normal leading-[1.04] tracking-[-0.03em] text-white md:text-6xl lg:text-[68px]">
                 Every sustainability insight,{" "}
                 <span className="text-[#e1fcad]">one intelligent platform</span>
               </h1>
-              <p className="mb-10 max-w-[480px] text-[17px] leading-relaxed text-white/45">
-                From carbon tracking to board reporting, Verdant unifies your entire sustainability operation — powered by AI that learns your business.
-              </p>
-              <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-                <PrimaryCTA label="Start free trial" href="/hero" />
-                <SecondaryCTA label="See how it works" href="#capabilities" dark />
+              <div className="flex shrink-0 flex-col items-start gap-5 lg:items-end">
+                <p className="max-w-xs text-base leading-relaxed text-white/45 lg:text-right">
+                  From carbon tracking to board reporting, Verdant unifies your entire sustainability operation.
+                </p>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <PrimaryCTA label="Start free trial" href="/hero" />
+                  <SecondaryCTA label="See how it works" href="#capabilities" dark />
+                </div>
               </div>
-              <p className="mt-5 text-base text-white/25">No credit card required. 14-day free trial.</p>
             </div>
 
-            {/* Right: product mockup */}
-            <div className="relative">
-              <div className="rounded-2xl border border-white/[0.06] bg-[#0d1a1c] p-6 shadow-[0_32px_80px_rgba(0,0,0,0.5)]">
-                <div className="mb-5 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="flex size-7 items-center justify-center rounded-full bg-[#e1fcad]">
-                      <Leaf className="h-3.5 w-3.5 text-[#122023]" />
-                    </div>
-                    <span className="text-sm font-semibold text-white">Carbon Overview</span>
+            {/* Stats strip */}
+            <div className="mt-14 grid grid-cols-3 divide-x divide-white/10 border-t border-white/10 pt-8">
+              {[
+                { val: "2.4M", unit: "tonnes", label: "CO₂ avoided annually" },
+                { val: "340+", unit: "projects", label: "Across 42 countries" },
+                { val: "15K+", unit: "teams",    label: "Making the transition" },
+              ].map((s, i) => (
+                <div key={i} className={`${i > 0 ? "pl-8" : ""} ${i < 2 ? "pr-8" : ""}`}>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-normal tracking-[-0.03em] text-[#e1fcad]">{s.val}</span>
+                    <span className="text-base uppercase tracking-widest text-white/30">{s.unit}</span>
                   </div>
-                  <span className="flex items-center gap-1.5 rounded-full bg-[#e1fcad]/10 px-3 py-1 text-base font-bold uppercase tracking-widest text-[#e1fcad]/70">
-                    <span className="inline-block size-1.5 rounded-full bg-[#e1fcad]" />
-                    Live
-                  </span>
+                  <p className="mt-1 text-base text-white/40">{s.label}</p>
                 </div>
-                <div className="mb-5 rounded-xl bg-white/[0.03] p-5">
-                  <p className="mb-1 text-base font-bold uppercase tracking-widest text-white/30">Total Scope 1–3 Emissions</p>
-                  <div className="flex items-baseline gap-3">
-                    <span className="text-4xl font-normal tracking-[-0.04em] text-[#e1fcad]">−23.4%</span>
-                    <span className="text-sm text-white/30">vs last year</span>
-                  </div>
-                  {/* Mini sparkline */}
-                  <svg viewBox="0 0 260 32" fill="none" className="mt-3 w-full">
-                    <path d="M0 28 C20 24 40 20 60 22 C80 24 100 18 120 14 C140 10 160 16 180 10 C200 4 230 8 260 2" stroke="#e1fcad" strokeOpacity="0.4" strokeWidth="1.5" fill="none" />
-                    <path d="M0 28 C20 24 40 20 60 22 C80 24 100 18 120 14 C140 10 160 16 180 10 C200 4 230 8 260 2 L260 32 L0 32 Z" fill="#e1fcad" fillOpacity="0.05" />
-                    <circle cx="260" cy="2" r="3" fill="#e1fcad" />
-                  </svg>
-                </div>
-                <div className="mb-5 flex items-end gap-1.5 rounded-xl bg-white/[0.03] p-5">
-                  {[40, 65, 55, 78, 50, 88, 62, 94, 70, 82, 58, 45].map((h, i) => (
-                    <div key={i} className={`flex-1 rounded-sm ${i === 11 ? "bg-[#e1fcad]" : "bg-white/[0.08]"}`} style={{ height: `${h * 0.6}px` }} />
-                  ))}
-                </div>
-                <div className="grid grid-cols-3 gap-3">
-                  {[
-                    { scope: "Scope 1", val: "−18%", color: "bg-[#e1fcad]" },
-                    { scope: "Scope 2", val: "−31%", color: "bg-[#e1fcad]/60" },
-                    { scope: "Scope 3", val: "−14%", color: "bg-[#e1fcad]/30" },
-                  ].map((s) => (
-                    <div key={s.scope} className="rounded-lg bg-white/[0.04] p-3">
-                      <div className={`mb-2 h-1 w-full rounded-full ${s.color}`} />
-                      <p className="text-base text-white/30">{s.scope}</p>
-                      <p className="text-sm font-semibold text-white">{s.val}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="absolute -bottom-6 -left-6 hidden rounded-xl border border-white/[0.06] bg-[#122023] p-4 shadow-[0_16px_40px_rgba(0,0,0,0.4)] lg:block">
-                <div className="flex items-center gap-3">
-                  <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#e1fcad]/15">
-                    <TrendingDown className="h-4 w-4 text-[#e1fcad]" />
-                  </div>
-                  <div>
-                    <p className="text-base font-semibold text-white">Target on track</p>
-                    <p className="text-base text-white/40">Net-zero by 2030</p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -244,51 +224,40 @@ function FeatureDetail1() {
               <GhostCTA label="Explore Carbon Intelligence" />
             </div>
 
-            {/* Enhanced mockup */}
-            <div className="relative rounded-2xl border border-black/[0.06] bg-[#f7f7f5] p-6 overflow-hidden">
-              {/* Decorative glow */}
-              <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#e1fcad]/20 blur-3xl" />
-              <p className="mb-4 text-base font-bold uppercase tracking-widest text-black/30">Supply Chain Emissions Map</p>
-              {/* Mini donut chart */}
-              <div className="mb-5 flex items-center gap-4 rounded-xl bg-white p-4">
-                <svg viewBox="0 0 60 60" className="h-14 w-14 shrink-0">
-                  <circle cx="30" cy="30" r="22" stroke="#f7f7f5" strokeWidth="8" fill="none" />
-                  <circle cx="30" cy="30" r="22" stroke="#122023" strokeWidth="8" fill="none" strokeDasharray="83 55" strokeDashoffset="34" strokeLinecap="round" />
-                  <circle cx="30" cy="30" r="22" stroke="#e1fcad" strokeWidth="8" fill="none" strokeDasharray="34 104" strokeDashoffset="-48" strokeLinecap="round" />
-                  <text x="30" y="34" textAnchor="middle" fontSize="10" fontWeight="700" fill="#122023" fontFamily="system-ui">72%</text>
-                </svg>
-                <div>
-                  <p className="text-sm font-semibold text-black">Tier 1 manufacturing</p>
-                  <p className="text-base text-black/40">Highest concentration</p>
+            {/* Image + grain + stats panel */}
+            <div className="relative min-h-[520px] self-stretch overflow-hidden rounded-2xl">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=900&q=80"
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-[#0a1618]/58" />
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.4, mixBlendMode: "overlay" }}
+              />
+              {/* Stats content */}
+              <div className="relative flex h-full min-h-[520px] flex-col justify-end p-8">
+                {/* Primary stat */}
+                <div className="mb-8">
+                  <p className="mb-2 text-sm font-bold uppercase tracking-[0.18em] text-[#e1fcad]/50">Total emissions reduction</p>
+                  <p className="text-[72px] font-normal leading-none tracking-[-0.04em] text-[#e1fcad]">−23.4%</p>
+                  <p className="mt-3 text-base text-white/45">vs previous year · Scope 1, 2 &amp; 3 combined</p>
                 </div>
-                <span className="ml-auto rounded-full bg-red-50 px-2.5 py-0.5 text-base font-bold uppercase tracking-widest text-red-500">High</span>
-              </div>
-              <div className="space-y-3">
-                {[
-                  { label: "Logistics & Freight", pct: 38, badge: "Medium" },
-                  { label: "Office & Travel",      pct: 14, badge: "Low" },
-                  { label: "Purchased Goods",      pct: 55, badge: "Medium" },
-                ].map((row) => (
-                  <div key={row.label} className="rounded-xl bg-white p-4">
-                    <div className="mb-2 flex items-center justify-between">
-                      <span className="text-base font-medium text-black/60">{row.label}</span>
-                      <span className={`rounded-full px-2.5 py-0.5 text-base font-bold uppercase tracking-widest ${
-                        row.badge === "Medium" ? "bg-amber-50 text-amber-600" : "bg-emerald-50 text-emerald-600"
-                      }`}>{row.badge}</span>
+                {/* Secondary stats */}
+                <div className="grid grid-cols-3 divide-x divide-white/10 border-t border-white/10 pt-6">
+                  {[
+                    { val: "−18%", label: "Scope 1" },
+                    { val: "−31%", label: "Scope 2" },
+                    { val: "−14%", label: "Scope 3" },
+                  ].map((s) => (
+                    <div key={s.label} className="pr-6 first:pl-0 last:pr-0 [&:not(:first-child)]:pl-6">
+                      <p className="text-xl font-semibold text-white">{s.val}</p>
+                      <p className="text-base text-white/40">{s.label}</p>
                     </div>
-                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-black/[0.06]">
-                      <div className="h-full rounded-full bg-[#122023]" style={{ width: `${row.pct}%` }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {/* Floating badge */}
-              <div className="mt-4 flex items-center gap-2 rounded-xl border border-[#122023]/10 bg-white p-3">
-                <div className="flex size-7 items-center justify-center rounded-full bg-[#e1fcad]">
-                  <TrendingDown className="h-3.5 w-3.5 text-[#122023]" />
+                  ))}
                 </div>
-                <p className="text-base font-medium text-black">−23.4% total vs last year</p>
-                <span className="ml-auto text-base font-semibold text-emerald-600">On target</span>
               </div>
             </div>
           </div>
@@ -305,55 +274,37 @@ function FeatureDetail2() {
       <div className={G}>
         <div className={COL}>
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-            {/* Visual — left */}
-            <div className="order-2 lg:order-1">
-              <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-[#122023] p-6">
-                {/* Radial glow */}
-                <div className="pointer-events-none absolute left-1/2 top-0 h-32 w-64 -translate-x-1/2 bg-[#e1fcad]/06 blur-3xl" />
-                <p className="mb-4 text-base font-bold uppercase tracking-widest text-white/30">AI Roadmap Builder</p>
-                {/* Progress ring */}
-                <div className="mb-5 flex items-center gap-5 rounded-xl bg-white/[0.04] p-4">
-                  <svg viewBox="0 0 64 64" className="h-16 w-16 shrink-0 -rotate-90">
-                    <circle cx="32" cy="32" r="26" stroke="rgba(225,252,173,0.1)" strokeWidth="6" fill="none" />
-                    <circle cx="32" cy="32" r="26" stroke="#e1fcad" strokeWidth="6" fill="none"
-                      strokeDasharray="113 163" strokeDashoffset="0" strokeLinecap="round" />
-                  </svg>
-                  <div>
-                    <p className="text-sm text-white/40">Net-zero progress</p>
-                    <p className="text-2xl font-normal tracking-tight text-[#e1fcad]">69% <span className="text-sm text-white/30">complete</span></p>
-                  </div>
+            {/* Image + grain + stats panel — left */}
+            <div className="relative order-2 min-h-[520px] self-stretch overflow-hidden rounded-2xl lg:order-1">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80"
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-[#0a1618]/62" />
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.38, mixBlendMode: "overlay" }}
+              />
+              {/* Stats content */}
+              <div className="relative flex h-full min-h-[520px] flex-col justify-end p-8">
+                {/* Primary stat */}
+                <div className="mb-8">
+                  <p className="mb-2 text-sm font-bold uppercase tracking-[0.18em] text-[#e1fcad]/50">Roadmap phases</p>
+                  <p className="text-[72px] font-normal leading-none tracking-[-0.04em] text-[#e1fcad]">3</p>
+                  <p className="mt-3 text-base text-white/45">clear phases to net-zero by 2030, financially modelled</p>
                 </div>
-                {/* Chat */}
-                <div className="mb-4 space-y-3">
-                  <div className="flex justify-end">
-                    <div className="max-w-[75%] rounded-2xl rounded-tr-sm bg-[#e1fcad] px-4 py-3 text-sm font-medium text-[#122023]">
-                      We need to hit net-zero by 2030.
-                    </div>
-                  </div>
-                  <div className="flex gap-2.5">
-                    <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[#e1fcad]/15">
-                      <BrainCircuit className="h-3.5 w-3.5 text-[#e1fcad]" />
-                    </div>
-                    <div className="max-w-[80%] rounded-2xl rounded-tl-sm bg-white/[0.06] px-4 py-3 text-sm text-white/70">
-                      Based on your trajectory, here&apos;s your fastest path in 3 phases:
-                    </div>
-                  </div>
-                </div>
-                <div className="space-y-2">
+                {/* Secondary stats */}
+                <div className="grid grid-cols-3 divide-x divide-white/10 border-t border-white/10 pt-6">
                   {[
-                    { phase: "Phase 1", title: "Switch to renewables", year: "2025", impact: "−38%" },
-                    { phase: "Phase 2", title: "Supply chain audit",   year: "2027", impact: "−29%" },
-                    { phase: "Phase 3", title: "Offset & certify",     year: "2030", impact: "Net-zero" },
-                  ].map((p) => (
-                    <div key={p.phase} className="flex items-center justify-between rounded-xl bg-white/[0.04] px-4 py-3">
-                      <div className="flex items-center gap-3">
-                        <span className="text-base font-bold uppercase tracking-widest text-[#e1fcad]/50">{p.phase}</span>
-                        <span className="text-sm text-white/70">{p.title}</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-base text-white/30">{p.year}</span>
-                        <span className="rounded-full bg-[#e1fcad]/10 px-2.5 py-0.5 text-base font-bold text-[#e1fcad]">{p.impact}</span>
-                      </div>
+                    { val: "2030",  label: "Target year" },
+                    { val: "12",    label: "Levers modelled" },
+                    { val: "Live",  label: "Auto-updated" },
+                  ].map((s) => (
+                    <div key={s.label} className="pr-6 first:pl-0 last:pr-0 [&:not(:first-child)]:pl-6">
+                      <p className="text-xl font-semibold text-white">{s.val}</p>
+                      <p className="text-base text-white/40">{s.label}</p>
                     </div>
                   ))}
                 </div>
