@@ -1,5 +1,6 @@
 import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
+import BlogCallout from "@/components/ui/blog-callout";
 import { PrimaryCTA, GhostCTA } from "@/components/ui/cta";
 import {
   Leaf, ArrowUpRight, TrendingDown, Globe, Zap, Users, TreePine,
@@ -582,6 +583,7 @@ export default function ImpactPage() {
       <GlobalReach />
       <Milestones />
       <ImpactCTA />
+      <BlogCallout />
       <Footer />
     </>
   );

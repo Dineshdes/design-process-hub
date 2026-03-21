@@ -4,6 +4,7 @@ import { Leaf, Zap, BarChart3, Globe, ChevronRight } from "lucide-react";
 import Footer from "@/components/ui/footer";
 import { InlineCTA } from "@/components/ui/cta";
 import TestimonialsCarousel from "@/components/ui/testimonials-carousel";
+import BlogCallout from "@/components/ui/blog-callout";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  12-COLUMN GRID SYSTEM
@@ -730,8 +731,8 @@ function USPCarousel() {
     <section className="overflow-hidden bg-[#f7f7f5] py-[150px]">
       {/* Header */}
       <div className="grid grid-cols-12 mb-14">
-        <div className="col-start-2 col-span-10 flex flex-col items-center text-center gap-5">
-          <span className="inline-flex rounded-full border border-black/10 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-black/45">
+        <div className="col-start-2 col-span-10 flex flex-col gap-4">
+          <span className="text-sm font-bold uppercase tracking-[0.18em] text-black/40">
             Our Value
           </span>
           <h2 className="max-w-2xl text-4xl font-normal leading-[1.08] tracking-[-0.03em] text-[#122023] md:text-5xl">
@@ -806,6 +807,7 @@ export default function HeroPage() {
       <ImpactStats />
       <Testimonials />
       <USPCarousel />
+      <BlogCallout />
       <Footer />
     </main>
   );

@@ -16,7 +16,7 @@ import { PrimaryCTA } from "@/components/ui/cta";
 
 const SOLUTION_LINKS = [
   { label: "Clean Energy",       href: "/product" },
-  { label: "Carbon Strategy",    href: "#" },
+  { label: "Carbon Strategy",    href: "/solutions" },
   { label: "Community Programs", href: "#" },
   { label: "Blog",               href: "/blog" },
   { label: "Contact Us",         href: "#" },
@@ -61,7 +61,7 @@ function NewsletterForm() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Enter your email"
-        className="min-w-0 flex-1 bg-transparent px-6 py-3.5 text-sm text-white outline-none placeholder:text-white/30"
+        className="min-w-0 flex-1 bg-transparent px-6 py-3.5 text-sm text-white outline-none placeholder:text-white/50"
       />
       <button
         type="submit"
@@ -116,7 +116,7 @@ export default function Footer() {
         </div>
 
         {/* Trust tags */}
-        <p className="mb-14 text-xs text-white/25">
+        <p className="mb-14 text-xs text-white/50">
           No credit card required &nbsp;·&nbsp; 14-day free trial &nbsp;·&nbsp; Cancel anytime
         </p>
 
@@ -125,7 +125,7 @@ export default function Footer() {
           {STATS.map((s) => (
             <div key={s.value} className="flex flex-col items-center px-8 py-2">
               <span className="text-2xl font-semibold tracking-tight text-[#e1fcad]">{s.value}</span>
-              <span className="mt-0.5 text-xs text-white/35">{s.label}</span>
+              <span className="mt-0.5 text-xs text-white/65">{s.label}</span>
             </div>
           ))}
         </div>

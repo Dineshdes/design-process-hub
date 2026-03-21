@@ -3,6 +3,7 @@ import { Leaf, Globe, Zap, Heart, ChevronRight } from "lucide-react";
 import { GhostCTA } from "@/components/ui/cta";
 import { GsapTimeline } from "@/components/ui/gsap-timeline";
 import SharedFooter from "@/components/ui/footer";
+import BlogCallout from "@/components/ui/blog-callout";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Same 12-col grid system as /hero
@@ -340,6 +341,7 @@ export default function AboutPage() {
       <OurStory />
       <Values />
       <Team />
+      <BlogCallout />
       <SharedFooter />
     </main>
   );

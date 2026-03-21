@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Leaf, Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
-  { label: "Solutions", href: "#" },
+  { label: "Solutions", href: "/solutions" },
   { label: "Product",   href: "/product" },
   { label: "Impact",    href: "/impact" },
   { label: "Blog",      href: "/blog" },

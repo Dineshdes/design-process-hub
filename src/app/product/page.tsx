@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { PrimaryCTA, SecondaryCTA, GhostCTA } from "@/components/ui/cta";
 import Footer from "@/components/ui/footer";
+import BlogCallout from "@/components/ui/blog-callout";
 
 // ── 12-col grid constants ────────────────────────────────────────────────────
 const G   = "grid grid-cols-12";
@@ -961,6 +962,7 @@ export default function ProductPage() {
       <BentoFeatures />
       <ImpactStats />
       <DualVideoExplore />
+      <BlogCallout />
       <Footer />
     </main>
   );
