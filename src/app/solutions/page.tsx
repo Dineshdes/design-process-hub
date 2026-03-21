@@ -426,46 +426,55 @@ function StatsBar() {
 // ─────────────────────────────────────────────────────────────────────────────
 //  Integrations — Vooma-style: left heading panel + right 3-col logo grid
 //  Grid cells have PCB-style lime connector notches + col-1 vertical accent line
+//
+//  Logo sources:
+//   • Simple Icons CDN  — https://cdn.simpleicons.org/{slug}  (SVG, always works)
+//   • Clearbit          — https://logo.clearbit.com/{domain}  (PNG, ESG brands)
 // ─────────────────────────────────────────────────────────────────────────────
-const INTEGRATION_LOGOS: { name: string; domain: string }[] = [
-  { name: "SAP",              domain: "sap.com" },
-  { name: "Oracle",           domain: "oracle.com" },
-  { name: "Microsoft",        domain: "microsoft.com" },
-  { name: "Salesforce",       domain: "salesforce.com" },
-  { name: "Workday",          domain: "workday.com" },
-  { name: "CDP",              domain: "cdp.net" },
-  { name: "Enablon",          domain: "enablon.com" },
-  { name: "Sphera",           domain: "sphera.com" },
-  { name: "Persefoni",        domain: "persefoni.com" },
-  { name: "EcoVadis",         domain: "ecovadis.com" },
-  { name: "Power BI",         domain: "powerbi.microsoft.com" },
-  { name: "Tableau",          domain: "tableau.com" },
-  { name: "Bloomberg",        domain: "bloomberg.com" },
-  { name: "Google Workspace", domain: "workspace.google.com" },
-  { name: "Slack",            domain: "slack.com" },
-  { name: "DocuSign",         domain: "docusign.com" },
-  { name: "AWS",              domain: "aws.amazon.com" },
-  { name: "Azure",            domain: "azure.microsoft.com" },
+const SI = (slug: string) => `https://cdn.simpleicons.org/${slug}`;
+const CB = (domain: string) => `https://logo.clearbit.com/${domain}`;
+
+const INTEGRATION_LOGOS: { name: string; logoUrl: string }[] = [
+  { name: "SAP",              logoUrl: SI("sap") },
+  { name: "Oracle",           logoUrl: SI("oracle") },
+  { name: "Microsoft",        logoUrl: SI("microsoft") },
+  { name: "Salesforce",       logoUrl: SI("salesforce") },
+  { name: "Workday",          logoUrl: SI("workday") },
+  { name: "CDP",              logoUrl: CB("cdp.net") },
+  { name: "Enablon",          logoUrl: CB("enablon.com") },
+  { name: "Sphera",           logoUrl: CB("sphera.com") },
+  { name: "Persefoni",        logoUrl: CB("persefoni.com") },
+  { name: "EcoVadis",         logoUrl: CB("ecovadis.com") },
+  { name: "Power BI",         logoUrl: SI("powerbi") },
+  { name: "Tableau",          logoUrl: SI("tableau") },
+  { name: "Bloomberg",        logoUrl: SI("bloomberg") },
+  { name: "Google Workspace", logoUrl: SI("googleworkspace") },
+  { name: "Slack",            logoUrl: SI("slack") },
+  { name: "DocuSign",         logoUrl: SI("docusign") },
+  { name: "AWS",              logoUrl: SI("amazonaws") },
+  { name: "Azure",            logoUrl: SI("microsoftazure") },
 ];
 
-function IntegrationLogo({ name, domain }: { name: string; domain: string }) {
+function IntegrationLogo({ name, logoUrl }: { name: string; logoUrl: string }) {
+  const [failed, setFailed] = useState(false);
+
   return (
-    <div className="flex h-10 items-center justify-center">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={`https://logo.clearbit.com/${domain}`}
-        alt={name}
-        className="max-h-8 w-auto max-w-[110px] object-contain grayscale opacity-50 transition-all duration-200 group-hover:grayscale-0 group-hover:opacity-90"
-        onError={(e) => {
-          const img = e.currentTarget;
-          img.style.display = "none";
-          const fallback = img.nextElementSibling as HTMLElement | null;
-          if (fallback) fallback.style.display = "block";
-        }}
-      />
+    <div className="flex flex-col items-center gap-2">
+      {!failed && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={logoUrl}
+          alt={name}
+          className="h-7 w-auto max-w-[72px] object-contain opacity-30 transition-all duration-200 group-hover:opacity-75"
+          onError={() => setFailed(true)}
+        />
+      )}
       <span
-        className="hidden text-center text-xs font-semibold text-black/35 transition-colors duration-200 group-hover:text-black/70"
-        aria-hidden
+        className={`text-center font-semibold tracking-tight transition-colors duration-200 ${
+          failed
+            ? "text-sm text-black/35 group-hover:text-black/65"
+            : "text-[11px] text-black/35 group-hover:text-black/60"
+        }`}
       >
         {name}
       </span>
@@ -522,7 +531,7 @@ function Integrations() {
 
                 return (
                   <div
-                    key={logo.domain}
+                    key={logo.name}
                     className={`group relative flex flex-col items-center justify-center bg-[#f7f7f5] px-6 py-10 transition-colors duration-200 hover:bg-white
                       ${col < 2 ? "border-r border-black/[0.09]" : ""}
                       ${!isLastRow ? "border-b border-black/[0.09]" : ""}
@@ -537,7 +546,7 @@ function Integrations() {
                       }`}
                     />
 
-                    <IntegrationLogo name={logo.name} domain={logo.domain} />
+                    <IntegrationLogo name={logo.name} logoUrl={logo.logoUrl} />
                   </div>
                 );
               })}
