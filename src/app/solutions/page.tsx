@@ -428,42 +428,40 @@ function StatsBar() {
 //  Grid cells have PCB-style lime connector notches + col-1 vertical accent line
 //  Logos: Clearbit wordmark PNGs at 100% opacity, text fallback on error
 // ─────────────────────────────────────────────────────────────────────────────
-const INTEGRATION_LOGOS: { name: string; domain: string }[] = [
-  { name: "SAP",        domain: "sap.com" },
-  { name: "Oracle",     domain: "oracle.com" },
-  { name: "Microsoft",  domain: "microsoft.com" },
-  { name: "Salesforce", domain: "salesforce.com" },
-  { name: "Workday",    domain: "workday.com" },
-  { name: "CDP",        domain: "cdp.net" },
-  { name: "Enablon",    domain: "enablon.com" },
-  { name: "Sphera",     domain: "sphera.com" },
-  { name: "Persefoni",  domain: "persefoni.com" },
-  { name: "EcoVadis",   domain: "ecovadis.com" },
-  { name: "Tableau",    domain: "tableau.com" },
-  { name: "Bloomberg",  domain: "bloomberg.com" },
-  { name: "Google",     domain: "google.com" },
-  { name: "Slack",      domain: "slack.com" },
-  { name: "DocuSign",   domain: "docusign.com" },
-  { name: "NetSuite",   domain: "netsuite.com" },
-  { name: "Stripe",     domain: "stripe.com" },
-  { name: "AWS",        domain: "amazon.com" },
+const INTEGRATION_LOGOS: { name: string; file: string }[] = [
+  { name: "SAP",        file: "sap" },
+  { name: "Oracle",     file: "oracle" },
+  { name: "Microsoft",  file: "microsoft" },
+  { name: "Salesforce", file: "salesforce" },
+  { name: "Workday",    file: "workday" },
+  { name: "CDP",        file: "cdp" },
+  { name: "Enablon",    file: "enablon" },
+  { name: "Sphera",     file: "sphera" },
+  { name: "Persefoni",  file: "persefoni" },
+  { name: "EcoVadis",   file: "ecovadis" },
+  { name: "Tableau",    file: "tableau" },
+  { name: "Bloomberg",  file: "bloomberg" },
+  { name: "Google",     file: "google" },
+  { name: "Slack",      file: "slack" },
+  { name: "DocuSign",   file: "docusign" },
+  { name: "NetSuite",   file: "netsuite" },
+  { name: "Stripe",     file: "stripe" },
+  { name: "AWS",        file: "aws" },
 ];
 
-function IntegrationLogo({ name, domain }: { name: string; domain: string }) {
+function IntegrationLogo({ name, file }: { name: string; file: string }) {
   const [failed, setFailed] = useState(false);
 
   if (failed) {
-    return (
-      <span className="text-sm font-semibold text-black/45">{name}</span>
-    );
+    return <span className="text-sm font-semibold text-black/50">{name}</span>;
   }
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={`https://logo.clearbit.com/${domain}`}
+      src={`/logos/${file}.svg`}
       alt={name}
-      className="h-8 w-auto max-w-[120px] object-contain"
+      className="h-8 w-auto max-w-[130px] object-contain"
       onError={() => setFailed(true)}
     />
   );
@@ -533,7 +531,7 @@ function Integrations() {
                       }`}
                     />
 
-                    <IntegrationLogo name={logo.name} domain={logo.domain} />
+                    <IntegrationLogo name={logo.name} file={logo.file} />
                   </div>
                 );
               })}
