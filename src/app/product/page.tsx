@@ -201,16 +201,30 @@ function Capabilities() {
 // ── Feature Detail 1 — Carbon Intelligence ────────────────────────────────────
 function FeatureDetail1() {
   return (
-    <section className={`bg-white ${SEC}`}>
-      <div className={G}>
+    <section className={`relative overflow-hidden ${SEC}`}>
+      {/* Artistic bg — warm earthy landscape */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80"
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 bg-[#f5efe0]/55" />
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.3, mixBlendMode: "multiply" }}
+      />
+
+      <div className={`relative z-10 ${G}`}>
         <div className={COL}>
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+            {/* Text */}
             <div>
               <span className="mb-4 block text-sm font-bold uppercase tracking-[0.18em] text-black/40">Carbon Intelligence</span>
-              <h2 className="mb-5 font-normal leading-[1.08] tracking-[-0.03em]">
+              <h2 className="mb-5 font-normal leading-[1.08] tracking-[-0.03em] text-[#122023]">
                 See every emission, everywhere it happens
               </h2>
-              <p className="mb-8 max-w-md text-base leading-relaxed text-black/50">
+              <p className="mb-8 max-w-md text-base leading-relaxed text-black/55">
                 Verdant monitors your entire carbon footprint in real time — from factory floor to supply chain. When something&apos;s off, you know before your next board meeting.
               </p>
               <ul className="mb-10 space-y-3">
@@ -224,40 +238,68 @@ function FeatureDetail1() {
               <GhostCTA label="Explore Carbon Intelligence" />
             </div>
 
-            {/* Image + grain + stats panel */}
-            <div className="relative min-h-[520px] self-stretch overflow-hidden rounded-2xl">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=900&q=80"
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-[#0a1618]/58" />
-              <div
-                className="pointer-events-none absolute inset-0"
-                style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.4, mixBlendMode: "overlay" }}
-              />
-              {/* Stats content */}
-              <div className="relative flex h-full min-h-[520px] flex-col justify-end p-8">
-                {/* Primary stat */}
-                <div className="mb-8">
-                  <p className="mb-2 text-sm font-bold uppercase tracking-[0.18em] text-[#e1fcad]/50">Total emissions reduction</p>
-                  <p className="text-[72px] font-normal leading-none tracking-[-0.04em] text-[#e1fcad]">−23.4%</p>
-                  <p className="mt-3 text-base text-white/45">vs previous year · Scope 1, 2 &amp; 3 combined</p>
-                </div>
-                {/* Secondary stats */}
-                <div className="grid grid-cols-3 divide-x divide-white/10 border-t border-white/10 pt-6">
-                  {[
-                    { val: "−18%", label: "Scope 1" },
-                    { val: "−31%", label: "Scope 2" },
-                    { val: "−14%", label: "Scope 3" },
-                  ].map((s) => (
-                    <div key={s.label} className="pr-6 first:pl-0 last:pr-0 [&:not(:first-child)]:pl-6">
-                      <p className="text-xl font-semibold text-white">{s.val}</p>
-                      <p className="text-base text-white/40">{s.label}</p>
-                    </div>
-                  ))}
-                </div>
+            {/* Frosted glass panel with line chart */}
+            <div className="rounded-2xl border border-white/60 bg-white/70 p-6 shadow-[0_8px_48px_rgba(0,0,0,0.12)] backdrop-blur-md">
+              <p className="mb-0.5 font-mono text-sm font-semibold tracking-[0.14em] text-black/55">Emissions Trend</p>
+              <p className="mb-4 text-base text-black/35">Scope 1 · 2 · 3 over 12 months</p>
+
+              <svg viewBox="0 0 320 185" fill="none" className="w-full">
+                {/* Horizontal grid lines */}
+                {[30, 68, 106, 144].map((y) => (
+                  <line key={y} x1="28" y1={y} x2="308" y2={y} stroke="#122023" strokeOpacity="0.07" strokeWidth="1" />
+                ))}
+                {/* Vertical grid lines */}
+                {[28, 84, 140, 196, 252, 308].map((x) => (
+                  <line key={x} x1={x} y1="18" x2={x} y2="158" stroke="#122023" strokeOpacity="0.07" strokeWidth="1" />
+                ))}
+
+                {/* Scope 1 — solid dark #122023 */}
+                <path
+                  d="M28,22 C55,24 72,38 84,48 C96,58 120,78 140,92 C160,106 180,116 196,122 C212,128 240,132 252,134 C264,136 290,136 308,137"
+                  stroke="#122023" strokeWidth="1.8" strokeLinecap="round" fill="none"
+                />
+
+                {/* Scope 2 — dashed lime */}
+                <path
+                  d="M28,38 C55,42 72,58 84,68 C96,78 120,98 140,112 C160,124 180,132 196,138 C212,143 240,147 252,149 C264,151 290,152 308,153"
+                  stroke="#4a7c59" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="6 4" fill="none"
+                />
+
+                {/* Scope 3 — solid lighter gray */}
+                <path
+                  d="M28,55 C55,60 72,76 84,87 C96,98 120,116 140,128 C155,136 175,143 196,148 C212,152 240,156 252,157 C264,158 290,159 308,160"
+                  stroke="#122023" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.3" fill="none"
+                />
+
+                {/* X-axis month labels */}
+                {[
+                  { x: 28, l: "Jan" }, { x: 84, l: "Mar" }, { x: 140, l: "May" },
+                  { x: 196, l: "Jul" }, { x: 252, l: "Sep" }, { x: 308, l: "Nov" },
+                ].map((m) => (
+                  <text key={m.l} x={m.x} y="172" textAnchor="middle" fontSize="9" fill="#122023" fillOpacity="0.35" fontFamily="ui-monospace,monospace" letterSpacing="0.06em">{m.l}</text>
+                ))}
+
+                {/* Legend */}
+                <line x1="28" y1="183" x2="46" y2="183" stroke="#122023" strokeWidth="1.8" />
+                <text x="50" y="186" fontSize="8.5" fill="#122023" fillOpacity="0.55" fontFamily="ui-monospace,monospace" letterSpacing="0.08em">Scope 1</text>
+                <line x1="110" y1="183" x2="128" y2="183" stroke="#4a7c59" strokeWidth="1.5" strokeDasharray="5 3" />
+                <text x="132" y="186" fontSize="8.5" fill="#122023" fillOpacity="0.55" fontFamily="ui-monospace,monospace" letterSpacing="0.08em">Scope 2</text>
+                <line x1="194" y1="183" x2="212" y2="183" stroke="#122023" strokeWidth="1.5" strokeOpacity="0.3" />
+                <text x="216" y="186" fontSize="8.5" fill="#122023" fillOpacity="0.55" fontFamily="ui-monospace,monospace" letterSpacing="0.08em">Scope 3</text>
+              </svg>
+
+              {/* Bottom stat strip */}
+              <div className="mt-5 grid grid-cols-3 divide-x divide-black/10 border-t border-black/08 pt-5">
+                {[
+                  { val: "−23.4%", label: "Total reduction" },
+                  { val: "Real-time", label: "Alert frequency" },
+                  { val: "100%", label: "Supply chain" },
+                ].map((s) => (
+                  <div key={s.label} className="pr-4 first:pl-0 last:pr-0 [&:not(:first-child)]:pl-4">
+                    <p className="text-sm font-semibold text-[#122023]">{s.val}</p>
+                    <p className="text-base text-black/40">{s.label}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -270,44 +312,94 @@ function FeatureDetail1() {
 // ── Feature Detail 2 — AI Strategy Engine ─────────────────────────────────────
 function FeatureDetail2() {
   return (
-    <section className={`bg-[#f7f7f5] ${SEC}`}>
-      <div className={G}>
+    <section className={`relative overflow-hidden ${SEC}`}>
+      {/* Artistic bg — cooler aerial/abstract landscape */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=1600&q=80"
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 bg-[#eef2ee]/50" />
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.28, mixBlendMode: "multiply" }}
+      />
+
+      <div className={`relative z-10 ${G}`}>
         <div className={COL}>
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-            {/* Image + grain + stats panel — left */}
-            <div className="relative order-2 min-h-[520px] self-stretch overflow-hidden rounded-2xl lg:order-1">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80"
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-[#0a1618]/62" />
-              <div
-                className="pointer-events-none absolute inset-0"
-                style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.38, mixBlendMode: "overlay" }}
-              />
-              {/* Stats content */}
-              <div className="relative flex h-full min-h-[520px] flex-col justify-end p-8">
-                {/* Primary stat */}
-                <div className="mb-8">
-                  <p className="mb-2 text-sm font-bold uppercase tracking-[0.18em] text-[#e1fcad]/50">Roadmap phases</p>
-                  <p className="text-[72px] font-normal leading-none tracking-[-0.04em] text-[#e1fcad]">3</p>
-                  <p className="mt-3 text-base text-white/45">clear phases to net-zero by 2030, financially modelled</p>
-                </div>
-                {/* Secondary stats */}
-                <div className="grid grid-cols-3 divide-x divide-white/10 border-t border-white/10 pt-6">
-                  {[
-                    { val: "2030",  label: "Target year" },
-                    { val: "12",    label: "Levers modelled" },
-                    { val: "Live",  label: "Auto-updated" },
-                  ].map((s) => (
-                    <div key={s.label} className="pr-6 first:pl-0 last:pr-0 [&:not(:first-child)]:pl-6">
-                      <p className="text-xl font-semibold text-white">{s.val}</p>
-                      <p className="text-base text-white/40">{s.label}</p>
-                    </div>
-                  ))}
-                </div>
+            {/* Frosted glass panel with pathway chart — left */}
+            <div className="order-2 rounded-2xl border border-white/60 bg-white/70 p-6 shadow-[0_8px_48px_rgba(0,0,0,0.12)] backdrop-blur-md lg:order-1">
+              <p className="mb-0.5 font-mono text-sm font-semibold tracking-[0.14em] text-black/55">Net-Zero Pathways</p>
+              <p className="mb-4 text-base text-black/35">Scenario comparison · 2024 – 2030</p>
+
+              <svg viewBox="0 0 320 185" fill="none" className="w-full">
+                {/* Grid */}
+                {[30, 68, 106, 144].map((y) => (
+                  <line key={y} x1="28" y1={y} x2="308" y2={y} stroke="#122023" strokeOpacity="0.07" strokeWidth="1" />
+                ))}
+                {[28, 76, 124, 172, 220, 268, 308].map((x) => (
+                  <line key={x} x1={x} y1="18" x2={x} y2="158" stroke="#122023" strokeOpacity="0.07" strokeWidth="1" />
+                ))}
+
+                {/* Path A: Renewables — solid dark */}
+                <path
+                  d="M28,22 C60,28 80,48 100,68 C120,88 150,118 172,134 C194,148 230,155 268,158 C285,159 300,159 308,159"
+                  stroke="#122023" strokeWidth="1.8" strokeLinecap="round" fill="none"
+                />
+
+                {/* Path B: Efficiency (selected) — lime solid */}
+                <path
+                  d="M28,22 C60,30 85,55 108,78 C132,102 160,128 180,142 C200,154 240,158 268,159 C285,159 300,159 308,159"
+                  stroke="#4a7c59" strokeWidth="2" strokeLinecap="round" fill="none"
+                />
+
+                {/* Path C: Supply Chain — dashed */}
+                <path
+                  d="M28,22 C55,32 78,60 104,88 C128,114 155,136 180,147 C204,156 240,159 268,159 C285,159 300,159 308,159"
+                  stroke="#122023" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="6 4" strokeOpacity="0.45" fill="none"
+                />
+
+                {/* Path D: BAU (business as usual) — light dotted stays high */}
+                <path
+                  d="M28,22 C80,20 140,18 200,17 C250,17 285,18 308,18"
+                  stroke="#122023" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="3 4" strokeOpacity="0.2" fill="none"
+                />
+
+                {/* Net-zero baseline */}
+                <line x1="28" y1="159" x2="308" y2="159" stroke="#4a7c59" strokeOpacity="0.25" strokeWidth="1" strokeDasharray="4 3" />
+                <text x="310" y="162" fontSize="8" fill="#4a7c59" fillOpacity="0.6" fontFamily="ui-monospace,monospace">0</text>
+
+                {/* X-axis labels */}
+                {[
+                  { x: 28, l: "2024" }, { x: 76, l: "2025" }, { x: 124, l: "2026" },
+                  { x: 172, l: "2027" }, { x: 220, l: "2028" }, { x: 268, l: "2029" }, { x: 308, l: "2030" },
+                ].map((m) => (
+                  <text key={m.l} x={m.x} y="172" textAnchor="middle" fontSize="8.5" fill="#122023" fillOpacity="0.35" fontFamily="ui-monospace,monospace" letterSpacing="0.06em">{m.l}</text>
+                ))}
+
+                {/* Legend */}
+                <line x1="28" y1="183" x2="46" y2="183" stroke="#122023" strokeWidth="1.8" />
+                <text x="50" y="186" fontSize="8.5" fill="#122023" fillOpacity="0.55" fontFamily="ui-monospace,monospace" letterSpacing="0.08em">Renewables</text>
+                <line x1="126" y1="183" x2="144" y2="183" stroke="#4a7c59" strokeWidth="2" />
+                <text x="148" y="186" fontSize="8.5" fill="#122023" fillOpacity="0.55" fontFamily="ui-monospace,monospace" letterSpacing="0.08em">Efficiency ✓</text>
+                <line x1="230" y1="183" x2="248" y2="183" stroke="#122023" strokeWidth="1.5" strokeDasharray="5 3" strokeOpacity="0.45" />
+                <text x="252" y="186" fontSize="8.5" fill="#122023" fillOpacity="0.55" fontFamily="ui-monospace,monospace" letterSpacing="0.08em">Supply</text>
+              </svg>
+
+              {/* Bottom stat strip */}
+              <div className="mt-5 grid grid-cols-3 divide-x divide-black/10 border-t border-black/08 pt-5">
+                {[
+                  { val: "3",     label: "Phases to zero" },
+                  { val: "12",    label: "Levers modelled" },
+                  { val: "Live",  label: "Auto-updated" },
+                ].map((s) => (
+                  <div key={s.label} className="pr-4 first:pl-0 last:pr-0 [&:not(:first-child)]:pl-4">
+                    <p className="text-sm font-semibold text-[#122023]">{s.val}</p>
+                    <p className="text-base text-black/40">{s.label}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
