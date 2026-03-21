@@ -209,10 +209,10 @@ function FeatureDetail1() {
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-[#f5efe0]/55" />
+      <div className="absolute inset-0 bg-[#0a1618]/72" />
       <div
         className="pointer-events-none absolute inset-0"
-        style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.3, mixBlendMode: "multiply" }}
+        style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.45, mixBlendMode: "overlay" }}
       />
 
       <div className={`relative z-10 ${G}`}>
@@ -220,17 +220,17 @@ function FeatureDetail1() {
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
             {/* Text */}
             <div>
-              <span className="mb-4 block text-sm font-bold uppercase tracking-[0.18em] text-black/40">Carbon Intelligence</span>
-              <h2 className="mb-5 font-normal leading-[1.08] tracking-[-0.03em] text-[#122023]">
+              <span className="mb-4 block text-sm font-bold uppercase tracking-[0.18em] text-[#e1fcad]/60">Carbon Intelligence</span>
+              <h2 className="mb-5 font-normal leading-[1.08] tracking-[-0.03em] text-white">
                 See every emission, everywhere it happens
               </h2>
-              <p className="mb-8 max-w-md text-base leading-relaxed text-black/55">
+              <p className="mb-8 max-w-md text-base leading-relaxed text-white/55">
                 Verdant monitors your entire carbon footprint in real time — from factory floor to supply chain. When something&apos;s off, you know before your next board meeting.
               </p>
               <ul className="mb-10 space-y-3">
                 {["Scope 1, 2 & 3 tracked automatically","Anomaly alerts with root-cause analysis","Supply chain emission attribution","Benchmark against industry peers"].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-black/60">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#122023]" />
+                  <li key={item} className="flex items-start gap-3 text-base text-white/65">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#e1fcad]" />
                     {item}
                   </li>
                 ))}
@@ -320,10 +320,10 @@ function FeatureDetail2() {
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-[#eef2ee]/50" />
+      <div className="absolute inset-0 bg-[#0a1618]/72" />
       <div
         className="pointer-events-none absolute inset-0"
-        style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.28, mixBlendMode: "multiply" }}
+        style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.45, mixBlendMode: "overlay" }}
       />
 
       <div className={`relative z-10 ${G}`}>
@@ -405,11 +405,11 @@ function FeatureDetail2() {
 
             {/* Text — right */}
             <div className="order-1 lg:order-2">
-              <span className="mb-4 block text-sm font-bold uppercase tracking-[0.18em] text-black/40">AI Strategy Engine</span>
-              <h2 className="mb-5 font-normal leading-[1.08] tracking-[-0.03em]">
+              <span className="mb-4 block text-sm font-bold uppercase tracking-[0.18em] text-[#e1fcad]/60">AI Strategy Engine</span>
+              <h2 className="mb-5 font-normal leading-[1.08] tracking-[-0.03em] text-white">
                 An AI strategist that never stops working
               </h2>
-              <p className="mb-8 max-w-md text-base leading-relaxed text-black/50">
+              <p className="mb-8 max-w-md text-base leading-relaxed text-white/55">
                 Tell Verdant your net-zero target and it builds the roadmap — financially modelled, stakeholder-ready, and updated automatically as your operations change.
               </p>
               <ul className="mb-10 space-y-3">
@@ -419,8 +419,8 @@ function FeatureDetail2() {
                   "Auto-updated when energy or policy data changes",
                   "Export board-ready strategy decks in one click",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-black/60">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#122023]" />
+                  <li key={item} className="flex items-start gap-3 text-base text-white/65">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#e1fcad]" />
                     {item}
                   </li>
                 ))}
