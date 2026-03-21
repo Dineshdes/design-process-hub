@@ -449,7 +449,7 @@ function GlobalReach() {
             ))}
           </div>
 
-          <RotatingGlobe height={520} className="mt-16" />
+          <RotatingGlobe height={580} className="mt-16" />
         </div>
       </div>
     </section>
