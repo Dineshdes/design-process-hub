@@ -897,7 +897,7 @@ function DualVideoExplore() {
           <div className="relative z-10 flex flex-col items-center gap-3 text-center text-white transition-transform duration-500 group-hover:-translate-y-2">
             <div className="mb-1 opacity-80">{panel.icon}</div>
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-white/70">{panel.label}</p>
-            <h2 className="max-w-xs text-3xl font-light leading-tight tracking-[-0.02em] md:text-4xl">
+            <h2 className="max-w-sm text-4xl font-normal leading-[1.06] tracking-[-0.03em] md:text-5xl lg:text-[56px]">
               {panel.heading}
             </h2>
             {/* Underline arrow */}
