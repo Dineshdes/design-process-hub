@@ -424,46 +424,65 @@ function StatsBar() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-//  Integrations — Vooma-style: left heading panel + right 3-col logo grid
-//  Grid cells have PCB-style lime connector notches + col-1 vertical accent line
-//  Logos: Clearbit wordmark PNGs at 100% opacity, text fallback on error
+//  Integrations — Logo.dev API
+//  Endpoint: https://img.logo.dev/{domain}?token={NEXT_PUBLIC_LOGODEV_TOKEN}
+//  - WebP format, 2× retina size, lazy loading
+//  - Light theme (section bg is #f7f7f5)
+//  - Text name fallback if logo unavailable
 // ─────────────────────────────────────────────────────────────────────────────
-const INTEGRATION_LOGOS: { name: string; file: string }[] = [
-  { name: "SAP",        file: "sap" },
-  { name: "Oracle",     file: "oracle" },
-  { name: "Microsoft",  file: "microsoft" },
-  { name: "Salesforce", file: "salesforce" },
-  { name: "Workday",    file: "workday" },
-  { name: "CDP",        file: "cdp" },
-  { name: "Enablon",    file: "enablon" },
-  { name: "Sphera",     file: "sphera" },
-  { name: "Persefoni",  file: "persefoni" },
-  { name: "EcoVadis",   file: "ecovadis" },
-  { name: "Tableau",    file: "tableau" },
-  { name: "Bloomberg",  file: "bloomberg" },
-  { name: "Google",     file: "google" },
-  { name: "Slack",      file: "slack" },
-  { name: "DocuSign",   file: "docusign" },
-  { name: "NetSuite",   file: "netsuite" },
-  { name: "Stripe",     file: "stripe" },
-  { name: "AWS",        file: "aws" },
+const LOGODEV_TOKEN = process.env.NEXT_PUBLIC_LOGODEV_TOKEN ?? "";
+
+const INTEGRATION_LOGOS: { name: string; domain: string }[] = [
+  { name: "SAP",         domain: "sap.com" },
+  { name: "Oracle",      domain: "oracle.com" },
+  { name: "Microsoft",   domain: "microsoft.com" },
+  { name: "Salesforce",  domain: "salesforce.com" },
+  { name: "Workday",     domain: "workday.com" },
+  { name: "Enablon",     domain: "enablon.com" },
+  { name: "Sphera",      domain: "sphera.com" },
+  { name: "Persefoni",   domain: "persefoni.com" },
+  { name: "EcoVadis",    domain: "ecovadis.com" },
+  { name: "Tableau",     domain: "tableau.com" },
+  { name: "Bloomberg",   domain: "bloomberg.com" },
+  { name: "Google",      domain: "google.com" },
+  { name: "Slack",       domain: "slack.com" },
+  { name: "DocuSign",    domain: "docusign.com" },
+  { name: "NetSuite",    domain: "netsuite.com" },
+  { name: "Stripe",      domain: "stripe.com" },
+  { name: "Amazon AWS",  domain: "aws.amazon.com" },
+  { name: "Snowflake",   domain: "snowflake.com" },
 ];
 
-function IntegrationLogo({ name, file }: { name: string; file: string }) {
-  const [failed, setFailed] = useState(false);
+function IntegrationLogo({ name, domain }: { name: string; domain: string }) {
+  const [status, setStatus] = useState<"loading" | "ok" | "failed">("loading");
 
-  if (failed) {
-    return <span className="text-sm font-semibold text-black/50">{name}</span>;
-  }
+  const src = `https://img.logo.dev/${domain}?token=${LOGODEV_TOKEN}&size=80&format=webp&theme=light`;
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={`/logos/${file}.svg`}
-      alt={name}
-      className="h-8 w-auto max-w-[130px] object-contain"
-      onError={() => setFailed(true)}
-    />
+    <div className="flex h-10 w-full items-center justify-center">
+      {/* Fallback text — shown while loading or on error */}
+      {status === "failed" && (
+        <span className="text-sm font-semibold tracking-tight text-black/45">{name}</span>
+      )}
+
+      {/* Logo.dev image — lazy loaded, hidden until loaded */}
+      {status !== "failed" && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={src}
+          alt={`${name} logo`}
+          loading="lazy"
+          decoding="async"
+          width={120}
+          height={40}
+          className={`h-8 w-auto max-w-[120px] object-contain transition-opacity duration-300 ${
+            status === "ok" ? "opacity-100" : "opacity-0"
+          }`}
+          onLoad={() => setStatus("ok")}
+          onError={() => setStatus("failed")}
+        />
+      )}
+    </div>
   );
 }
 
@@ -531,7 +550,7 @@ function Integrations() {
                       }`}
                     />
 
-                    <IntegrationLogo name={logo.name} file={logo.file} />
+                    <IntegrationLogo name={logo.name} domain={logo.domain} />
                   </div>
                 );
               })}
