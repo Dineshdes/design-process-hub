@@ -391,162 +391,192 @@ function FeatureDetail2() {
   );
 }
 
-// ── NEW: Bento Features ───────────────────────────────────────────────────────
+// ── NEW: Bento Features — isometric line-art style ───────────────────────────
 function BentoFeatures() {
+  // Reuse iso helpers defined at top of file
+  const W = 52, H = 10; // slab dimensions
+
   return (
-    <section className="bg-[#0a1618] py-[100px]">
+    <section className="bg-white py-[100px]">
       <div className={G}>
         <div className={COL}>
           <SectionHeader
             label="How it works"
             heading="Every layer, intelligently connected"
             sub="Four modules operating in parallel — ingesting data, building strategy, ensuring compliance, and integrating seamlessly."
-            light
           />
 
-          <div className="grid grid-cols-12 auto-rows-[270px] gap-4">
+          <div className="grid grid-cols-12 auto-rows-[280px] gap-4">
 
-            {/* Card A — tall left: live data streams */}
-            <div className="col-span-12 row-span-2 flex flex-col overflow-hidden rounded-3xl border border-white/[0.06] bg-[#122023] md:col-span-5">
-              {/* SVG illustration fills the top portion */}
-              <div className="relative flex-1 overflow-hidden">
-                <svg viewBox="0 0 300 320" fill="none" className="h-full w-full" preserveAspectRatio="xMidYMid slice">
-                  {/* dot grid */}
-                  {Array.from({length:8},(_,col)=>Array.from({length:9},(_,row)=>(
-                    <circle key={`d-${col}-${row}`} cx={18+col*38} cy={20+row*34} r="1.4" fill="#e1fcad" opacity="0.05" />
-                  )))}
-                  {/* 4 flowing stream paths */}
-                  <path d="M0 55 C50 48 100 65 150 52 C200 39 250 58 300 50" stroke="#e1fcad" strokeOpacity="0.1" strokeWidth="1.5" fill="none" />
-                  <path d="M0 108 C60 96 110 118 165 104 C210 92 255 112 300 104" stroke="#e1fcad" strokeOpacity="0.18" strokeWidth="1.5" fill="none" />
-                  <path d="M0 165 C55 154 105 174 160 160 C210 147 258 168 300 158" stroke="#e1fcad" strokeOpacity="0.3" strokeWidth="2" fill="none" />
-                  <path d="M0 222 C65 210 115 230 170 216 C218 204 262 224 300 215" stroke="#e1fcad" strokeOpacity="0.12" strokeWidth="1.5" fill="none" />
-                  {/* area fill on main stream */}
-                  <path d="M0 165 C55 154 105 174 160 160 C210 147 258 168 300 158 L300 320 L0 320 Z" fill="#e1fcad" fillOpacity="0.025" />
-                  {/* nodes on main stream */}
-                  {[{x:48,y:156},{x:118,y:172},{x:195,y:153},{x:262,y:164}].map((n,i)=>(
-                    <g key={i}>
-                      <circle cx={n.x} cy={n.y} r="10" fill="#e1fcad" fillOpacity="0.07" />
-                      <circle cx={n.x} cy={n.y} r="5" fill="#e1fcad" fillOpacity="0.18" />
-                      <circle cx={n.x} cy={n.y} r="2.5" fill="#e1fcad" fillOpacity={i===3?1:0.45} />
-                    </g>
-                  ))}
-                  {/* live pulse end */}
-                  <circle cx="284" cy="158" r="16" fill="#e1fcad" fillOpacity="0.07" />
-                  <circle cx="284" cy="158" r="9" fill="#e1fcad" fillOpacity="0.2" />
-                  <circle cx="284" cy="158" r="4" fill="#e1fcad" />
-                  {/* scope labels */}
-                  {[{x:12,y:44,t:"SCOPE 1"},{x:12,y:97,t:"SCOPE 2"},{x:12,y:152,t:"SCOPE 3"},{x:12,y:210,t:"SUPPLY"}].map((l)=>(
-                    <text key={l.t} x={l.x} y={l.y} fontSize="8.5" fill="#e1fcad"
-                      fillOpacity={l.t==="SCOPE 3"?0.6:0.3} fontFamily="system-ui" fontWeight="700" letterSpacing="0.1em">{l.t}</text>
-                  ))}
-                  {/* vertical dashed connectors */}
-                  <line x1="118" y1="108" x2="118" y2="154" stroke="#e1fcad" strokeOpacity="0.12" strokeWidth="1" strokeDasharray="3 3" />
-                  <line x1="195" y1="104" x2="195" y2="153" stroke="#e1fcad" strokeOpacity="0.12" strokeWidth="1" strokeDasharray="3 3" />
-                  {/* bottom live badge */}
-                  <rect x="12" y="290" width="72" height="22" rx="11" fill="#e1fcad" fillOpacity="0.1" stroke="#e1fcad" strokeOpacity="0.2" strokeWidth="1" />
-                  <circle cx="24" cy="301" r="3.5" fill="#e1fcad" />
-                  <text x="33" y="305" fontSize="8.5" fill="#e1fcad" fillOpacity="0.75" fontFamily="system-ui" fontWeight="700" letterSpacing="0.12em">LIVE DATA</text>
-                </svg>
-              </div>
-              <div className="shrink-0 p-7 pt-0">
-                <span className="mb-2 block text-sm font-bold uppercase tracking-[0.18em] text-[#e1fcad]/40">Live data</span>
-                <h3 className="mb-2 text-xl font-normal leading-snug tracking-tight text-white">Real-time ingestion from any source</h3>
-                <p className="text-base leading-relaxed text-white/40">Connect meters, APIs, and ERP systems. Carbon data flows in continuously — no manual exports.</p>
-              </div>
-            </div>
-
-            {/* Card B — wide top right: scenario branching */}
-            <div className="col-span-12 flex flex-col overflow-hidden rounded-3xl border border-white/[0.06] bg-[#1a2e31] md:col-span-7">
-              <div className="relative flex-1 overflow-hidden px-6 pt-6">
-                <svg viewBox="0 0 400 175" fill="none" className="h-full w-full">
-                  {/* root node */}
-                  <circle cx="44" cy="88" r="18" fill="#e1fcad" fillOpacity="0.1" stroke="#e1fcad" strokeOpacity="0.3" strokeWidth="1.5" />
-                  <circle cx="44" cy="88" r="8" fill="#e1fcad" fillOpacity="0.5" />
-                  <circle cx="44" cy="88" r="3" fill="#e1fcad" />
-                  {/* branch paths */}
-                  {[{cy:32,o:0.2},{cy:65,o:0.35},{cy:112,o:0.22},{cy:145,o:0.15}].map((b,i)=>(
-                    <path key={i} d={`M62 88 C105 88 100 ${b.cy} 185 ${b.cy}`}
-                      stroke="#e1fcad" strokeOpacity={b.o} strokeWidth="1.5" fill="none" />
-                  ))}
-                  {/* branch nodes */}
-                  {[
-                    {x:185,y:32,label:"Renewables",impact:"−38%",active:false},
-                    {x:185,y:65,label:"Efficiency",impact:"−22%",active:true},
-                    {x:185,y:112,label:"Supply chain",impact:"−18%",active:false},
-                    {x:185,y:145,label:"Offsets",impact:"−12%",active:false},
-                  ].map((n)=>(
-                    <g key={n.label}>
-                      <circle cx={n.x} cy={n.y} r="11"
-                        fill={n.active?"#e1fcad":"rgba(225,252,173,0.08)"}
-                        stroke="#e1fcad" strokeOpacity={n.active?0.9:0.25} strokeWidth="1.5" />
-                      {n.active
-                        ? <path d={`M${n.x-5} ${n.y} L${n.x-1} ${n.y+4} L${n.x+6} ${n.y-5}`} stroke="#122023" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        : <circle cx={n.x} cy={n.y} r="4" fill="#e1fcad" fillOpacity="0.3" />
-                      }
-                      <text x={n.x+18} y={n.y+4} fontSize="10.5" fill="#e1fcad"
-                        fillOpacity={n.active?0.9:0.4} fontFamily="system-ui" fontWeight={n.active?"600":"400"}>{n.label}</text>
-                      <text x="356" y={n.y+4} textAnchor="end" fontSize="10.5" fill="#e1fcad"
-                        fillOpacity={n.active?1:0.28} fontFamily="system-ui" fontWeight="700">{n.impact}</text>
-                    </g>
-                  ))}
-                  {/* selected path extension */}
-                  <path d="M196 65 L310 65" stroke="#e1fcad" strokeOpacity="0.45" strokeWidth="1.5" strokeDasharray="5 3" fill="none" />
-                  <circle cx="322" cy="65" r="12" fill="#e1fcad" fillOpacity="0.12" stroke="#e1fcad" strokeOpacity="0.4" strokeWidth="1.5" />
-                  <text x="316" y="69" fontSize="9" fill="#e1fcad" fillOpacity="0.8" fontFamily="system-ui" fontWeight="700">GO</text>
-                </svg>
-              </div>
-              <div className="shrink-0 p-7 pt-2">
-                <span className="mb-2 block text-sm font-bold uppercase tracking-[0.18em] text-[#e1fcad]/40">AI-powered</span>
-                <h3 className="text-xl font-normal leading-snug tracking-tight text-white">Model every decarbonisation path</h3>
-              </div>
-            </div>
-
-            {/* Card C — lime bg: compliance ring */}
-            <div className="col-span-12 flex flex-col items-center justify-between overflow-hidden rounded-3xl bg-[#e1fcad] p-7 md:col-span-3">
+            {/* ── Card A — tall left: stacked isometric data layers ── */}
+            <div className="col-span-12 row-span-2 flex flex-col overflow-hidden rounded-3xl border border-black/[0.06] bg-[#f7f7f5] md:col-span-5">
               <div className="flex flex-1 items-center justify-center">
-                <svg viewBox="0 0 130 130" className="w-28 h-28">
-                  <circle cx="65" cy="65" r="52" stroke="#122023" strokeOpacity="0.1" strokeWidth="9" fill="none" />
-                  {/* 98% ≈ 98/100 × 2π×52 ≈ 320.2 of 326.7 */}
-                  <circle cx="65" cy="65" r="52" stroke="#122023" strokeOpacity="0.55" strokeWidth="9" fill="none"
-                    strokeDasharray="320 327" strokeDashoffset="81.8" strokeLinecap="round" />
-                  <text x="65" y="61" textAnchor="middle" fontSize="22" fontWeight="700" fill="#122023" fontFamily="system-ui">98%</text>
-                  <text x="65" y="78" textAnchor="middle" fontSize="9" fontWeight="600" fill="#122023" fillOpacity="0.45" fontFamily="system-ui" letterSpacing="0.1em">COMPLIANT</text>
+                <svg viewBox="0 0 260 310" fill="none" className="w-[85%] h-[85%]">
+                  {/* 4 stacked slabs — top slab is lime (most active) */}
+                  {[
+                    { cy: 14,  fill: "#e1fcad", fr: "#b3d168", fl: "#8aad4e", so: 1,    label: "Scope 1" },
+                    { cy: 88,  fill: "rgba(18,32,35,0.07)", fr: "rgba(18,32,35,0.04)", fl: "rgba(18,32,35,0.025)", so: 0.35, label: "Scope 2" },
+                    { cy: 162, fill: "rgba(18,32,35,0.07)", fr: "rgba(18,32,35,0.04)", fl: "rgba(18,32,35,0.025)", so: 0.25, label: "Scope 3" },
+                    { cy: 236, fill: "rgba(18,32,35,0.07)", fr: "rgba(18,32,35,0.04)", fl: "rgba(18,32,35,0.025)", so: 0.18, label: "Supply" },
+                  ].map((s, i) => (
+                    <g key={i}>
+                      {/* slab faces */}
+                      <path d={isoTop(130, s.cy, W)}       fill={s.fill}  stroke="#122023" strokeOpacity={s.so} strokeWidth="1.3" />
+                      <path d={isoRight(130, s.cy, W, H)}  fill={s.fr}    stroke="#122023" strokeOpacity={s.so} strokeWidth="1.3" />
+                      <path d={isoLeft(130, s.cy, W, H)}   fill={s.fl}    stroke="#122023" strokeOpacity={s.so} strokeWidth="1.3" />
+                      {/* label pill to the right */}
+                      <rect x="192" y={s.cy + W * 0.5 - 8} width="56" height="16" rx="8"
+                        fill={i === 0 ? "#e1fcad" : "rgba(18,32,35,0.06)"} />
+                      <text x="220" y={s.cy + W * 0.5 + 4} textAnchor="middle" fontSize="8"
+                        fill={i === 0 ? "#122023" : "#122023"} fillOpacity={i === 0 ? 0.8 : 0.4}
+                        fontFamily="system-ui" fontWeight="600" letterSpacing="0.06em">{s.label}</text>
+                      {/* dashed connector down to next slab */}
+                      {i < 3 && (
+                        <line x1="130" y1={s.cy + W + H} x2="130" y2={s.cy + W + H + 14}
+                          stroke="#122023" strokeOpacity="0.18" strokeWidth="1" strokeDasharray="3 3" />
+                      )}
+                    </g>
+                  ))}
+                  {/* small floating corner marks (like reference) */}
+                  {[{x:60,y:14},{x:60,y:248},{x:200,y:14},{x:200,y:248}].map((p,i)=>(
+                    <g key={i} opacity="0.15">
+                      <line x1={p.x-6} y1={p.y} x2={p.x} y2={p.y} stroke="#122023" strokeWidth="1.5" />
+                      <line x1={p.x} y1={p.y} x2={p.x} y2={p.y+6} stroke="#122023" strokeWidth="1.5" />
+                    </g>
+                  ))}
                 </svg>
               </div>
-              <div className="w-full">
-                <span className="mb-2 block text-sm font-bold uppercase tracking-[0.18em] text-[#122023]/40">Compliance</span>
+              <div className="shrink-0 px-8 pb-8">
+                <span className="mb-2 block text-sm font-bold uppercase tracking-[0.18em] text-black/30">Live data</span>
+                <h3 className="mb-2 text-xl font-normal leading-snug tracking-tight text-[#122023]">Real-time ingestion from any source</h3>
+                <p className="text-base leading-relaxed text-black/45">Connect meters, APIs, and ERP systems. Carbon data flows in continuously — no manual exports.</p>
+              </div>
+            </div>
+
+            {/* ── Card B — wide top right: overlapping isometric screens ── */}
+            <div className="col-span-12 flex flex-col overflow-hidden rounded-3xl border border-black/[0.06] bg-[#f7f7f5] md:col-span-7">
+              <div className="flex flex-1 items-center justify-center px-10 pt-8">
+                <svg viewBox="0 0 380 190" fill="none" className="w-full h-full">
+                  {/* Back card — rotated */}
+                  <g transform="rotate(-7 190 95)">
+                    <rect x="55" y="22" width="240" height="140" rx="12"
+                      fill="white" stroke="#122023" strokeOpacity="0.1" strokeWidth="1.2" />
+                    {/* content lines */}
+                    <rect x="75" y="46" width="100" height="6" rx="3" fill="#122023" fillOpacity="0.08" />
+                    <rect x="75" y="60" width="140" height="4" rx="2" fill="#122023" fillOpacity="0.06" />
+                    <rect x="75" y="72" width="120" height="4" rx="2" fill="#122023" fillOpacity="0.06" />
+                  </g>
+                  {/* Middle card */}
+                  <g transform="rotate(-2 190 95)">
+                    <rect x="65" y="18" width="240" height="140" rx="12"
+                      fill="white" stroke="#122023" strokeOpacity="0.14" strokeWidth="1.2" />
+                    <rect x="85" y="42" width="80" height="6" rx="3" fill="#122023" fillOpacity="0.1" />
+                    <rect x="85" y="56" width="130" height="4" rx="2" fill="#122023" fillOpacity="0.07" />
+                  </g>
+                  {/* Front card — main, no rotation */}
+                  <rect x="75" y="14" width="240" height="152" rx="12"
+                    fill="white" stroke="#122023" strokeOpacity="0.18" strokeWidth="1.5" />
+                  {/* Root node */}
+                  <circle cx="113" cy="90" r="9" fill="rgba(18,32,35,0.07)" stroke="#122023" strokeOpacity="0.3" strokeWidth="1.2" />
+                  <circle cx="113" cy="90" r="4" fill="#122023" fillOpacity="0.4" />
+                  {/* 4 branches */}
+                  {[{y:44,active:false},{y:68,active:true},{y:104,active:false},{y:128,active:false}].map((b,i)=>(
+                    <g key={i}>
+                      <path d={`M122 90 C155 90 152 ${b.y} 188 ${b.y}`}
+                        stroke="#122023" strokeOpacity={b.active?0.5:0.18} strokeWidth={b.active?1.5:1.1} fill="none" />
+                      <circle cx="188" cy={b.y} r={b.active?8:6}
+                        fill={b.active?"#e1fcad":"rgba(18,32,35,0.06)"}
+                        stroke="#122023" strokeOpacity={b.active?0.5:0.2} strokeWidth="1.2" />
+                      {b.active && <path d={`M184 ${b.y} L188 ${b.y+4} L193 ${b.y-5}`} stroke="#122023" strokeOpacity="0.6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />}
+                      <text x="202" y={b.y+4} fontSize="9" fill="#122023" fillOpacity={b.active?0.65:0.3}
+                        fontFamily="system-ui" fontWeight={b.active?"600":"400"}>
+                        {["Renewables","Efficiency","Supply chain","Offsets"][i]}
+                      </text>
+                      <text x="295" y={b.y+4} textAnchor="end" fontSize="9" fill="#122023" fillOpacity={b.active?0.75:0.22}
+                        fontFamily="system-ui" fontWeight="700">
+                        {["−38%","−22%","−18%","−12%"][i]}
+                      </text>
+                    </g>
+                  ))}
+                  {/* corner accent marks */}
+                  {[{x:75,y:14},{x:315,y:14},{x:75,y:166},{x:315,y:166}].map((p,i)=>(
+                    <g key={i} opacity="0.2">
+                      <line x1={p.x+(i%2?-8:0)} y1={p.y} x2={p.x+(i%2?0:8)} y2={p.y} stroke="#122023" strokeWidth="1.5" />
+                      <line x1={p.x} y1={p.y+(i>1?-8:0)} x2={p.x} y2={p.y+(i>1?0:8)} stroke="#122023" strokeWidth="1.5" />
+                    </g>
+                  ))}
+                </svg>
+              </div>
+              <div className="shrink-0 px-8 pb-8 pt-2">
+                <span className="mb-2 block text-sm font-bold uppercase tracking-[0.18em] text-black/30">AI-powered</span>
+                <h3 className="text-xl font-normal leading-snug tracking-tight text-[#122023]">Model every decarbonisation path</h3>
+              </div>
+            </div>
+
+            {/* ── Card C — compliance: isometric ring on lime bg ── */}
+            <div className="col-span-12 flex flex-col justify-between overflow-hidden rounded-3xl bg-[#e1fcad] p-8 md:col-span-3">
+              <div className="flex flex-1 items-center justify-center">
+                <svg viewBox="0 0 150 150" fill="none" className="w-32 h-32">
+                  {/* outer decorative ring */}
+                  <circle cx="75" cy="75" r="68" stroke="#122023" strokeOpacity="0.07" strokeWidth="1" fill="none" />
+                  {/* track */}
+                  <circle cx="75" cy="75" r="54" stroke="#122023" strokeOpacity="0.12" strokeWidth="10" fill="none" />
+                  {/* 98% progress — circumference = 2π×54 ≈ 339.3, 98% = 332.5 */}
+                  <circle cx="75" cy="75" r="54" stroke="#122023" strokeOpacity="0.6" strokeWidth="10" fill="none"
+                    strokeDasharray="332.5 339.3" strokeDashoffset="84.8" strokeLinecap="round" />
+                  {/* center */}
+                  <text x="75" y="70" textAnchor="middle" fontSize="26" fontWeight="700" fill="#122023" fontFamily="system-ui">98%</text>
+                  <text x="75" y="88" textAnchor="middle" fontSize="9" fontWeight="600" fill="#122023" fillOpacity="0.45"
+                    fontFamily="system-ui" letterSpacing="0.12em">COMPLIANT</text>
+                </svg>
+              </div>
+              <div>
+                <span className="mb-2 block text-sm font-bold uppercase tracking-[0.18em] text-[#122023]/35">Compliance</span>
                 <h3 className="text-xl font-normal leading-snug tracking-tight text-[#122023]">Audit-ready from day one</h3>
               </div>
             </div>
 
-            {/* Card D — dark: integration hub */}
-            <div className="col-span-12 flex flex-col overflow-hidden rounded-3xl border border-white/[0.06] bg-[#122023] md:col-span-4">
-              <div className="flex flex-1 items-center justify-center px-6 pt-6">
-                <svg viewBox="0 0 220 150" fill="none" className="w-full">
-                  {/* spokes */}
-                  {[{x:36,y:32},{x:110,y:18},{x:184,y:32},{x:36,y:118},{x:110,y:132},{x:184,y:118}].map((n,i)=>(
-                    <line key={i} x1="110" y1="75" x2={n.x} y2={n.y} stroke="#e1fcad" strokeOpacity="0.15" strokeWidth="1.5" strokeDasharray="4 3" />
-                  ))}
-                  {/* endpoint nodes */}
+            {/* ── Card D — integrations: isometric hub cubes ── */}
+            <div className="col-span-12 flex flex-col overflow-hidden rounded-3xl border border-black/[0.06] bg-[#f7f7f5] md:col-span-4">
+              <div className="flex flex-1 items-center justify-center">
+                <svg viewBox="0 0 260 180" fill="none" className="w-[88%] h-[88%]">
+                  {/* 4 satellite cubes — small */}
                   {[
-                    {x:36,y:32,l:"SAP"},{x:110,y:18,l:"Oracle"},{x:184,y:32,l:"Salesforce"},
-                    {x:36,y:118,l:"Meters"},{x:110,y:132,l:"ERP"},{x:184,y:118,l:"Grid API"},
-                  ].map((n)=>(
-                    <g key={n.l}>
-                      <circle cx={n.x} cy={n.y} r="11" fill="rgba(225,252,173,0.07)" stroke="#e1fcad" strokeOpacity="0.22" strokeWidth="1.5" />
-                      <text x={n.x} y={n.y+4} textAnchor="middle" fontSize="7.5" fill="#e1fcad" fillOpacity="0.4" fontFamily="system-ui" fontWeight="600" letterSpacing="0.06em">{n.l.split(" ")[0]}</text>
+                    { cx: 42,  cy: 22,  w: 22, h: 14, label: "SAP" },
+                    { cx: 218, cy: 22,  w: 22, h: 14, label: "Oracle" },
+                    { cx: 42,  cy: 104, w: 22, h: 14, label: "Meters" },
+                    { cx: 218, cy: 104, w: 22, h: 14, label: "Grid" },
+                  ].map((s) => (
+                    <g key={s.label}>
+                      <path d={isoTop(s.cx, s.cy, s.w)}       fill="white" stroke="#122023" strokeOpacity="0.22" strokeWidth="1.2" />
+                      <path d={isoRight(s.cx, s.cy, s.w, s.h)} fill="rgba(18,32,35,0.04)" stroke="#122023" strokeOpacity="0.14" strokeWidth="1.2" />
+                      <path d={isoLeft(s.cx, s.cy, s.w, s.h)}  fill="rgba(18,32,35,0.025)" stroke="#122023" strokeOpacity="0.1" strokeWidth="1.2" />
+                      <text x={s.cx} y={s.cy + s.w + s.h + 14} textAnchor="middle" fontSize="8.5"
+                        fill="#122023" fillOpacity="0.4" fontFamily="system-ui" fontWeight="600">{s.label}</text>
                     </g>
                   ))}
-                  {/* center rings */}
-                  <circle cx="110" cy="75" r="26" fill="rgba(225,252,173,0.07)" stroke="#e1fcad" strokeOpacity="0.2" strokeWidth="1.5" />
-                  <circle cx="110" cy="75" r="14" fill="rgba(225,252,173,0.12)" stroke="#e1fcad" strokeOpacity="0.4" strokeWidth="1.5" />
-                  {/* V mark */}
-                  <path d="M103 68 L110 80 L117 68" stroke="#e1fcad" strokeOpacity="0.9" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                  {/* dashed connector lines from satellites to center */}
+                  {[
+                    { x1: 42+22, y1: 22+11+7, x2: 130-36, y2: 52+18+7 },
+                    { x1: 218+22, y1: 22+11+7, x2: 130+36, y2: 52+18+7 },
+                    { x1: 42+22, y1: 104+11+7, x2: 130-36, y2: 52+18+7 },
+                    { x1: 218+22, y1: 104+11+7, x2: 130+36, y2: 52+18+7 },
+                  ].map((l, i) => (
+                    <line key={i} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
+                      stroke="#122023" strokeOpacity="0.15" strokeWidth="1.2" strokeDasharray="4 3" />
+                  ))}
+                  {/* center hub cube — lime top */}
+                  <path d={isoTop(130, 52, 36)}       fill="#e1fcad" stroke="#122023" strokeOpacity="0.55" strokeWidth="1.4" />
+                  <path d={isoRight(130, 52, 36, 22)} fill="#b3d168" stroke="#122023" strokeOpacity="0.45" strokeWidth="1.4" />
+                  <path d={isoLeft(130, 52, 36, 22)}  fill="#8aad4e" stroke="#122023" strokeOpacity="0.35" strokeWidth="1.4" />
+                  {/* V mark on top face */}
+                  <path d="M123 68 L130 76 L137 68" stroke="#122023" strokeOpacity="0.55" strokeWidth="2"
+                    strokeLinecap="round" strokeLinejoin="round" fill="none" />
                 </svg>
               </div>
-              <div className="shrink-0 p-7 pt-2">
-                <span className="mb-2 block text-sm font-bold uppercase tracking-[0.18em] text-[#e1fcad]/40">Integrations</span>
-                <h3 className="text-xl font-normal leading-snug tracking-tight text-white">Works with your existing stack</h3>
+              <div className="shrink-0 px-8 pb-8 pt-0">
+                <span className="mb-2 block text-sm font-bold uppercase tracking-[0.18em] text-black/30">Integrations</span>
+                <h3 className="text-xl font-normal leading-snug tracking-tight text-[#122023]">Works with your existing stack</h3>
               </div>
             </div>
 
