@@ -3,6 +3,7 @@ import Navbar from "@/components/ui/navbar";
 import { Leaf, Zap, BarChart3, Globe, ChevronRight } from "lucide-react";
 import Footer from "@/components/ui/footer";
 import { InlineCTA } from "@/components/ui/cta";
+import TestimonialsCarousel from "@/components/ui/testimonials-carousel";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  12-COLUMN GRID SYSTEM
@@ -669,61 +670,8 @@ function Integrations() {
 }
 
 // ── Testimonials ──────────────────────────────────────────────────────────────
-const TESTIMONIALS = [
-  {
-    quote: "Working with this team completely transformed how we think about energy strategy. We hit net-zero 3 years ahead of schedule.",
-    name: "Sarah Chen",
-    role: "Chief Sustainability Officer, Meridian Group",
-    img: "https://i.pravatar.cc/64?img=47",
-  },
-  {
-    quote: "The roadmap wasn't just aspirational — it was financially rigorous and had board buy-in from day one. Remarkable execution.",
-    name: "James Okafor",
-    role: "CEO, Harborview Infrastructure",
-    img: "https://i.pravatar.cc/64?img=12",
-  },
-  {
-    quote: "Our community microgrid is now serving 4,200 households. The team guided us through every regulatory and technical hurdle.",
-    name: "Elena Vasquez",
-    role: "Director, Coastal Energy Co-op",
-    img: "https://i.pravatar.cc/64?img=23",
-  },
-];
-
 function Testimonials() {
-  return (
-    <section className={`bg-white ${SEC}`}>
-      <div className={G}>
-        <div className={COL}>
-          <SectionHeader label="Testimonials" heading="Heard from the people doing it" />
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {TESTIMONIALS.map((t, i) => (
-              <div
-                key={i}
-                className="flex flex-col gap-6 rounded-2xl border border-black/[0.06] bg-[#f7f7f5] p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]"
-              >
-                <span className="select-none font-serif text-6xl leading-[0.75] text-black/10">&ldquo;</span>
-                <p className="flex-1 text-base leading-[1.7] text-black/65">{t.quote}</p>
-                <div className="flex items-center gap-3 border-t border-black/[0.08] pt-5">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={t.img}
-                    alt={t.name}
-                    className="size-10 shrink-0 rounded-full object-cover ring-2 ring-[#e1fcad] ring-offset-2"
-                  />
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold text-black">{t.name}</p>
-                    <p className="truncate text-xs text-black/40">{t.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  return <TestimonialsCarousel />;
 }
 
 // CTA section replaced by shared PreFooterBanner component
