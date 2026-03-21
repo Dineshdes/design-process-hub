@@ -307,15 +307,21 @@ function Industries() {
 
                     {/* Bottom — fades in when row is open */}
                     <div className="translate-y-4 opacity-0 transition-all delay-150 duration-400 group-hover:translate-y-0 group-hover:opacity-100">
-                      <p className="mb-6 max-w-lg text-base leading-relaxed text-white/50">
-                        {ind.desc}
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <span className="text-base font-semibold text-[#e1fcad]">Learn more</span>
-                        <span className="inline-flex size-8 items-center justify-center rounded-full bg-[#e1fcad] text-[#122023]">
-                          <ChevronRight className="h-4 w-4" />
-                        </span>
-                        <span className="ml-4 text-base text-[#e1fcad]/50">{ind.stat}</span>
+                      {/* Spacer matches w-8 number column + gap so text aligns with heading */}
+                      <div className="flex gap-5 md:gap-8">
+                        <div className="w-8 shrink-0" />
+                        <div>
+                          <p className="mb-6 max-w-lg text-base leading-relaxed text-white/50">
+                            {ind.desc}
+                          </p>
+                          <div className="flex items-center gap-3">
+                            <span className="text-base font-semibold text-[#e1fcad]">Learn more</span>
+                            <span className="inline-flex size-8 items-center justify-center rounded-full bg-[#e1fcad] text-[#122023]">
+                              <ChevronRight className="h-4 w-4" />
+                            </span>
+                            <span className="ml-4 text-base text-[#e1fcad]/50">{ind.stat}</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
