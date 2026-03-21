@@ -222,7 +222,7 @@ function FeatureDetail1() {
                   </li>
                 ))}
               </ul>
-              <GhostCTA label="Explore Carbon Intelligence" />
+              <GhostCTA label="Explore Carbon Intelligence" dark />
             </div>
 
             {/* Image panel — fixed height so image shows around all edges */}
@@ -239,7 +239,7 @@ function FeatureDetail1() {
                 style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.5, mixBlendMode: "overlay" }}
               />
               {/* Frosted glass chart — inset so image shows as frame on all sides */}
-              <div className="absolute inset-10 z-10 rounded-2xl border border-white/50 bg-white/75 p-5 shadow-[0_12px_56px_rgba(0,0,0,0.22)] backdrop-blur-md">
+              <div className="absolute inset-10 z-10 rounded-2xl border border-white/20 bg-white/95 p-5 shadow-[0_12px_56px_rgba(0,0,0,0.25)]">
                 <p className="mb-0.5 font-mono text-[11px] font-semibold tracking-[0.14em] text-black/50">Emissions Trend</p>
                 <p className="mb-3 text-[11px] text-black/30">Scope 1 · 2 · 3 over 12 months</p>
 
@@ -335,7 +335,7 @@ function FeatureDetail2() {
                 style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.5, mixBlendMode: "overlay" }}
               />
               {/* Frosted glass chart — inset so image shows as frame */}
-              <div className="absolute inset-10 z-10 rounded-2xl border border-white/50 bg-white/75 p-5 shadow-[0_12px_56px_rgba(0,0,0,0.22)] backdrop-blur-md">
+              <div className="absolute inset-10 z-10 rounded-2xl border border-white/20 bg-white/95 p-5 shadow-[0_12px_56px_rgba(0,0,0,0.25)]">
                 <p className="mb-0.5 font-mono text-[11px] font-semibold tracking-[0.14em] text-black/50">Net-Zero Pathways</p>
                 <p className="mb-3 text-[11px] text-black/30">Scenario comparison · 2024 – 2030</p>
 
@@ -421,7 +421,7 @@ function FeatureDetail2() {
                   </li>
                 ))}
               </ul>
-              <GhostCTA label="See the AI in action" />
+              <GhostCTA label="See the AI in action" dark />
             </div>
           </div>
         </div>

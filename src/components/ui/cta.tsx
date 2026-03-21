@@ -78,23 +78,33 @@ export function SecondaryCTA({
   );
 }
 
-/** Ghost CTA — outline on light backgrounds (feature detail sections) */
+/** Ghost CTA — pill + circle. Pass dark=true on dark section backgrounds */
 export function GhostCTA({
   label,
   href = "#",
+  dark = false,
 }: {
   label: string;
   href?: string;
+  dark?: boolean;
 }) {
   return (
     <a
       href={href}
-      className="group flex w-fit cursor-pointer items-center gap-0 overflow-hidden rounded-full border border-black/10"
+      className={`group flex w-fit cursor-pointer items-center gap-0 overflow-hidden rounded-full border ${
+        dark ? "border-white/25" : "border-black/10"
+      }`}
     >
-      <span className="rounded-l-full bg-transparent py-3.5 pl-7 pr-5 text-sm font-semibold text-[#122023] transition-colors duration-300 group-hover:bg-black/[0.03]">
+      <span
+        className={`rounded-l-full bg-transparent py-3.5 pl-7 pr-5 text-sm font-semibold transition-colors duration-300 ${
+          dark
+            ? "text-white group-hover:bg-white/[0.07]"
+            : "text-[#122023] group-hover:bg-black/[0.03]"
+        }`}
+      >
         {label}
       </span>
-      <div className="relative flex size-[46px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#122023] text-[#e1fcad]">
+      <div className="relative flex size-[46px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#e1fcad] text-[#122023]">
         <ArrowUpRight className="absolute h-4 w-4 -translate-x-1/2 transition-all duration-500 group-hover:translate-x-10" />
         <ArrowUpRight className="absolute h-4 w-4 -translate-x-10 transition-all duration-500 group-hover:-translate-x-1/2" />
       </div>
