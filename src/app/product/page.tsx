@@ -916,18 +916,18 @@ function ImpactStats() {
 // ── Dual Video Explore ────────────────────────────────────────────────────────
 const EXPLORE_PANELS = [
   {
-    video: "https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4",
+    // Children running in a green field — warm human sustainable feel
+    video: "https://videos.pexels.com/video-files/6299083/6299083-hd_1920_1080_25fps.mp4",
     poster: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80",
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <rect x="3" y="3" width="9" height="9" rx="2" stroke="white" strokeWidth="1.5"/>
-        <rect x="16" y="3" width="9" height="9" rx="2" stroke="white" strokeWidth="1.5"/>
-        <rect x="3" y="16" width="9" height="9" rx="2" stroke="white" strokeWidth="1.5"/>
-        <path d="M16 20.5h9M20.5 16v9" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M14 3C8 3 3 8 3 14s5 11 11 11 11-5 11-11S20 3 14 3z" stroke="white" strokeWidth="1.5"/>
+        <path d="M9 14c0-2.8 2.2-5 5-5s5 2.2 5 5-2.2 5-5 5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M14 9v2M14 17v2M9 14H7M21 14h-2" stroke="white" strokeWidth="1.3" strokeLinecap="round"/>
       </svg>
     ),
     label: "Explore",
-    heading: "Shift towards decarbonization",
+    heading: "A future worth running towards",
     href: "/product",
   },
   {
