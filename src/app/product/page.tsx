@@ -632,86 +632,76 @@ function BentoFeatures() {
   );
 }
 
-// ── Feature Detail 3 — Automated Reporting ────────────────────────────────────
-function FeatureDetail3() {
-  return (
-    <section className={`bg-white ${SEC}`}>
-      <div className={G}>
-        <div className={COL}>
-          <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-            <div>
-              <span className="mb-4 block text-sm font-bold uppercase tracking-[0.18em] text-black/40">Automated Reporting</span>
-              <h2 className="mb-5 font-normal leading-[1.08] tracking-[-0.03em]">
-                Reports your board will actually read
-              </h2>
-              <p className="mb-8 max-w-md text-base leading-relaxed text-black/50">
-                Generate TCFD, GRI, and CDP-aligned reports in one click. Verdant formats, annotates, and benchmarks your progress so every stakeholder gets the right view.
-              </p>
-              <ul className="mb-10 space-y-3">
-                {["TCFD, GRI, CDP & CSRD frameworks built-in","Peer benchmarking against 340+ industry datasets","Board-ready PDF and Slides export","Auditor-ready data trails and source links"].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-black/60">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#122023]" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <GhostCTA label="View reporting features" />
-            </div>
-
-            {/* Enhanced mockup */}
-            <div className="relative overflow-hidden rounded-2xl border border-black/[0.06] bg-[#f7f7f5] p-6">
-              <div className="pointer-events-none absolute -left-8 -bottom-8 h-36 w-36 rounded-full bg-[#122023]/5 blur-3xl" />
-              <div className="mb-5 flex items-center justify-between">
-                <div>
-                  <p className="text-base font-bold uppercase tracking-widest text-black/30">TCFD Report 2025</p>
-                  <p className="mt-0.5 text-sm font-semibold text-black">Meridian Group</p>
-                </div>
-                <div className="flex gap-2">
-                  {["GRI","CDP","TCFD"].map((tag) => (
-                    <span key={tag} className="rounded-full bg-[#122023] px-2.5 py-1 text-base font-bold uppercase tracking-widest text-[#e1fcad]">{tag}</span>
-                  ))}
-                </div>
-              </div>
-              <div className="space-y-3">
-                {[
-                  { title: "Governance",       score: 92, status: "Complete" },
-                  { title: "Strategy",          score: 87, status: "Complete" },
-                  { title: "Risk Management",   score: 78, status: "In review" },
-                  { title: "Metrics & Targets", score: 95, status: "Complete" },
-                ].map((section) => (
-                  <div key={section.title} className="flex items-center gap-4 rounded-xl bg-white p-4">
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-black">{section.title}</p>
-                      <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-black/[0.06]">
-                        <div className="h-full rounded-full bg-[#122023]" style={{ width: `${section.score}%` }} />
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm font-semibold text-[#122023]">{section.score}%</p>
-                      <p className={`text-base font-medium ${section.status === "Complete" ? "text-emerald-600" : "text-amber-600"}`}>
-                        {section.status}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {/* Mini sparkline bar at bottom */}
-              <div className="mt-4 rounded-xl bg-white p-4">
-                <p className="mb-3 text-base font-bold uppercase tracking-widest text-black/30">Reporting velocity</p>
-                <div className="flex items-end gap-1">
-                  {[22,35,28,45,38,55,42,62,50,70,58,78].map((h,i) => (
-                    <div key={i} className={`flex-1 rounded-sm ${i===11?"bg-[#122023]":"bg-[#122023]/10"}`} style={{height:`${h*0.5}px`}} />
-                  ))}
-                </div>
-                <p className="mt-2 text-base text-black/40">Reports generated this year — <span className="font-semibold text-black">↑ 3.5×</span></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+// ── Impact Stats (same as homepage) ──────────────────────────────────────────
+const IMPACT_STATS = [
+  {
+    tag: "Carbon Impact",
+    value: "2.4M",
+    unit: "tonnes",
+    desc: "CO₂ avoided against business-as-usual baselines annually",
+    svg: (
+      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
+        <path d="M18 30 C10 24 8 14 18 6 C28 14 26 24 18 30Z" fill="#e1fcad" fillOpacity="0.15" stroke="#e1fcad" strokeWidth="1.2" strokeLinejoin="round"/>
+        <line x1="18" y1="6" x2="18" y2="30" stroke="#e1fcad" strokeWidth="0.8" opacity="0.4"/>
+        <path d="M18 12 L14 17 M18 12 L22 17" stroke="#e1fcad" strokeWidth="0.8" opacity="0.35" strokeLinecap="round"/>
+        <path d="M28 8 L28 3 M26 5 L28 3 L30 5" stroke="#e1fcad" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/>
+      </svg>
+    ),
+  },
+  {
+    tag: "Global Reach",
+    value: "340+",
+    unit: "projects",
+    desc: "Clean energy projects deployed across 42 countries",
+    svg: (
+      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="13" stroke="#e1fcad" strokeWidth="1.2" opacity="0.3"/>
+        <ellipse cx="18" cy="18" rx="13" ry="5" stroke="#e1fcad" strokeWidth="0.8" opacity="0.15"/>
+        <line x1="5" y1="18" x2="31" y2="18" stroke="#e1fcad" strokeWidth="0.8" opacity="0.12"/>
+        <line x1="18" y1="5" x2="18" y2="31" stroke="#e1fcad" strokeWidth="0.8" opacity="0.12"/>
+        <circle cx="14" cy="14" r="2.5" fill="#e1fcad" opacity="0.9"/>
+        <circle cx="22" cy="20" r="2" fill="#e1fcad" opacity="0.6"/>
+        <circle cx="14" cy="14" r="1" fill="#122023"/>
+        <circle cx="22" cy="20" r="0.8" fill="#122023"/>
+      </svg>
+    ),
+  },
+  {
+    tag: "Clean Finance",
+    value: "$8.2B",
+    unit: "invested",
+    desc: "Capital mobilised through Verdant-advised financing structures",
+    svg: (
+      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
+        <line x1="6" y1="28" x2="30" y2="28" stroke="#e1fcad" strokeWidth="1" opacity="0.2"/>
+        <rect x="7"  y="20" width="5" height="8" rx="1" fill="#e1fcad" fillOpacity="0.2"/>
+        <rect x="15" y="15" width="5" height="13" rx="1" fill="#e1fcad" fillOpacity="0.45"/>
+        <rect x="23" y="9"  width="5" height="19" rx="1" fill="#e1fcad" fillOpacity="0.9"/>
+        <polyline points="9.5,20 17.5,15 25.5,9" stroke="#e1fcad" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.6"/>
+      </svg>
+    ),
+  },
+  {
+    tag: "Organisations",
+    value: "15K+",
+    unit: "teams",
+    desc: "Businesses actively tracking and reducing their emissions",
+    svg: (
+      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
+        <line x1="18" y1="18" x2="9"  y2="11" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
+        <line x1="18" y1="18" x2="27" y2="11" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
+        <line x1="18" y1="18" x2="9"  y2="25" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
+        <line x1="18" y1="18" x2="27" y2="25" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
+        <circle cx="9"  cy="11" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
+        <circle cx="27" cy="11" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
+        <circle cx="9"  cy="25" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
+        <circle cx="27" cy="25" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
+        <circle cx="18" cy="18" r="5" fill="#e1fcad" fillOpacity="0.12" stroke="#e1fcad" strokeWidth="1.5"/>
+        <circle cx="18" cy="18" r="2" fill="#e1fcad"/>
+      </svg>
+    ),
+  },
+];
 
 // ── Platform Architecture Diagram ─────────────────────────────────────────────
 function PlatformDiagram() {
@@ -816,77 +806,6 @@ function PlatformDiagram() {
     </section>
   );
 }
-
-// ── Impact Stats (same as homepage) ──────────────────────────────────────────
-const IMPACT_STATS = [
-  {
-    tag: "Carbon Impact",
-    value: "2.4M",
-    unit: "tonnes",
-    desc: "CO₂ avoided against business-as-usual baselines annually",
-    svg: (
-      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
-        <path d="M18 30 C10 24 8 14 18 6 C28 14 26 24 18 30Z" fill="#e1fcad" fillOpacity="0.15" stroke="#e1fcad" strokeWidth="1.2" strokeLinejoin="round"/>
-        <line x1="18" y1="6" x2="18" y2="30" stroke="#e1fcad" strokeWidth="0.8" opacity="0.4"/>
-        <path d="M18 12 L14 17 M18 12 L22 17" stroke="#e1fcad" strokeWidth="0.8" opacity="0.35" strokeLinecap="round"/>
-        <path d="M28 8 L28 3 M26 5 L28 3 L30 5" stroke="#e1fcad" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/>
-      </svg>
-    ),
-  },
-  {
-    tag: "Global Reach",
-    value: "340+",
-    unit: "projects",
-    desc: "Clean energy projects deployed across 42 countries",
-    svg: (
-      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
-        <circle cx="18" cy="18" r="13" stroke="#e1fcad" strokeWidth="1.2" opacity="0.3"/>
-        <ellipse cx="18" cy="18" rx="13" ry="5" stroke="#e1fcad" strokeWidth="0.8" opacity="0.15"/>
-        <line x1="5" y1="18" x2="31" y2="18" stroke="#e1fcad" strokeWidth="0.8" opacity="0.12"/>
-        <line x1="18" y1="5" x2="18" y2="31" stroke="#e1fcad" strokeWidth="0.8" opacity="0.12"/>
-        <circle cx="14" cy="14" r="2.5" fill="#e1fcad" opacity="0.9"/>
-        <circle cx="22" cy="20" r="2" fill="#e1fcad" opacity="0.6"/>
-        <circle cx="14" cy="14" r="1" fill="#122023"/>
-        <circle cx="22" cy="20" r="0.8" fill="#122023"/>
-      </svg>
-    ),
-  },
-  {
-    tag: "Clean Finance",
-    value: "$8.2B",
-    unit: "invested",
-    desc: "Capital mobilised through Verdant-advised financing structures",
-    svg: (
-      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
-        <line x1="6" y1="28" x2="30" y2="28" stroke="#e1fcad" strokeWidth="1" opacity="0.2"/>
-        <rect x="7"  y="20" width="5" height="8" rx="1" fill="#e1fcad" fillOpacity="0.2"/>
-        <rect x="15" y="15" width="5" height="13" rx="1" fill="#e1fcad" fillOpacity="0.45"/>
-        <rect x="23" y="9"  width="5" height="19" rx="1" fill="#e1fcad" fillOpacity="0.9"/>
-        <polyline points="9.5,20 17.5,15 25.5,9" stroke="#e1fcad" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.6"/>
-      </svg>
-    ),
-  },
-  {
-    tag: "Organisations",
-    value: "15K+",
-    unit: "teams",
-    desc: "Businesses actively tracking and reducing their emissions",
-    svg: (
-      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
-        <line x1="18" y1="18" x2="9"  y2="11" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
-        <line x1="18" y1="18" x2="27" y2="11" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
-        <line x1="18" y1="18" x2="9"  y2="25" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
-        <line x1="18" y1="18" x2="27" y2="25" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
-        <circle cx="9"  cy="11" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
-        <circle cx="27" cy="11" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
-        <circle cx="9"  cy="25" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
-        <circle cx="27" cy="25" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
-        <circle cx="18" cy="18" r="5" fill="#e1fcad" fillOpacity="0.12" stroke="#e1fcad" strokeWidth="1.5"/>
-        <circle cx="18" cy="18" r="2" fill="#e1fcad"/>
-      </svg>
-    ),
-  },
-];
 
 function ImpactStats() {
   return (
@@ -1007,7 +926,6 @@ export default function ProductPage() {
       <FeatureDetail1 />
       <FeatureDetail2 />
       <BentoFeatures />
-      <FeatureDetail3 />
       <ImpactStats />
       <DualVideoExplore />
       <Footer />
