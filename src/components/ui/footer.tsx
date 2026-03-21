@@ -18,6 +18,7 @@ const SOLUTION_LINKS = [
   { label: "Clean Energy",       href: "/product" },
   { label: "Carbon Strategy",    href: "#" },
   { label: "Community Programs", href: "#" },
+  { label: "Blog",               href: "/blog" },
   { label: "Contact Us",         href: "#" },
 ];
 
