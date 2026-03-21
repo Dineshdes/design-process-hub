@@ -201,24 +201,11 @@ function Capabilities() {
 // ── Feature Detail 1 — Carbon Intelligence ────────────────────────────────────
 function FeatureDetail1() {
   return (
-    <section className={`relative overflow-hidden ${SEC}`}>
-      {/* Artistic bg — warm earthy landscape */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80"
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <div className="absolute inset-0 bg-[#0a1618]/72" />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.45, mixBlendMode: "overlay" }}
-      />
-
-      <div className={`relative z-10 ${G}`}>
+    <section className={`bg-[#0f1e22] ${SEC}`}>
+      <div className={`${G}`}>
         <div className={COL}>
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-            {/* Text */}
+            {/* Text — on clean dark bg */}
             <div>
               <span className="mb-4 block text-sm font-bold uppercase tracking-[0.18em] text-[#e1fcad]/60">Carbon Intelligence</span>
               <h2 className="mb-5 font-normal leading-[1.08] tracking-[-0.03em] text-white">
@@ -238,8 +225,21 @@ function FeatureDetail1() {
               <GhostCTA label="Explore Carbon Intelligence" />
             </div>
 
-            {/* Frosted glass panel with line chart */}
-            <div className="rounded-2xl border border-white/60 bg-white/70 p-6 shadow-[0_8px_48px_rgba(0,0,0,0.12)] backdrop-blur-md">
+            {/* Image panel — grain + dark overlay, frosted chart floats on top */}
+            <div className="relative overflow-hidden rounded-2xl">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80"
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-[#0a1618]/68" />
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.55, mixBlendMode: "overlay" }}
+              />
+              {/* Frosted glass chart */}
+              <div className="relative z-10 m-5 rounded-xl border border-white/60 bg-white/70 p-6 shadow-[0_8px_48px_rgba(0,0,0,0.18)] backdrop-blur-md">
               <p className="mb-0.5 font-mono text-sm font-semibold tracking-[0.14em] text-black/55">Emissions Trend</p>
               <p className="mb-4 text-base text-black/35">Scope 1 · 2 · 3 over 12 months</p>
 
@@ -300,8 +300,9 @@ function FeatureDetail1() {
                     <p className="text-base text-black/40">{s.label}</p>
                   </div>
                 ))}
-              </div>
-            </div>
+              </div>{/* end stat strip */}
+              </div>{/* end frosted chart */}
+            </div>{/* end image panel */}
           </div>
         </div>
       </div>
@@ -312,25 +313,25 @@ function FeatureDetail1() {
 // ── Feature Detail 2 — AI Strategy Engine ─────────────────────────────────────
 function FeatureDetail2() {
   return (
-    <section className={`relative overflow-hidden ${SEC}`}>
-      {/* Artistic bg — cooler aerial/abstract landscape */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=1600&q=80"
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <div className="absolute inset-0 bg-[#0a1618]/72" />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.45, mixBlendMode: "overlay" }}
-      />
-
-      <div className={`relative z-10 ${G}`}>
+    <section className={`bg-[#0f1e22] ${SEC}`}>
+      <div className={`${G}`}>
         <div className={COL}>
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-            {/* Frosted glass panel with pathway chart — left */}
-            <div className="order-2 rounded-2xl border border-white/60 bg-white/70 p-6 shadow-[0_8px_48px_rgba(0,0,0,0.12)] backdrop-blur-md lg:order-1">
+            {/* Image panel — grain + dark overlay, frosted chart floats on top */}
+            <div className="relative order-2 overflow-hidden rounded-2xl lg:order-1">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=1600&q=80"
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-[#0a1618]/68" />
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.55, mixBlendMode: "overlay" }}
+              />
+              {/* Frosted glass chart */}
+              <div className="relative z-10 m-5 rounded-xl border border-white/60 bg-white/70 p-6 shadow-[0_8px_48px_rgba(0,0,0,0.18)] backdrop-blur-md">
               <p className="mb-0.5 font-mono text-sm font-semibold tracking-[0.14em] text-black/55">Net-Zero Pathways</p>
               <p className="mb-4 text-base text-black/35">Scenario comparison · 2024 – 2030</p>
 
@@ -400,8 +401,9 @@ function FeatureDetail2() {
                     <p className="text-base text-black/40">{s.label}</p>
                   </div>
                 ))}
-              </div>
-            </div>
+              </div>{/* end stat strip */}
+              </div>{/* end frosted chart */}
+            </div>{/* end image panel */}
 
             {/* Text — right */}
             <div className="order-1 lg:order-2">
