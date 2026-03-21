@@ -737,6 +737,193 @@ const IMPACT_STATS = [
   },
 ];
 
+// ── How It Works — Planar-style feature cards ─────────────────────────────────
+const HOW_STEPS = [
+  {
+    tag: "Carbon Tracking",
+    heading: "Live emissions, automatically captured",
+    desc: "Connect your energy meters, ERP, and supply chain APIs once. Verdant ingests, normalises, and attributes every tonne in real time — no manual entry, no spreadsheets.",
+    cta: "See Carbon Intelligence",
+    visual: (
+      <div className="flex h-full w-full items-center justify-center px-8 py-6">
+        <div className="w-full max-w-sm rounded-2xl border border-black/[0.07] bg-white p-5 shadow-[0_8px_32px_rgba(0,0,0,0.07)]">
+          <div className="mb-4 flex items-center justify-between">
+            <span className="text-xs font-bold uppercase tracking-[0.14em] text-black/30">Scope 1 · Live</span>
+            <span className="rounded-full bg-[#e1fcad] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] text-[#122023]">↓ 23%</span>
+          </div>
+          <svg viewBox="0 0 260 100" fill="none" className="w-full">
+            {[20,40,60,80].map(y=><line key={y} x1="0" y1={y} x2="260" y2={y} stroke="#122023" strokeOpacity="0.05" strokeWidth="0.8"/>)}
+            <path d="M0,75 C30,72 55,68 80,52 C105,36 130,18 160,14 C185,10 220,12 260,14" fill="rgba(225,252,173,0.15)" stroke="none"/>
+            <path d="M0,75 C30,72 55,68 80,52 C105,36 130,18 160,14 C185,10 220,12 260,14" stroke="#4a7c59" strokeWidth="2" strokeLinecap="round" fill="none"/>
+            <path d="M0,85 C30,83 55,80 80,66 C105,52 130,36 160,30 C185,26 220,28 260,30" stroke="#122023" strokeWidth="1.4" strokeOpacity="0.2" strokeLinecap="round" fill="none"/>
+            <circle cx="160" cy="14" r="4" fill="#e1fcad" stroke="#4a7c59" strokeWidth="1.5"/>
+          </svg>
+          <div className="mt-4 grid grid-cols-3 gap-2 border-t border-black/[0.06] pt-4">
+            {[{v:"1.2K",l:"t CO₂ today"},{v:"−18%",l:"vs last month"},{v:"98%",l:"data quality"}].map(s=>(
+              <div key={s.l}><p className="text-sm font-bold text-[#122023]">{s.v}</p><p className="text-[9px] text-black/35">{s.l}</p></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    tag: "Compliance Reporting",
+    heading: "CSRD, CDP & GRI filed in hours",
+    desc: "Select your framework, review the auto-populated fields, and export a submission-ready report. Verdant maps your data to every disclosure requirement automatically.",
+    cta: "Explore Reporting",
+    visual: (
+      <div className="flex h-full w-full items-center justify-center px-8 py-6">
+        <div className="w-full max-w-sm rounded-2xl border border-black/[0.07] bg-white p-5 shadow-[0_8px_32px_rgba(0,0,0,0.07)]">
+          <div className="mb-4 flex items-center gap-2.5">
+            <div className="flex size-8 items-center justify-center rounded-lg bg-[#122023]">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 3h10M2 7h7M2 11h5" stroke="#e1fcad" strokeWidth="1.4" strokeLinecap="round"/></svg>
+            </div>
+            <div><p className="text-xs font-bold text-[#122023]">CSRD Report 2024</p><p className="text-[10px] text-black/35">Auto-generated · 48 disclosures</p></div>
+            <span className="ml-auto rounded-full bg-[#f0fae0] px-2 py-0.5 text-[10px] font-bold text-[#4a7c59]">Ready</span>
+          </div>
+          {[
+            {label:"Climate disclosure",pct:100,color:"#4a7c59"},
+            {label:"Supply chain due diligence",pct:88,color:"#4a7c59"},
+            {label:"Biodiversity reporting",pct:72,color:"#e1fcad"},
+            {label:"Social indicators",pct:55,color:"#e1fcad"},
+          ].map(item=>(
+            <div key={item.label} className="mb-3">
+              <div className="mb-1 flex justify-between">
+                <span className="text-[10px] text-black/50">{item.label}</span>
+                <span className="text-[10px] font-bold text-[#122023]">{item.pct}%</span>
+              </div>
+              <div className="h-1.5 w-full rounded-full bg-black/[0.06]">
+                <div className="h-1.5 rounded-full" style={{width:`${item.pct}%`,backgroundColor:item.color}}/>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
+  },
+  {
+    tag: "Supply Chain",
+    heading: "Full Scope 3 visibility, no surveys",
+    desc: "Verdant maps your entire supplier network and pulls primary activity data directly. You get verified Scope 3 numbers without chasing spreadsheets from hundreds of vendors.",
+    cta: "Explore Supply Chain",
+    visual: (
+      <div className="flex h-full w-full items-center justify-center px-8 py-6">
+        <div className="w-full max-w-sm space-y-3">
+          {[
+            {name:"Vestas Components",tier:"Tier 1",score:94,status:"Verified"},
+            {name:"NordSteel AB",tier:"Tier 2",score:78,status:"Pending"},
+            {name:"Baltic Logistics",tier:"Tier 3",score:61,status:"At risk"},
+          ].map((s,i)=>(
+            <div key={s.name} className="flex items-center gap-3 rounded-xl border border-black/[0.07] bg-white p-3.5 shadow-[0_2px_12px_rgba(0,0,0,0.05)]">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#f0fae0] text-xs font-bold text-[#4a7c59]">{s.tier}</div>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-semibold text-[#122023] truncate">{s.name}</p>
+                <p className="text-[10px] text-black/35">{s.score}% emission score</p>
+              </div>
+              <span className={`shrink-0 rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.08em] ${i===0?"bg-[#f0fae0] text-[#4a7c59]":i===1?"bg-amber-50 text-amber-600":"bg-red-50 text-red-500"}`}>{s.status}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
+  },
+  {
+    tag: "Net-Zero Strategy",
+    heading: "Roadmaps built in minutes, not months",
+    desc: "Set your target year and budget. Verdant's AI generates a financially-modelled, scenario-tested decarbonisation roadmap — complete with initiative timelines and milestone tracking.",
+    cta: "Explore Strategy Planner",
+    visual: (
+      <div className="flex h-full w-full items-center justify-center px-8 py-6">
+        <div className="w-full max-w-sm rounded-2xl border border-black/[0.07] bg-white p-5 shadow-[0_8px_32px_rgba(0,0,0,0.07)]">
+          <div className="mb-4">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-black/30">Net-zero roadmap · 2024–2040</p>
+          </div>
+          <div className="relative">
+            {[
+              {year:"2024",label:"Baseline set",fill:true},
+              {year:"2026",label:"Scope 1 eliminated",fill:true},
+              {year:"2028",label:"Scope 2 clean power",fill:true},
+              {year:"2032",label:"Supply chain −50%",fill:false},
+              {year:"2040",label:"Net zero achieved",fill:false},
+            ].map((m,i,arr)=>(
+              <div key={m.year} className="flex items-start gap-3 pb-4">
+                <div className="flex flex-col items-center">
+                  <div className={`flex size-5 shrink-0 items-center justify-center rounded-full border-2 ${m.fill?"border-[#4a7c59] bg-[#4a7c59]":"border-black/20 bg-white"}`}>
+                    {m.fill && <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+                  </div>
+                  {i < arr.length-1 && <div className={`w-px flex-1 mt-0.5 min-h-[16px] ${m.fill?"bg-[#4a7c59]/30":"bg-black/10"}`}/>}
+                </div>
+                <div className="pb-0.5">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-black/35">{m.year}</span>
+                  <p className={`text-xs font-semibold ${m.fill?"text-[#122023]":"text-black/35"}`}>{m.label}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ),
+  },
+];
+
+function HowItWorks() {
+  return (
+    <section className="bg-[#f0f0ee] py-[150px]">
+      <div className="grid grid-cols-12">
+        <div className="col-start-2 col-span-10">
+          <div className="mb-16">
+            <span className="mb-3 block text-xs font-bold uppercase tracking-[0.18em] text-black/35">How it works</span>
+            <h2 className="text-4xl font-normal leading-[1.08] tracking-[-0.03em] text-[#122023] md:text-5xl">
+              Four steps from data to decision
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            {HOW_STEPS.map((step) => (
+              <div
+                key={step.tag}
+                className="group flex flex-col overflow-hidden rounded-3xl border border-black/[0.06] bg-[#f7f7f5] transition-all duration-300 hover:shadow-[0_16px_56px_rgba(0,0,0,0.08)]"
+              >
+                {/* Tag — top left */}
+                <div className="px-8 pt-8">
+                  <span className="text-sm font-bold uppercase tracking-[0.16em] text-[#122023]/40">
+                    {step.tag}
+                  </span>
+                </div>
+
+                {/* Visual — tall zone */}
+                <div className="min-h-[300px] flex-1">
+                  {step.visual}
+                </div>
+
+                {/* Copy + CTA — bottom */}
+                <div className="flex items-end justify-between gap-6 border-t border-black/[0.06] px-8 py-7">
+                  <div className="flex-1">
+                    <h3 className="mb-2 text-lg font-semibold leading-snug tracking-tight text-[#122023]">
+                      {step.heading}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-black/48">{step.desc}</p>
+                  </div>
+                  <a
+                    href="/solutions"
+                    className="shrink-0 flex items-center gap-1.5 rounded-full border border-[#122023]/15 bg-[#122023] px-5 py-2.5 text-sm font-semibold text-[#e1fcad] transition-all duration-200 hover:bg-[#1a3038] whitespace-nowrap"
+                  >
+                    {step.cta}
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ── Platform Architecture Diagram ─────────────────────────────────────────────
 function PlatformDiagram() {
   const IW = 50, IH = 38;
@@ -956,6 +1143,7 @@ export default function ProductPage() {
       <ProductHero />
       <TrustedBy />
       <Capabilities />
+      <HowItWorks />
       <PlatformDiagram />
       <FeatureDetail1 />
       <FeatureDetail2 />

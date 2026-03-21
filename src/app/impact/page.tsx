@@ -2,6 +2,7 @@ import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
 import BlogCallout from "@/components/ui/blog-callout";
 import { PrimaryCTA, GhostCTA } from "@/components/ui/cta";
+import RotatingGlobe from "@/components/ui/wireframe-dotted-globe";
 import {
   Leaf, ArrowUpRight, TrendingDown, Globe, Zap, Users, TreePine,
   Wind, Sun, Droplets, Factory, CheckCircle2,
@@ -448,104 +449,7 @@ function GlobalReach() {
             ))}
           </div>
 
-          {/* World map — continent shapes + project dots */}
-          <div className="mt-16 overflow-hidden rounded-3xl border border-white/8 bg-[#0a1618] px-8 py-10">
-            <svg viewBox="0 0 1000 460" fill="none" className="w-full">
-
-              {/* ── Continent fills ── */}
-              {/* Greenland */}
-              <path d="M295,22 L348,18 L370,36 L358,60 L322,66 L292,54 Z"
-                fill="#e1fcad" fillOpacity="0.07" stroke="#e1fcad" strokeOpacity="0.18" strokeWidth="0.8"/>
-              {/* North America */}
-              <path d="M80,78 L108,55 L175,48 L245,50 L312,74 L302,120 L292,158 L275,198 L262,222 L242,278 L218,295 L192,276 L195,248 L178,228 L155,218 L140,246 L124,236 L106,192 L88,156 L78,110 Z"
-                fill="#e1fcad" fillOpacity="0.09" stroke="#e1fcad" strokeOpacity="0.2" strokeWidth="0.8"/>
-              {/* Central America */}
-              <path d="M218,295 L230,282 L244,296 L252,314 L246,334 L235,340 L224,322 Z"
-                fill="#e1fcad" fillOpacity="0.09" stroke="#e1fcad" strokeOpacity="0.2" strokeWidth="0.8"/>
-              {/* South America */}
-              <path d="M238,340 L295,324 L338,332 L356,368 L360,420 L338,448 L305,454 L268,446 L242,424 L228,386 L228,352 Z"
-                fill="#e1fcad" fillOpacity="0.09" stroke="#e1fcad" strokeOpacity="0.2" strokeWidth="0.8"/>
-              {/* Europe (mainland) */}
-              <path d="M450,70 L468,56 L492,54 L516,60 L540,55 L550,68 L544,88 L524,104 L508,120 L488,134 L462,130 L448,114 L442,94 Z"
-                fill="#e1fcad" fillOpacity="0.09" stroke="#e1fcad" strokeOpacity="0.2" strokeWidth="0.8"/>
-              {/* Scandinavia */}
-              <path d="M462,46 L492,38 L514,50 L516,60 L492,54 L468,56 Z"
-                fill="#e1fcad" fillOpacity="0.08" stroke="#e1fcad" strokeOpacity="0.16" strokeWidth="0.8"/>
-              {/* UK */}
-              <path d="M438,76 L452,70 L456,82 L446,92 L436,86 Z"
-                fill="#e1fcad" fillOpacity="0.07" stroke="#e1fcad" strokeOpacity="0.14" strokeWidth="0.8"/>
-              {/* Africa */}
-              <path d="M442,148 L558,142 L582,162 L580,204 L562,258 L546,310 L522,364 L492,380 L466,370 L448,334 L432,292 L422,244 L424,196 L440,168 Z"
-                fill="#e1fcad" fillOpacity="0.09" stroke="#e1fcad" strokeOpacity="0.2" strokeWidth="0.8"/>
-              {/* Arabian Peninsula */}
-              <path d="M580,155 L630,152 L650,170 L655,204 L630,230 L604,234 L580,212 L568,188 Z"
-                fill="#e1fcad" fillOpacity="0.09" stroke="#e1fcad" strokeOpacity="0.2" strokeWidth="0.8"/>
-              {/* Asia (main landmass) */}
-              <path d="M548,68 L642,52 L755,48 L870,52 L930,76 L948,114 L940,160 L910,190 L874,210 L844,230 L820,254 L790,268 L754,274 L710,270 L670,250 L636,234 L606,216 L578,200 L562,174 L550,140 L540,108 L548,82 Z"
-                fill="#e1fcad" fillOpacity="0.09" stroke="#e1fcad" strokeOpacity="0.2" strokeWidth="0.8"/>
-              {/* Indian subcontinent */}
-              <path d="M640,192 L666,182 L696,188 L716,204 L716,224 L698,250 L672,260 L660,240 L648,218 Z"
-                fill="#e1fcad" fillOpacity="0.09" stroke="#e1fcad" strokeOpacity="0.2" strokeWidth="0.8"/>
-              {/* SE Asia peninsula */}
-              <path d="M754,234 L777,218 L794,234 L790,270 L767,284 L750,270 L746,250 Z"
-                fill="#e1fcad" fillOpacity="0.09" stroke="#e1fcad" strokeOpacity="0.18" strokeWidth="0.8"/>
-              {/* Sumatra / Malaysia */}
-              <path d="M788,268 L820,258 L848,268 L832,288 L802,282 Z"
-                fill="#e1fcad" fillOpacity="0.08" stroke="#e1fcad" strokeOpacity="0.14" strokeWidth="0.8"/>
-              {/* Japan */}
-              <path d="M900,114 L910,106 L920,118 L912,132 L900,128 Z"
-                fill="#e1fcad" fillOpacity="0.08" stroke="#e1fcad" strokeOpacity="0.14" strokeWidth="0.8"/>
-              {/* Australia */}
-              <path d="M808,298 L880,282 L934,296 L950,338 L936,380 L904,394 L854,400 L810,380 L790,350 L794,316 Z"
-                fill="#e1fcad" fillOpacity="0.09" stroke="#e1fcad" strokeOpacity="0.2" strokeWidth="0.8"/>
-
-              {/* ── Latitude grid lines (subtle) ── */}
-              {[100, 190, 270, 355].map((y) => (
-                <line key={y} x1="0" y1={y} x2="1000" y2={y}
-                  stroke="#e1fcad" strokeOpacity="0.04" strokeWidth="0.5" strokeDasharray="4 8"/>
-              ))}
-              {[200, 400, 600, 800].map((x) => (
-                <line key={x} x1={x} y1="0" x2={x} y2="460"
-                  stroke="#e1fcad" strokeOpacity="0.04" strokeWidth="0.5" strokeDasharray="4 8"/>
-              ))}
-
-              {/* ── Project dots — Northern Europe ── */}
-              {[[486,62],[498,56],[475,72],[508,70],[490,80],[476,82]].map(([x,y],i)=>(
-                <circle key={`eu${i}`} cx={x} cy={y} r="2.8" fill="#e1fcad" fillOpacity="0.75"/>
-              ))}
-              {/* North America */}
-              {[[178,108],[196,118],[215,128],[200,148],[185,138],[222,104],[240,120]].map(([x,y],i)=>(
-                <circle key={`na${i}`} cx={x} cy={y} r="2.8" fill="#e1fcad" fillOpacity="0.75"/>
-              ))}
-              {/* Asia */}
-              {[[682,96],[702,112],[724,106],[744,122],[762,110],[704,132],[826,140],[858,150]].map(([x,y],i)=>(
-                <circle key={`as${i}`} cx={x} cy={y} r="2.8" fill="#e1fcad" fillOpacity="0.75"/>
-              ))}
-              {/* South America */}
-              {[[280,362],[296,376],[285,392],[308,370]].map(([x,y],i)=>(
-                <circle key={`sa${i}`} cx={x} cy={y} r="2.8" fill="#e1fcad" fillOpacity="0.6"/>
-              ))}
-              {/* Africa */}
-              {[[492,222],[506,242],[510,262],[488,244]].map(([x,y],i)=>(
-                <circle key={`af${i}`} cx={x} cy={y} r="2.8" fill="#e1fcad" fillOpacity="0.6"/>
-              ))}
-              {/* Australia */}
-              {[[872,332],[856,348],[882,352],[900,340]].map(([x,y],i)=>(
-                <circle key={`au${i}`} cx={x} cy={y} r="2.8" fill="#e1fcad" fillOpacity="0.6"/>
-              ))}
-
-              {/* ── Pulse rings on key hubs ── */}
-              {/* London */}
-              <circle cx="492" cy="62" r="9" stroke="#e1fcad" strokeOpacity="0.4" strokeWidth="1.5" fill="none"/>
-              <circle cx="492" cy="62" r="16" stroke="#e1fcad" strokeOpacity="0.15" strokeWidth="1" fill="none"/>
-              {/* New York */}
-              <circle cx="200" cy="118" r="9" stroke="#e1fcad" strokeOpacity="0.4" strokeWidth="1.5" fill="none"/>
-              <circle cx="200" cy="118" r="16" stroke="#e1fcad" strokeOpacity="0.15" strokeWidth="1" fill="none"/>
-              {/* Asia hub (Shanghai area) */}
-              <circle cx="826" cy="140" r="9" stroke="#e1fcad" strokeOpacity="0.4" strokeWidth="1.5" fill="none"/>
-              <circle cx="826" cy="140" r="16" stroke="#e1fcad" strokeOpacity="0.15" strokeWidth="1" fill="none"/>
-            </svg>
-          </div>
+          <RotatingGlobe height={520} className="mt-16" />
         </div>
       </div>
     </section>
