@@ -723,11 +723,14 @@ const USP_CARDS = [
 const GRAIN_USP = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
 
 function USPCarousel() {
+  // Duplicate cards for seamless infinite loop
+  const looped = [...USP_CARDS, ...USP_CARDS];
+
   return (
     <section className="overflow-hidden bg-[#f7f7f5] py-[150px]">
-      {/* Header — inside grid */}
-      <div className="grid grid-cols-12 mb-12">
-        <div className="col-start-2 col-span-10 flex flex-col items-center text-center gap-4">
+      {/* Header */}
+      <div className="grid grid-cols-12 mb-14">
+        <div className="col-start-2 col-span-10 flex flex-col items-center text-center gap-5">
           <span className="inline-flex rounded-full border border-black/10 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-black/45">
             Our Value
           </span>
@@ -737,55 +740,54 @@ function USPCarousel() {
         </div>
       </div>
 
-      {/* Carousel — full-bleed, scroll-snap */}
-      <div
-        className="flex gap-4 overflow-x-auto scroll-smooth px-[8.33%] pb-6 snap-x snap-mandatory"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-      >
-        {USP_CARDS.map((card) => (
-          <div
-            key={card.num}
-            className="group relative flex-shrink-0 w-[320px] md:w-[380px] h-[520px] overflow-hidden rounded-3xl snap-start cursor-pointer"
-          >
-            {/* Background image */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={card.img}
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            {/* Dark gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0a1618]/55 via-[#0a1618]/30 to-[#0a1618]/85" />
-            {/* Grain */}
+      {/* Auto-scrolling track — full viewport width, no padding clip */}
+      <div className="overflow-hidden">
+        <div className="usp-track gap-4 pl-[8.33vw]">
+          {looped.map((card, i) => (
             <div
-              className="pointer-events-none absolute inset-0"
-              style={{ backgroundImage: GRAIN_USP, backgroundSize: "200px 200px", opacity: 0.35, mixBlendMode: "overlay" }}
-            />
+              key={i}
+              className="group relative flex-shrink-0 w-[320px] md:w-[370px] h-[500px] overflow-hidden rounded-3xl mr-4"
+            >
+              {/* Background image */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={card.img}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              {/* Gradient: dark top for text readability + dark bottom */}
+              <div className="absolute inset-0 bg-gradient-to-b from-[#0a1618]/70 via-[#0a1618]/20 to-[#0a1618]/80" />
+              {/* Grain */}
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{ backgroundImage: GRAIN_USP, backgroundSize: "200px 200px", opacity: 0.32, mixBlendMode: "overlay" }}
+              />
 
-            {/* Content */}
-            <div className="absolute inset-0 flex flex-col justify-between p-7">
-              {/* Top: number */}
-              <div className="flex items-start gap-1">
-                <span className="text-5xl font-normal leading-none tracking-[-0.03em] text-white">
-                  {card.num}
-                </span>
-                <span className="mt-1 text-xs font-bold text-white/40">No</span>
-              </div>
+              {/* Content */}
+              <div className="absolute inset-0 flex flex-col justify-between p-7">
 
-              {/* Bottom: title + desc */}
-              <div>
-                <h3 className="mb-3 text-xl font-normal leading-snug tracking-tight text-white">
-                  {card.title}
-                </h3>
+                {/* ── Top row: number + title side by side ── */}
+                <div className="flex items-start gap-4">
+                  {/* Number block */}
+                  <div className="flex items-start leading-none shrink-0">
+                    <span className="text-[52px] font-normal tracking-[-0.03em] text-white leading-none">
+                      {card.num}
+                    </span>
+                    <span className="text-[11px] font-bold text-white/45 mt-1 ml-0.5">No</span>
+                  </div>
+                  {/* Title — fills remaining width */}
+                  <h3 className="text-[17px] font-normal leading-snug tracking-tight text-white mt-1">
+                    {card.title}
+                  </h3>
+                </div>
+
+                {/* ── Bottom: description ── */}
                 <p className="text-sm leading-relaxed text-white/55">{card.desc}</p>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-
-      {/* Hide scrollbar for webkit */}
-      <style>{`.snap-x::-webkit-scrollbar { display: none; }`}</style>
     </section>
   );
 }

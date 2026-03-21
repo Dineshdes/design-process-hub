@@ -88,6 +88,18 @@ body {
 
 .anim { animation: slide-in 0.35s ease forwards; }
 
+/* ── USP Carousel auto-scroll ── */
+@keyframes usp-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.usp-track {
+  display: flex;
+  width: max-content;
+  animation: usp-scroll 32s linear infinite;
+}
+.usp-track:hover { animation-play-state: paused; }
+
 /* ── Rule (horizontal divider) ── */
 .rule { height: 1px; background: var(--rule); }
 
