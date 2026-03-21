@@ -426,59 +426,46 @@ function StatsBar() {
 // ─────────────────────────────────────────────────────────────────────────────
 //  Integrations — Vooma-style: left heading panel + right 3-col logo grid
 //  Grid cells have PCB-style lime connector notches + col-1 vertical accent line
-//
-//  Logo sources:
-//   • Simple Icons CDN  — https://cdn.simpleicons.org/{slug}  (SVG, always works)
-//   • Clearbit          — https://logo.clearbit.com/{domain}  (PNG, ESG brands)
+//  Logos: Clearbit wordmark PNGs at 100% opacity, text fallback on error
 // ─────────────────────────────────────────────────────────────────────────────
-const SI = (slug: string) => `https://cdn.simpleicons.org/${slug}`;
-const CB = (domain: string) => `https://logo.clearbit.com/${domain}`;
-
-const INTEGRATION_LOGOS: { name: string; logoUrl: string }[] = [
-  { name: "SAP",              logoUrl: SI("sap") },
-  { name: "Oracle",           logoUrl: SI("oracle") },
-  { name: "Microsoft",        logoUrl: SI("microsoft") },
-  { name: "Salesforce",       logoUrl: SI("salesforce") },
-  { name: "Workday",          logoUrl: SI("workday") },
-  { name: "CDP",              logoUrl: CB("cdp.net") },
-  { name: "Enablon",          logoUrl: CB("enablon.com") },
-  { name: "Sphera",           logoUrl: CB("sphera.com") },
-  { name: "Persefoni",        logoUrl: CB("persefoni.com") },
-  { name: "EcoVadis",         logoUrl: CB("ecovadis.com") },
-  { name: "Power BI",         logoUrl: SI("powerbi") },
-  { name: "Tableau",          logoUrl: SI("tableau") },
-  { name: "Bloomberg",        logoUrl: SI("bloomberg") },
-  { name: "Google Workspace", logoUrl: SI("googleworkspace") },
-  { name: "Slack",            logoUrl: SI("slack") },
-  { name: "DocuSign",         logoUrl: SI("docusign") },
-  { name: "AWS",              logoUrl: SI("amazonaws") },
-  { name: "Azure",            logoUrl: SI("microsoftazure") },
+const INTEGRATION_LOGOS: { name: string; domain: string }[] = [
+  { name: "SAP",        domain: "sap.com" },
+  { name: "Oracle",     domain: "oracle.com" },
+  { name: "Microsoft",  domain: "microsoft.com" },
+  { name: "Salesforce", domain: "salesforce.com" },
+  { name: "Workday",    domain: "workday.com" },
+  { name: "CDP",        domain: "cdp.net" },
+  { name: "Enablon",    domain: "enablon.com" },
+  { name: "Sphera",     domain: "sphera.com" },
+  { name: "Persefoni",  domain: "persefoni.com" },
+  { name: "EcoVadis",   domain: "ecovadis.com" },
+  { name: "Tableau",    domain: "tableau.com" },
+  { name: "Bloomberg",  domain: "bloomberg.com" },
+  { name: "Google",     domain: "google.com" },
+  { name: "Slack",      domain: "slack.com" },
+  { name: "DocuSign",   domain: "docusign.com" },
+  { name: "NetSuite",   domain: "netsuite.com" },
+  { name: "Stripe",     domain: "stripe.com" },
+  { name: "AWS",        domain: "amazon.com" },
 ];
 
-function IntegrationLogo({ name, logoUrl }: { name: string; logoUrl: string }) {
+function IntegrationLogo({ name, domain }: { name: string; domain: string }) {
   const [failed, setFailed] = useState(false);
 
+  if (failed) {
+    return (
+      <span className="text-sm font-semibold text-black/45">{name}</span>
+    );
+  }
+
   return (
-    <div className="flex flex-col items-center gap-2">
-      {!failed && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={logoUrl}
-          alt={name}
-          className="h-7 w-auto max-w-[72px] object-contain opacity-30 transition-all duration-200 group-hover:opacity-75"
-          onError={() => setFailed(true)}
-        />
-      )}
-      <span
-        className={`text-center font-semibold tracking-tight transition-colors duration-200 ${
-          failed
-            ? "text-sm text-black/35 group-hover:text-black/65"
-            : "text-[11px] text-black/35 group-hover:text-black/60"
-        }`}
-      >
-        {name}
-      </span>
-    </div>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={`https://logo.clearbit.com/${domain}`}
+      alt={name}
+      className="h-8 w-auto max-w-[120px] object-contain"
+      onError={() => setFailed(true)}
+    />
   );
 }
 
@@ -546,7 +533,7 @@ function Integrations() {
                       }`}
                     />
 
-                    <IntegrationLogo name={logo.name} logoUrl={logo.logoUrl} />
+                    <IntegrationLogo name={logo.name} domain={logo.domain} />
                   </div>
                 );
               })}
