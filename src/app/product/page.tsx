@@ -225,82 +225,86 @@ function FeatureDetail1() {
               <GhostCTA label="Explore Carbon Intelligence" />
             </div>
 
-            {/* Image panel — grain + dark overlay, frosted chart floats on top */}
-            <div className="relative overflow-hidden rounded-2xl">
+            {/* Image panel — fixed height so image shows around all edges */}
+            <div className="relative min-h-[520px] overflow-hidden rounded-3xl">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80"
                 alt=""
                 className="absolute inset-0 h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-[#0a1618]/68" />
+              <div className="absolute inset-0 bg-[#0a1618]/65" />
               <div
                 className="pointer-events-none absolute inset-0"
-                style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.55, mixBlendMode: "overlay" }}
+                style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.5, mixBlendMode: "overlay" }}
               />
-              {/* Frosted glass chart */}
-              <div className="relative z-10 m-5 rounded-xl border border-white/60 bg-white/70 p-6 shadow-[0_8px_48px_rgba(0,0,0,0.18)] backdrop-blur-md">
-              <p className="mb-0.5 font-mono text-sm font-semibold tracking-[0.14em] text-black/55">Emissions Trend</p>
-              <p className="mb-4 text-base text-black/35">Scope 1 · 2 · 3 over 12 months</p>
+              {/* Frosted glass chart — inset so image shows as frame on all sides */}
+              <div className="absolute inset-10 z-10 rounded-2xl border border-white/50 bg-white/75 p-5 shadow-[0_12px_56px_rgba(0,0,0,0.22)] backdrop-blur-md">
+                <p className="mb-0.5 font-mono text-[11px] font-semibold tracking-[0.14em] text-black/50">Emissions Trend</p>
+                <p className="mb-3 text-[11px] text-black/30">Scope 1 · 2 · 3 over 12 months</p>
 
-              <svg viewBox="0 0 320 185" fill="none" className="w-full">
-                {/* Horizontal grid lines */}
-                {[30, 68, 106, 144].map((y) => (
-                  <line key={y} x1="28" y1={y} x2="308" y2={y} stroke="#122023" strokeOpacity="0.07" strokeWidth="1" />
-                ))}
-                {/* Vertical grid lines */}
-                {[28, 84, 140, 196, 252, 308].map((x) => (
-                  <line key={x} x1={x} y1="18" x2={x} y2="158" stroke="#122023" strokeOpacity="0.07" strokeWidth="1" />
-                ))}
+                <svg viewBox="0 0 300 165" fill="none" className="w-full">
+                  {/* ── Horizontal grid lines ── */}
+                  {[20, 55, 90, 125].map((y) => (
+                    <line key={y} x1="8" y1={y} x2="292" y2={y} stroke="#122023" strokeOpacity="0.06" strokeWidth="0.8"/>
+                  ))}
+                  {/* ── Vertical grid lines at month positions ── */}
+                  {[8, 64, 120, 176, 232, 292].map((x) => (
+                    <line key={x} x1={x} y1="8" x2={x} y2="140" stroke="#122023" strokeOpacity="0.06" strokeWidth="0.8"/>
+                  ))}
 
-                {/* Scope 1 — solid dark #122023 */}
-                <path
-                  d="M28,22 C55,24 72,38 84,48 C96,58 120,78 140,92 C160,106 180,116 196,122 C212,128 240,132 252,134 C264,136 290,136 308,137"
-                  stroke="#122023" strokeWidth="1.8" strokeLinecap="round" fill="none"
-                />
+                  {/* ── Subtle area fill under Scope 1 ── */}
+                  <path
+                    d="M8,22 C40,22 65,24 90,45 C115,68 145,105 172,120 C196,133 232,137 292,138 L292,140 L8,140 Z"
+                    fill="#122023" fillOpacity="0.04"
+                  />
 
-                {/* Scope 2 — dashed lime */}
-                <path
-                  d="M28,38 C55,42 72,58 84,68 C96,78 120,98 140,112 C160,124 180,132 196,138 C212,143 240,147 252,149 C264,151 290,152 308,153"
-                  stroke="#4a7c59" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="6 4" fill="none"
-                />
+                  {/* ── Scope 1 — solid dark, S-curve descent ── */}
+                  <path
+                    d="M8,22 C40,22 65,24 90,45 C115,68 145,105 172,120 C196,133 232,137 292,138"
+                    stroke="#122023" strokeWidth="2" strokeLinecap="round" fill="none"
+                  />
 
-                {/* Scope 3 — solid lighter gray */}
-                <path
-                  d="M28,55 C55,60 72,76 84,87 C96,98 120,116 140,128 C155,136 175,143 196,148 C212,152 240,156 252,157 C264,158 290,159 308,160"
-                  stroke="#122023" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.3" fill="none"
-                />
+                  {/* ── Scope 2 — dashed green, parallel descent ── */}
+                  <path
+                    d="M8,38 C40,38 65,40 90,60 C115,82 145,117 172,132 C196,144 232,148 292,149"
+                    stroke="#4a7c59" strokeWidth="1.6" strokeLinecap="round" strokeDasharray="7 4" fill="none"
+                  />
 
-                {/* X-axis month labels */}
-                {[
-                  { x: 28, l: "Jan" }, { x: 84, l: "Mar" }, { x: 140, l: "May" },
-                  { x: 196, l: "Jul" }, { x: 252, l: "Sep" }, { x: 308, l: "Nov" },
-                ].map((m) => (
-                  <text key={m.l} x={m.x} y="172" textAnchor="middle" fontSize="9" fill="#122023" fillOpacity="0.35" fontFamily="ui-monospace,monospace" letterSpacing="0.06em">{m.l}</text>
-                ))}
+                  {/* ── Scope 3 — solid light gray ── */}
+                  <path
+                    d="M8,54 C40,54 65,56 90,74 C115,96 145,128 172,141 C196,151 232,155 292,156"
+                    stroke="#122023" strokeWidth="1.4" strokeLinecap="round" strokeOpacity="0.22" fill="none"
+                  />
 
-                {/* Legend */}
-                <line x1="28" y1="183" x2="46" y2="183" stroke="#122023" strokeWidth="1.8" />
-                <text x="50" y="186" fontSize="8.5" fill="#122023" fillOpacity="0.55" fontFamily="ui-monospace,monospace" letterSpacing="0.08em">Scope 1</text>
-                <line x1="110" y1="183" x2="128" y2="183" stroke="#4a7c59" strokeWidth="1.5" strokeDasharray="5 3" />
-                <text x="132" y="186" fontSize="8.5" fill="#122023" fillOpacity="0.55" fontFamily="ui-monospace,monospace" letterSpacing="0.08em">Scope 2</text>
-                <line x1="194" y1="183" x2="212" y2="183" stroke="#122023" strokeWidth="1.5" strokeOpacity="0.3" />
-                <text x="216" y="186" fontSize="8.5" fill="#122023" fillOpacity="0.55" fontFamily="ui-monospace,monospace" letterSpacing="0.08em">Scope 3</text>
-              </svg>
+                  {/* ── Month labels ── */}
+                  {[{x:8,l:"Jan"},{x:64,l:"Mar"},{x:120,l:"May"},{x:176,l:"Jul"},{x:232,l:"Sep"},{x:292,l:"Nov"}].map((m) => (
+                    <text key={m.l} x={m.x} y="153" textAnchor="middle" fontSize="8.5"
+                      fill="#122023" fillOpacity="0.32" fontFamily="ui-monospace,monospace" letterSpacing="0.05em">{m.l}</text>
+                  ))}
 
-              {/* Bottom stat strip */}
-              <div className="mt-5 grid grid-cols-3 divide-x divide-black/10 border-t border-black/08 pt-5">
-                {[
-                  { val: "−23.4%", label: "Total reduction" },
-                  { val: "Real-time", label: "Alert frequency" },
-                  { val: "100%", label: "Supply chain" },
-                ].map((s) => (
-                  <div key={s.label} className="pr-4 first:pl-0 last:pr-0 [&:not(:first-child)]:pl-4">
-                    <p className="text-sm font-semibold text-[#122023]">{s.val}</p>
-                    <p className="text-base text-black/40">{s.label}</p>
-                  </div>
-                ))}
-              </div>{/* end stat strip */}
+                  {/* ── Legend row ── */}
+                  <line x1="8"   y1="163" x2="24"  y2="163" stroke="#122023" strokeWidth="2"/>
+                  <text x="28"  y="166" fontSize="8" fill="#122023" fillOpacity="0.5" fontFamily="ui-monospace,monospace" letterSpacing="0.07em">Scope 1</text>
+                  <line x1="92"  y1="163" x2="108" y2="163" stroke="#4a7c59" strokeWidth="1.6" strokeDasharray="5 3"/>
+                  <text x="112" y="166" fontSize="8" fill="#122023" fillOpacity="0.5" fontFamily="ui-monospace,monospace" letterSpacing="0.07em">Scope 2</text>
+                  <line x1="176" y1="163" x2="192" y2="163" stroke="#122023" strokeWidth="1.4" strokeOpacity="0.22"/>
+                  <text x="196" y="166" fontSize="8" fill="#122023" fillOpacity="0.5" fontFamily="ui-monospace,monospace" letterSpacing="0.07em">Scope 3</text>
+                </svg>
+
+                {/* Stat strip */}
+                <div className="mt-4 grid grid-cols-3 divide-x divide-black/08 border-t border-black/08 pt-4">
+                  {[
+                    { val: "−23.4%", label: "Total reduction" },
+                    { val: "Real-time", label: "Alert frequency" },
+                    { val: "100%", label: "Supply chain" },
+                  ].map((s) => (
+                    <div key={s.label} className="pr-3 first:pl-0 last:pr-0 [&:not(:first-child)]:pl-3">
+                      <p className="text-xs font-bold text-[#122023]">{s.val}</p>
+                      <p className="text-[10px] leading-relaxed text-black/40">{s.label}</p>
+                    </div>
+                  ))}
+                </div>
               </div>{/* end frosted chart */}
             </div>{/* end image panel */}
           </div>
@@ -317,91 +321,81 @@ function FeatureDetail2() {
       <div className={`${G}`}>
         <div className={COL}>
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-            {/* Image panel — grain + dark overlay, frosted chart floats on top */}
-            <div className="relative order-2 overflow-hidden rounded-2xl lg:order-1">
+            {/* Image panel — fixed height so image shows around all edges */}
+            <div className="relative order-2 min-h-[520px] overflow-hidden rounded-3xl lg:order-1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=1600&q=80"
                 alt=""
                 className="absolute inset-0 h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-[#0a1618]/68" />
+              <div className="absolute inset-0 bg-[#0a1618]/65" />
               <div
                 className="pointer-events-none absolute inset-0"
-                style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.55, mixBlendMode: "overlay" }}
+                style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.5, mixBlendMode: "overlay" }}
               />
-              {/* Frosted glass chart */}
-              <div className="relative z-10 m-5 rounded-xl border border-white/60 bg-white/70 p-6 shadow-[0_8px_48px_rgba(0,0,0,0.18)] backdrop-blur-md">
-              <p className="mb-0.5 font-mono text-sm font-semibold tracking-[0.14em] text-black/55">Net-Zero Pathways</p>
-              <p className="mb-4 text-base text-black/35">Scenario comparison · 2024 – 2030</p>
+              {/* Frosted glass chart — inset so image shows as frame */}
+              <div className="absolute inset-10 z-10 rounded-2xl border border-white/50 bg-white/75 p-5 shadow-[0_12px_56px_rgba(0,0,0,0.22)] backdrop-blur-md">
+                <p className="mb-0.5 font-mono text-[11px] font-semibold tracking-[0.14em] text-black/50">Net-Zero Pathways</p>
+                <p className="mb-3 text-[11px] text-black/30">Scenario comparison · 2024 – 2030</p>
 
-              <svg viewBox="0 0 320 185" fill="none" className="w-full">
-                {/* Grid */}
-                {[30, 68, 106, 144].map((y) => (
-                  <line key={y} x1="28" y1={y} x2="308" y2={y} stroke="#122023" strokeOpacity="0.07" strokeWidth="1" />
-                ))}
-                {[28, 76, 124, 172, 220, 268, 308].map((x) => (
-                  <line key={x} x1={x} y1="18" x2={x} y2="158" stroke="#122023" strokeOpacity="0.07" strokeWidth="1" />
-                ))}
+                <svg viewBox="0 0 300 165" fill="none" className="w-full">
+                  {/* ── Grid ── */}
+                  {[20, 55, 90, 125].map((y) => (
+                    <line key={y} x1="8" y1={y} x2="292" y2={y} stroke="#122023" strokeOpacity="0.06" strokeWidth="0.8"/>
+                  ))}
+                  {[8, 55, 103, 151, 199, 247, 292].map((x) => (
+                    <line key={x} x1={x} y1="8" x2={x} y2="140" stroke="#122023" strokeOpacity="0.06" strokeWidth="0.8"/>
+                  ))}
 
-                {/* Path A: Renewables — solid dark */}
-                <path
-                  d="M28,22 C60,28 80,48 100,68 C120,88 150,118 172,134 C194,148 230,155 268,158 C285,159 300,159 308,159"
-                  stroke="#122023" strokeWidth="1.8" strokeLinecap="round" fill="none"
-                />
+                  {/* ── Net-zero baseline ── */}
+                  <line x1="8" y1="133" x2="292" y2="133" stroke="#4a7c59" strokeOpacity="0.2" strokeWidth="0.8" strokeDasharray="4 3"/>
+                  <text x="294" y="136" fontSize="7.5" fill="#4a7c59" fillOpacity="0.55" fontFamily="ui-monospace,monospace">0</text>
 
-                {/* Path B: Efficiency (selected) — lime solid */}
-                <path
-                  d="M28,22 C60,30 85,55 108,78 C132,102 160,128 180,142 C200,154 240,158 268,159 C285,159 300,159 308,159"
-                  stroke="#4a7c59" strokeWidth="2" strokeLinecap="round" fill="none"
-                />
+                  {/* ── BAU — flat dotted line (stays high, no reduction) ── */}
+                  <path d="M8,20 C80,19 160,18 230,18 C260,18 280,19 292,19"
+                    stroke="#122023" strokeWidth="1" strokeDasharray="3 4" strokeOpacity="0.15" fill="none"/>
 
-                {/* Path C: Supply Chain — dashed */}
-                <path
-                  d="M28,22 C55,32 78,60 104,88 C128,114 155,136 180,147 C204,156 240,159 268,159 C285,159 300,159 308,159"
-                  stroke="#122023" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="6 4" strokeOpacity="0.45" fill="none"
-                />
+                  {/* ── Renewables — solid dark, steeper descent ── */}
+                  <path d="M8,20 C40,20 62,22 82,42 C102,64 130,100 155,118 C178,132 218,133 292,134"
+                    stroke="#122023" strokeWidth="2" strokeLinecap="round" fill="none"/>
 
-                {/* Path D: BAU (business as usual) — light dotted stays high */}
-                <path
-                  d="M28,22 C80,20 140,18 200,17 C250,17 285,18 308,18"
-                  stroke="#122023" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="3 4" strokeOpacity="0.2" fill="none"
-                />
+                  {/* ── Efficiency (selected) — green, moderate descent ── */}
+                  <path d="M8,20 C40,22 65,28 88,52 C112,78 140,110 165,124 C188,136 228,138 292,139"
+                    stroke="#4a7c59" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
 
-                {/* Net-zero baseline */}
-                <line x1="28" y1="159" x2="308" y2="159" stroke="#4a7c59" strokeOpacity="0.25" strokeWidth="1" strokeDasharray="4 3" />
-                <text x="310" y="162" fontSize="8" fill="#4a7c59" fillOpacity="0.6" fontFamily="ui-monospace,monospace">0</text>
+                  {/* ── Supply Chain — dashed dark, slowest descent ── */}
+                  <path d="M8,20 C38,24 60,34 85,62 C110,90 138,118 162,130 C185,140 226,142 292,143"
+                    stroke="#122023" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="6 4" strokeOpacity="0.38" fill="none"/>
 
-                {/* X-axis labels */}
-                {[
-                  { x: 28, l: "2024" }, { x: 76, l: "2025" }, { x: 124, l: "2026" },
-                  { x: 172, l: "2027" }, { x: 220, l: "2028" }, { x: 268, l: "2029" }, { x: 308, l: "2030" },
-                ].map((m) => (
-                  <text key={m.l} x={m.x} y="172" textAnchor="middle" fontSize="8.5" fill="#122023" fillOpacity="0.35" fontFamily="ui-monospace,monospace" letterSpacing="0.06em">{m.l}</text>
-                ))}
+                  {/* ── Year labels ── */}
+                  {[{x:8,l:"2024"},{x:55,l:"2025"},{x:103,l:"2026"},{x:151,l:"2027"},{x:199,l:"2028"},{x:247,l:"2029"},{x:292,l:"2030"}].map((m) => (
+                    <text key={m.l} x={m.x} y="153" textAnchor="middle" fontSize="7.5"
+                      fill="#122023" fillOpacity="0.3" fontFamily="ui-monospace,monospace" letterSpacing="0.04em">{m.l}</text>
+                  ))}
 
-                {/* Legend */}
-                <line x1="28" y1="183" x2="46" y2="183" stroke="#122023" strokeWidth="1.8" />
-                <text x="50" y="186" fontSize="8.5" fill="#122023" fillOpacity="0.55" fontFamily="ui-monospace,monospace" letterSpacing="0.08em">Renewables</text>
-                <line x1="126" y1="183" x2="144" y2="183" stroke="#4a7c59" strokeWidth="2" />
-                <text x="148" y="186" fontSize="8.5" fill="#122023" fillOpacity="0.55" fontFamily="ui-monospace,monospace" letterSpacing="0.08em">Efficiency ✓</text>
-                <line x1="230" y1="183" x2="248" y2="183" stroke="#122023" strokeWidth="1.5" strokeDasharray="5 3" strokeOpacity="0.45" />
-                <text x="252" y="186" fontSize="8.5" fill="#122023" fillOpacity="0.55" fontFamily="ui-monospace,monospace" letterSpacing="0.08em">Supply</text>
-              </svg>
+                  {/* ── Legend ── */}
+                  <line x1="8"   y1="163" x2="22"  y2="163" stroke="#122023" strokeWidth="2"/>
+                  <text x="26"  y="166" fontSize="7.5" fill="#122023" fillOpacity="0.5" fontFamily="ui-monospace,monospace" letterSpacing="0.06em">Renewables</text>
+                  <line x1="102" y1="163" x2="116" y2="163" stroke="#4a7c59" strokeWidth="2.2"/>
+                  <text x="120" y="166" fontSize="7.5" fill="#122023" fillOpacity="0.5" fontFamily="ui-monospace,monospace" letterSpacing="0.06em">Efficiency ✓</text>
+                  <line x1="198" y1="163" x2="212" y2="163" stroke="#122023" strokeWidth="1.5" strokeDasharray="5 3" strokeOpacity="0.38"/>
+                  <text x="216" y="166" fontSize="7.5" fill="#122023" fillOpacity="0.5" fontFamily="ui-monospace,monospace" letterSpacing="0.06em">Supply chain</text>
+                </svg>
 
-              {/* Bottom stat strip */}
-              <div className="mt-5 grid grid-cols-3 divide-x divide-black/10 border-t border-black/08 pt-5">
-                {[
-                  { val: "3",     label: "Phases to zero" },
-                  { val: "12",    label: "Levers modelled" },
-                  { val: "Live",  label: "Auto-updated" },
-                ].map((s) => (
-                  <div key={s.label} className="pr-4 first:pl-0 last:pr-0 [&:not(:first-child)]:pl-4">
-                    <p className="text-sm font-semibold text-[#122023]">{s.val}</p>
-                    <p className="text-base text-black/40">{s.label}</p>
-                  </div>
-                ))}
-              </div>{/* end stat strip */}
+                {/* Stat strip */}
+                <div className="mt-4 grid grid-cols-3 divide-x divide-black/08 border-t border-black/08 pt-4">
+                  {[
+                    { val: "3",    label: "Phases to zero" },
+                    { val: "12",   label: "Levers modelled" },
+                    { val: "Live", label: "Auto-updated" },
+                  ].map((s) => (
+                    <div key={s.label} className="pr-3 first:pl-0 last:pr-0 [&:not(:first-child)]:pl-3">
+                      <p className="text-xs font-bold text-[#122023]">{s.val}</p>
+                      <p className="text-[10px] leading-relaxed text-black/40">{s.label}</p>
+                    </div>
+                  ))}
+                </div>
               </div>{/* end frosted chart */}
             </div>{/* end image panel */}
 
