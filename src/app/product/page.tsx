@@ -163,109 +163,24 @@ function ProductHero() {
   );
 }
 
-// ── Capabilities — with SVG spot illustrations ────────────────────────────────
-const CAP_ILLUSTRATIONS = [
-  // 0 — Carbon Intelligence: bar chart trend
-  <svg key="c0" viewBox="0 0 200 90" fill="none" className="w-full h-full">
-    {[
-      { x: 10, h: 32, o: 0.07 }, { x: 31, h: 48, o: 0.08 }, { x: 52, h: 38, o: 0.09 },
-      { x: 73, h: 56, o: 0.1  }, { x: 94, h: 42, o: 0.1  }, { x: 115, h: 62, o: 0.12 },
-      { x: 136, h: 50, o: 0.1 }, { x: 157, h: 72, o: 1   },
-    ].map((b, i) => (
-      <rect key={i} x={b.x} y={82 - b.h} width="18" height={b.h} rx="3"
-        fill="#e1fcad" fillOpacity={b.o} />
-    ))}
-    <path d="M19 72 C40 60 60 50 82 42 C104 34 126 28 166 16" stroke="#e1fcad" strokeWidth="1.5" strokeOpacity="0.35" fill="none" />
-    <circle cx="166" cy="16" r="4" fill="#e1fcad" />
-    <circle cx="166" cy="16" r="8" fill="#e1fcad" fillOpacity="0.15" />
-  </svg>,
-
-  // 1 — AI Strategy Engine: neural node graph
-  <svg key="c1" viewBox="0 0 200 90" fill="none" className="w-full h-full">
-    {/* connections */}
-    {[[22,20,90,28],[22,44,90,28],[22,44,90,56],[22,68,90,56],[22,20,90,56],[22,68,90,28]].map(([x1,y1,x2,y2],i) => (
-      <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#e1fcad" strokeOpacity={i<4?0.25:0.08} strokeWidth="1" />
-    ))}
-    {[[90,28],[90,56]].map(([cx,cy]) => (
-      <line key={`m${cx}`} x1={cx} y1={cy} x2="170" y2="44" stroke="#e1fcad" strokeOpacity="0.45" strokeWidth="1.5" />
-    ))}
-    {/* input nodes */}
-    {[20,44,68].map((cy,i) => (
-      <g key={cy}>
-        <circle cx="22" cy={cy} r="7" fill="#e1fcad" fillOpacity={i===1?0.25:0.1} stroke="#e1fcad" strokeOpacity="0.3" strokeWidth="1" />
-        <circle cx="22" cy={cy} r="3" fill="#e1fcad" fillOpacity="0.5" />
-      </g>
-    ))}
-    {/* hidden nodes */}
-    {[28,56].map((cy) => (
-      <g key={cy}>
-        <circle cx="90" cy={cy} r="8" fill="#e1fcad" fillOpacity="0.15" stroke="#e1fcad" strokeOpacity="0.4" strokeWidth="1" />
-        <circle cx="90" cy={cy} r="3.5" fill="#e1fcad" fillOpacity="0.5" />
-      </g>
-    ))}
-    {/* output node */}
-    <circle cx="170" cy="44" r="11" fill="#e1fcad" stroke="#e1fcad" strokeWidth="1.5" />
-    <path d="M165 44 L169 48 L175 39" stroke="#122023" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>,
-
-  // 2 — Automated Reporting: document with progress bars
-  <svg key="c2" viewBox="0 0 200 90" fill="none" className="w-full h-full">
-    <rect x="28" y="6" width="144" height="78" rx="7" stroke="#e1fcad" strokeOpacity="0.18" strokeWidth="1.5" fill="#e1fcad" fillOpacity="0.03" />
-    <rect x="28" y="6" width="144" height="18" rx="7" fill="#e1fcad" fillOpacity="0.06" />
-    {["TCFD","GRI","CDP"].map((tag,i) => (
-      <g key={tag}>
-        <text x="42" y={34+i*20} fontSize="7.5" fill="#e1fcad" fillOpacity="0.5" fontFamily="system-ui" fontWeight="700" letterSpacing="0.1em">{tag}</text>
-        <rect x="72" y={27+i*20} width="86" height="5" rx="2.5" fill="#e1fcad" fillOpacity="0.07" />
-        <rect x="72" y={27+i*20} width={[64,76,50][i]} height="5" rx="2.5" fill="#e1fcad" fillOpacity={[0.55,0.7,0.35][i]} />
-      </g>
-    ))}
-    <text x="42" y="16" fontSize="7" fill="#e1fcad" fillOpacity="0.35" fontFamily="system-ui" fontWeight="600" letterSpacing="0.1em">SUSTAINABILITY REPORT 2025</text>
-    <circle cx="154" cy="72" r="9" fill="#e1fcad" fillOpacity="0.12" stroke="#e1fcad" strokeOpacity="0.35" strokeWidth="1" />
-    <path d="M150 72 L153 75 L158 68" stroke="#e1fcad" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>,
-
-  // 3 — Team Workspace: connected user mesh
-  <svg key="c3" viewBox="0 0 200 90" fill="none" className="w-full h-full">
-    {/* connection lines */}
-    {[[32,20,98,44],[32,20,155,20],[155,20,168,68],[32,70,98,44],[32,70,155,70],[155,70,168,68],[98,44,168,68]].map(([x1,y1,x2,y2],i) => (
-      <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#e1fcad" strokeOpacity="0.12" strokeWidth="1" />
-    ))}
-    {/* avatar nodes */}
-    {[{cx:32,cy:20},{cx:155,cy:20},{cx:32,cy:70},{cx:155,cy:70}].map(({cx,cy}) => (
-      <g key={`${cx}-${cy}`}>
-        <circle cx={cx} cy={cy} r="10" fill="#e1fcad" fillOpacity="0.1" stroke="#e1fcad" strokeOpacity="0.25" strokeWidth="1" />
-        <circle cx={cx} cy={cy-3} r="3.5" fill="#e1fcad" fillOpacity="0.4" />
-        <path d={`M${cx-6} ${cy+8} C${cx-6} ${cy+3} ${cx+6} ${cy+3} ${cx+6} ${cy+8}`} fill="#e1fcad" fillOpacity="0.25" />
-      </g>
-    ))}
-    {/* center hub */}
-    <circle cx="98" cy="44" r="14" fill="#e1fcad" fillOpacity="0.1" stroke="#e1fcad" strokeOpacity="0.3" strokeWidth="1.5" />
-    <circle cx="98" cy="44" r="6" fill="#e1fcad" fillOpacity="0.5" />
-    <circle cx="98" cy="44" r="2.5" fill="#e1fcad" />
-    {/* activity dot */}
-    <circle cx="168" cy="68" r="8" fill="#e1fcad" fillOpacity="0.15" stroke="#e1fcad" strokeOpacity="0.5" strokeWidth="1" />
-    <circle cx="168" cy="68" r="3" fill="#e1fcad" />
-  </svg>,
-];
-
 const CAPABILITIES = [
   {
-    icon: <PlugZap className="h-4 w-4" />,
+    icon: <PlugZap className="h-6 w-6" />,
     title: "Carbon Intelligence",
     desc: "Real-time Scope 1–3 tracking with anomaly detection and automated alerts when emissions deviate from your plan.",
   },
   {
-    icon: <BrainCircuit className="h-4 w-4" />,
+    icon: <BrainCircuit className="h-6 w-6" />,
     title: "AI Strategy Engine",
     desc: "Tell Verdant your net-zero target. It builds the roadmap — financially modelled, scenario-tested, stakeholder-ready.",
   },
   {
-    icon: <FileBarChart2 className="h-4 w-4" />,
+    icon: <FileBarChart2 className="h-6 w-6" />,
     title: "Automated Reporting",
     desc: "One-click TCFD, GRI, and CDP-aligned reports. Formatted, annotated, and benchmarked against industry peers.",
   },
   {
-    icon: <Users2 className="h-4 w-4" />,
+    icon: <Users2 className="h-6 w-6" />,
     title: "Team Workspace",
     desc: "Assign emission owners, track decarbonisation tasks, and collaborate across departments in one unified space.",
   },
@@ -282,24 +197,17 @@ function Capabilities() {
             sub="Four tightly integrated capabilities that replace the spreadsheets, silos, and manual effort."
           />
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {CAPABILITIES.map((c, i) => (
-              <div key={c.title} className="group flex flex-col overflow-hidden rounded-2xl border border-black/[0.06] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(0,0,0,0.09)]">
-                {/* Illustration area */}
-                <div className="h-[110px] w-full overflow-hidden bg-[#122023] p-4">
-                  {CAP_ILLUSTRATIONS[i]}
+            {CAPABILITIES.map((c) => (
+              <div key={c.title} className="group flex flex-col gap-5 rounded-2xl border border-black/[0.06] bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(0,0,0,0.09)]">
+                <div className="flex size-14 items-center justify-center rounded-2xl bg-[#122023] text-[#e1fcad]">
+                  {c.icon}
                 </div>
-                {/* Content */}
-                <div className="flex flex-1 flex-col gap-4 p-6">
-                  <div className="flex size-9 items-center justify-center rounded-xl bg-[#122023] text-[#e1fcad]">
-                    {c.icon}
-                  </div>
-                  <div>
-                    <h3 className="mb-2 text-base font-semibold tracking-tight">{c.title}</h3>
-                    <p className="text-sm leading-relaxed text-black/50">{c.desc}</p>
-                  </div>
-                  <div className="mt-auto flex items-center gap-1.5 text-base font-semibold text-[#122023] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    Learn more <ChevronRight className="h-3.5 w-3.5" />
-                  </div>
+                <div>
+                  <h3 className="mb-2 text-base font-semibold tracking-tight">{c.title}</h3>
+                  <p className="text-sm leading-relaxed text-black/50">{c.desc}</p>
+                </div>
+                <div className="mt-auto flex items-center gap-1.5 text-base font-semibold text-[#122023] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  Learn more <ChevronRight className="h-3.5 w-3.5" />
                 </div>
               </div>
             ))}
