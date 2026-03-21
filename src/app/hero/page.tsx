@@ -18,7 +18,7 @@ import { InlineCTA } from "@/components/ui/cta";
 // ─────────────────────────────────────────────────────────────────────────────
 const G   = "grid grid-cols-12";
 const COL = "col-start-2 col-span-10";
-const SEC = "py-[100px] min-h-[740px]";
+const SEC = "py-[150px] min-h-[740px]";
 const HDR = "mb-12";
 
 // ── Section label + h2 ───────────────────────────────────────────────────────
@@ -236,7 +236,7 @@ const INDUSTRIES = [
 
 function Industries() {
   return (
-    <section className="bg-white py-[100px]">
+    <section className="bg-white py-[150px]">
       <div className={G}>
         <div className={COL}>
 

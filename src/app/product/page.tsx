@@ -14,7 +14,7 @@ import Footer from "@/components/ui/footer";
 // ── 12-col grid constants ────────────────────────────────────────────────────
 const G   = "grid grid-cols-12";
 const COL = "col-start-2 col-span-10";
-const SEC = "py-[100px] min-h-[740px]";
+const SEC = "py-[150px] min-h-[740px]";
 
 // ── Grain noise texture overlay ───────────────────────────────────────────────
 const GRAIN = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
@@ -92,7 +92,7 @@ function ProductHero() {
       />
 
       {/* Content — pinned to bottom */}
-      <div className={`relative z-10 w-full pb-16`}>
+      <div className={`relative z-10 w-full pb-24`}>
         <div className={G}>
           <div className={COL}>
             {/* Badge */}
@@ -442,7 +442,7 @@ function BentoFeatures() {
   const W = 52, H = 10; // slab dimensions
 
   return (
-    <section className="bg-white py-[100px]">
+    <section className="bg-white py-[150px]">
       <div className={G}>
         <div className={COL}>
           <SectionHeader

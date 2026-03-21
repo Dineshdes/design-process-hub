@@ -9,7 +9,7 @@ import SharedFooter from "@/components/ui/footer";
 // ─────────────────────────────────────────────────────────────────────────────
 const G   = "grid grid-cols-12";
 const COL = "col-start-2 col-span-10";
-const SEC = "py-[100px] min-h-[740px]";
+const SEC = "py-[150px] min-h-[740px]";
 const HDR = "mb-12";
 
 function SectionHeader({
@@ -104,7 +104,7 @@ function WireframeGlobe({ className }: { className?: string }) {
 // ── Page Hero ─────────────────────────────────────────────────────────────────
 function AboutHero() {
   return (
-    <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-[#122023] pb-24 pt-40">
+    <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-[#122023] pb-36 pt-60">
       {/* Subtle bg gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#122023] via-[#122023]/95 to-[#0d1a1c]" />
 
@@ -137,7 +137,7 @@ function AboutHero() {
 // ── Our Story ─────────────────────────────────────────────────────────────────
 function OurStory() {
   return (
-    <section className="bg-white py-[100px] min-h-[740px] flex items-center">
+    <section className="bg-white py-[150px] min-h-[740px] flex items-center">
       <div className="grid grid-cols-12 w-full">
         <div className="col-start-2 col-span-10">
 
