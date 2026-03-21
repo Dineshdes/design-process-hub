@@ -35,99 +35,6 @@ const STATS = [
   { value: "42",   label: "Countries" },
 ];
 
-// ── Minimal dashboard SVG card ─────────────────────────────────────────────
-function DashboardPreview() {
-  return (
-    <div className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-2xl border border-white/[0.12] bg-[#0d1a1c] shadow-[0_40px_120px_rgba(0,0,0,0.6)] md:rounded-3xl">
-      {/* Top bar */}
-      <div className="flex items-center justify-between border-b border-white/[0.07] px-6 py-4">
-        <div className="flex items-center gap-2">
-          <div className="flex size-7 items-center justify-center rounded-full bg-[#e1fcad]">
-            <Leaf className="h-3.5 w-3.5 text-[#122023]" />
-          </div>
-          <span className="text-sm font-semibold text-white">Verdant AI</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="rounded-full bg-[#e1fcad]/10 px-3 py-1 text-xs font-medium text-[#e1fcad]">Live</span>
-          <div className="flex gap-1.5">
-            <div className="size-2.5 rounded-full bg-white/10" />
-            <div className="size-2.5 rounded-full bg-white/10" />
-            <div className="size-2.5 rounded-full bg-white/10" />
-          </div>
-        </div>
-      </div>
-
-      {/* Body */}
-      <div className="grid grid-cols-12 gap-4 p-6">
-        {/* Left: Scope chart */}
-        <div className="col-span-12 rounded-xl border border-white/[0.07] bg-white/[0.03] p-5 md:col-span-7">
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.14em] text-white/30">
-            Emissions — Scope 1–3
-          </p>
-          {/* Bar chart */}
-          <div className="flex items-end gap-2 h-28">
-            {[65, 42, 80, 55, 90, 38, 72, 88, 60, 75, 50, 95].map((h, i) => (
-              <div key={i} className="flex-1 flex flex-col items-center gap-1">
-                <div
-                  className="w-full rounded-sm transition-all duration-700"
-                  style={{
-                    height: `${h}%`,
-                    background: i === 11
-                      ? "#e1fcad"
-                      : i >= 8
-                      ? "rgba(225,252,173,0.5)"
-                      : "rgba(255,255,255,0.08)",
-                  }}
-                />
-              </div>
-            ))}
-          </div>
-          <div className="mt-3 flex justify-between text-base text-white/20">
-            {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map((m) => (
-              <span key={m}>{m}</span>
-            ))}
-          </div>
-        </div>
-
-        {/* Right: KPI tiles */}
-        <div className="col-span-12 flex flex-col gap-3 md:col-span-5">
-          {[
-            { label: "CO₂ Avoided", value: "2.4M t", delta: "↑ 18%", up: true },
-            { label: "Energy Mix", value: "84% RE", delta: "↑ 12%", up: true },
-            { label: "Carbon Cost", value: "$4.2M", delta: "↓ 7%",  up: false },
-          ].map((kpi) => (
-            <div
-              key={kpi.label}
-              className="flex items-center justify-between rounded-xl border border-white/[0.07] bg-white/[0.03] px-4 py-3"
-            >
-              <div>
-                <p className="text-base font-bold uppercase tracking-[0.14em] text-white/25">{kpi.label}</p>
-                <p className="mt-0.5 text-lg font-semibold text-white">{kpi.value}</p>
-              </div>
-              <span
-                className={`rounded-full px-2.5 py-1 text-xs font-semibold ${
-                  kpi.up
-                    ? "bg-[#e1fcad]/10 text-[#e1fcad]"
-                    : "bg-red-500/10 text-red-400"
-                }`}
-              >
-                {kpi.delta}
-              </span>
-            </div>
-          ))}
-
-          {/* Chat prompt */}
-          <div className="flex items-center gap-2 rounded-xl border border-[#e1fcad]/20 bg-[#e1fcad]/[0.05] px-4 py-3">
-            <span className="flex-1 text-xs text-white/40">Ask Verdant AI anything…</span>
-            <div className="flex size-6 items-center justify-center rounded-full bg-[#e1fcad]">
-              <ArrowUpRight className="h-3 w-3 text-[#122023]" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // ── Newsletter form ────────────────────────────────────────────────────────
 function NewsletterForm() {
@@ -224,13 +131,8 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ── Dashboard card — rises from below the stats ── */}
-      <div className="relative z-10 mx-auto -mb-8 px-5 pt-14">
-        <DashboardPreview />
-      </div>
-
       {/* ── Bottom navigation card ── */}
-      <div className="relative z-10 mx-auto max-w-5xl px-5 pb-10 pt-10">
+      <div className="relative z-10 mx-auto max-w-5xl px-5 pb-10 pt-16">
         <div className="rounded-3xl bg-[#111f22] px-8 py-10 ring-1 ring-white/[0.07] md:px-12">
 
           <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
