@@ -913,6 +913,88 @@ function ImpactStats() {
   );
 }
 
+// ── Dual Video Explore ────────────────────────────────────────────────────────
+const EXPLORE_PANELS = [
+  {
+    video: "https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4",
+    poster: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="3" y="3" width="9" height="9" rx="2" stroke="white" strokeWidth="1.5"/>
+        <rect x="16" y="3" width="9" height="9" rx="2" stroke="white" strokeWidth="1.5"/>
+        <rect x="3" y="16" width="9" height="9" rx="2" stroke="white" strokeWidth="1.5"/>
+        <path d="M16 20.5h9M20.5 16v9" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>
+    ),
+    label: "Explore",
+    heading: "Shift towards decarbonization",
+    href: "/product",
+  },
+  {
+    video: "https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4",
+    poster: "https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=1200&q=80",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="5" stroke="white" strokeWidth="1.5"/>
+        <path d="M14 3v3M14 22v3M3 14h3M22 14h3" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M6.5 6.5l2.1 2.1M19.4 19.4l2.1 2.1M6.5 21.5l2.1-2.1M19.4 8.6l2.1-2.1" stroke="white" strokeWidth="1.3" strokeLinecap="round"/>
+      </svg>
+    ),
+    label: "Explore",
+    heading: "Build your net-zero strategy",
+    href: "/product",
+  },
+];
+
+function DualVideoExplore() {
+  return (
+    <section className="flex h-[560px] w-full overflow-hidden">
+      {EXPLORE_PANELS.map((panel) => (
+        <a
+          key={panel.heading}
+          href={panel.href}
+          className="group relative flex flex-1 cursor-pointer items-center justify-center overflow-hidden"
+        >
+          {/* Video */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={panel.poster}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-[6000ms] ease-out group-hover:scale-[1.04]"
+          >
+            <source src={panel.video} type="video/mp4" />
+          </video>
+
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-black/10 transition-opacity duration-500 group-hover:opacity-80" />
+
+          {/* Divider between panels */}
+          <div className="absolute right-0 top-0 h-full w-px bg-white/20 last:hidden" />
+
+          {/* Content — centered */}
+          <div className="relative z-10 flex flex-col items-center gap-3 text-center text-white transition-transform duration-500 group-hover:-translate-y-2">
+            <div className="mb-1 opacity-80">{panel.icon}</div>
+            <p className="text-sm font-medium uppercase tracking-[0.2em] text-white/70">{panel.label}</p>
+            <h2 className="max-w-xs text-3xl font-light leading-tight tracking-[-0.02em] md:text-4xl">
+              {panel.heading}
+            </h2>
+            {/* Underline arrow */}
+            <div className="mt-3 flex items-center gap-2 text-sm font-medium text-white/60 opacity-0 transition-all duration-300 group-hover:opacity-100">
+              <span>Discover more</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+      ))}
+    </section>
+  );
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function ProductPage() {
   return (
@@ -927,6 +1009,7 @@ export default function ProductPage() {
       <BentoFeatures />
       <FeatureDetail3 />
       <ImpactStats />
+      <DualVideoExplore />
       <Footer />
     </main>
   );
