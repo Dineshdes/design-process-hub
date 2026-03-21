@@ -680,9 +680,115 @@ function Testimonials() {
   return <TestimonialsCarousel />;
 }
 
-// CTA section replaced by shared PreFooterBanner component
+// ── USP Carousel ──────────────────────────────────────────────────────────────
+const USP_CARDS = [
+  {
+    num: "01",
+    title: "Unlocking your full carbon picture",
+    desc: "Scope 1, 2 & 3 tracked automatically from every data source — meters, APIs, ERPs — with no manual exports.",
+    img: "https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=900&q=85",
+  },
+  {
+    num: "02",
+    title: "Best-price green finance, delivered",
+    desc: "We connect you to verified lenders and grant programs and present the best deal transparently — no hidden fees.",
+    img: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=900&q=85",
+  },
+  {
+    num: "03",
+    title: "Grow smarter with AI strategy",
+    desc: "Verdant builds your net-zero roadmap — financially modelled, stakeholder-ready, and updated as your operations change.",
+    img: "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=900&q=85",
+  },
+  {
+    num: "04",
+    title: "Audit-ready compliance from day one",
+    desc: "CSRD, TCFD, GHG Protocol, and EU Taxonomy — pre-mapped so your reports are defensible and board-ready in one click.",
+    img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=900&q=85",
+  },
+  {
+    num: "05",
+    title: "Full supply-chain transparency",
+    desc: "Attribute emissions across thousands of suppliers with AI-powered Scope 3 models — without drowning in surveys.",
+    img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900&q=85",
+  },
+  {
+    num: "06",
+    title: "Works with your existing stack",
+    desc: "SAP, Oracle, Google, Microsoft, Salesforce — Verdant integrates in hours, not months, with zero disruption.",
+    img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=900&q=85",
+  },
+];
 
-// Footer imported from @/components/ui/footer
+const GRAIN_USP = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
+
+function USPCarousel() {
+  return (
+    <section className="overflow-hidden bg-[#f7f7f5] py-[150px]">
+      {/* Header — inside grid */}
+      <div className="grid grid-cols-12 mb-12">
+        <div className="col-start-2 col-span-10 flex flex-col items-center text-center gap-4">
+          <span className="inline-flex rounded-full border border-black/10 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-black/45">
+            Our Value
+          </span>
+          <h2 className="max-w-2xl text-4xl font-normal leading-[1.08] tracking-[-0.03em] text-[#122023] md:text-5xl">
+            Modern solutions &amp; lasting benefits for your organisation
+          </h2>
+        </div>
+      </div>
+
+      {/* Carousel — full-bleed, scroll-snap */}
+      <div
+        className="flex gap-4 overflow-x-auto scroll-smooth px-[8.33%] pb-6 snap-x snap-mandatory"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {USP_CARDS.map((card) => (
+          <div
+            key={card.num}
+            className="group relative flex-shrink-0 w-[320px] md:w-[380px] h-[520px] overflow-hidden rounded-3xl snap-start cursor-pointer"
+          >
+            {/* Background image */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={card.img}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Dark gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0a1618]/55 via-[#0a1618]/30 to-[#0a1618]/85" />
+            {/* Grain */}
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{ backgroundImage: GRAIN_USP, backgroundSize: "200px 200px", opacity: 0.35, mixBlendMode: "overlay" }}
+            />
+
+            {/* Content */}
+            <div className="absolute inset-0 flex flex-col justify-between p-7">
+              {/* Top: number */}
+              <div className="flex items-start gap-1">
+                <span className="text-5xl font-normal leading-none tracking-[-0.03em] text-white">
+                  {card.num}
+                </span>
+                <span className="mt-1 text-xs font-bold text-white/40">No</span>
+              </div>
+
+              {/* Bottom: title + desc */}
+              <div>
+                <h3 className="mb-3 text-xl font-normal leading-snug tracking-tight text-white">
+                  {card.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-white/55">{card.desc}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Hide scrollbar for webkit */}
+      <style>{`.snap-x::-webkit-scrollbar { display: none; }`}</style>
+    </section>
+  );
+}
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function HeroPage() {
@@ -697,6 +803,7 @@ export default function HeroPage() {
       <Integrations />
       <ImpactStats />
       <Testimonials />
+      <USPCarousel />
       <Footer />
     </main>
   );
