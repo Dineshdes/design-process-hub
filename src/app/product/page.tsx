@@ -772,72 +772,93 @@ function PlatformDiagram() {
   );
 }
 
-// ── Social Proof ──────────────────────────────────────────────────────────────
-const STATS = [
-  { value: "2.4M",  unit: "tonnes",   label: "CO₂ avoided annually" },
-  { value: "340+",  unit: "projects", label: "Deployed across 42 countries" },
-  { value: "$8.2B", unit: "invested", label: "In clean energy assets" },
-  { value: "15K+",  unit: "teams",    label: "Making the transition" },
+// ── Impact Stats (same as homepage) ──────────────────────────────────────────
+const IMPACT_STATS = [
+  {
+    tag: "Carbon Impact",
+    value: "2.4M",
+    unit: "tonnes",
+    desc: "CO₂ avoided against business-as-usual baselines annually",
+    svg: (
+      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
+        <path d="M18 30 C10 24 8 14 18 6 C28 14 26 24 18 30Z" fill="#e1fcad" fillOpacity="0.15" stroke="#e1fcad" strokeWidth="1.2" strokeLinejoin="round"/>
+        <line x1="18" y1="6" x2="18" y2="30" stroke="#e1fcad" strokeWidth="0.8" opacity="0.4"/>
+        <path d="M18 12 L14 17 M18 12 L22 17" stroke="#e1fcad" strokeWidth="0.8" opacity="0.35" strokeLinecap="round"/>
+        <path d="M28 8 L28 3 M26 5 L28 3 L30 5" stroke="#e1fcad" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/>
+      </svg>
+    ),
+  },
+  {
+    tag: "Global Reach",
+    value: "340+",
+    unit: "projects",
+    desc: "Clean energy projects deployed across 42 countries",
+    svg: (
+      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="13" stroke="#e1fcad" strokeWidth="1.2" opacity="0.3"/>
+        <ellipse cx="18" cy="18" rx="13" ry="5" stroke="#e1fcad" strokeWidth="0.8" opacity="0.15"/>
+        <line x1="5" y1="18" x2="31" y2="18" stroke="#e1fcad" strokeWidth="0.8" opacity="0.12"/>
+        <line x1="18" y1="5" x2="18" y2="31" stroke="#e1fcad" strokeWidth="0.8" opacity="0.12"/>
+        <circle cx="14" cy="14" r="2.5" fill="#e1fcad" opacity="0.9"/>
+        <circle cx="22" cy="20" r="2" fill="#e1fcad" opacity="0.6"/>
+        <circle cx="14" cy="14" r="1" fill="#122023"/>
+        <circle cx="22" cy="20" r="0.8" fill="#122023"/>
+      </svg>
+    ),
+  },
+  {
+    tag: "Clean Finance",
+    value: "$8.2B",
+    unit: "invested",
+    desc: "Capital mobilised through Verdant-advised financing structures",
+    svg: (
+      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
+        <line x1="6" y1="28" x2="30" y2="28" stroke="#e1fcad" strokeWidth="1" opacity="0.2"/>
+        <rect x="7"  y="20" width="5" height="8" rx="1" fill="#e1fcad" fillOpacity="0.2"/>
+        <rect x="15" y="15" width="5" height="13" rx="1" fill="#e1fcad" fillOpacity="0.45"/>
+        <rect x="23" y="9"  width="5" height="19" rx="1" fill="#e1fcad" fillOpacity="0.9"/>
+        <polyline points="9.5,20 17.5,15 25.5,9" stroke="#e1fcad" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.6"/>
+      </svg>
+    ),
+  },
+  {
+    tag: "Organisations",
+    value: "15K+",
+    unit: "teams",
+    desc: "Businesses actively tracking and reducing their emissions",
+    svg: (
+      <svg width="72" height="72" viewBox="0 0 36 36" fill="none">
+        <line x1="18" y1="18" x2="9"  y2="11" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
+        <line x1="18" y1="18" x2="27" y2="11" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
+        <line x1="18" y1="18" x2="9"  y2="25" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
+        <line x1="18" y1="18" x2="27" y2="25" stroke="#e1fcad" strokeWidth="0.9" opacity="0.2"/>
+        <circle cx="9"  cy="11" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
+        <circle cx="27" cy="11" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
+        <circle cx="9"  cy="25" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
+        <circle cx="27" cy="25" r="3" stroke="#e1fcad" strokeWidth="1.2" opacity="0.5"/>
+        <circle cx="18" cy="18" r="5" fill="#e1fcad" fillOpacity="0.12" stroke="#e1fcad" strokeWidth="1.5"/>
+        <circle cx="18" cy="18" r="2" fill="#e1fcad"/>
+      </svg>
+    ),
+  },
 ];
 
-function SocialProof() {
+function ImpactStats() {
   return (
-    <section className={`bg-[#122023] ${SEC}`}>
+    <section className={`bg-[#122023] ${SEC} flex flex-col justify-center`}>
       <div className={G}>
         <div className={COL}>
-          <SectionHeader label="Our impact" heading="The numbers behind the mission" light />
-          <div className="grid grid-cols-2 gap-px bg-white/10 md:grid-cols-4">
-            {STATS.map((s) => (
-              <div key={s.value} className="flex flex-col gap-3 bg-[#122023] p-8">
+          <SectionHeader label="Our impact" heading="The numbers that matter" light />
+          <div className="grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+            {IMPACT_STATS.map((s) => (
+              <div key={s.value} className="flex flex-col gap-5 px-0 py-8 sm:px-8 sm:py-0 lg:first:pl-0 lg:last:pr-0">
+                {s.svg}
+                <span className="text-base font-medium text-[#e1fcad]/50">{s.tag}</span>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-5xl font-normal leading-none tracking-[-0.04em] text-[#e1fcad] md:text-[56px]">{s.value}</span>
-                  <span className="text-base font-medium uppercase tracking-widest text-white/30">{s.unit}</span>
+                  <span className="text-[44px] font-normal leading-none tracking-[-0.04em] text-[#e1fcad]">{s.value}</span>
+                  <span className="text-base uppercase tracking-widest text-white/25">{s.unit}</span>
                 </div>
-                <p className="text-sm leading-relaxed text-white/50">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ── Testimonials ──────────────────────────────────────────────────────────────
-const TESTIMONIALS = [
-  {
-    quote: "Verdant replaced four tools and three consultants. Our sustainability team is now a product team — running on data, not guesswork.",
-    name: "Sarah Chen", role: "Chief Sustainability Officer, Meridian Group", img: "https://i.pravatar.cc/64?img=47",
-  },
-  {
-    quote: "The roadmap Verdant generated cut our time-to-strategy from 6 months to 3 weeks. The board adopted it without a single revision.",
-    name: "James Okafor", role: "CEO, Harborview Infrastructure", img: "https://i.pravatar.cc/64?img=12",
-  },
-  {
-    quote: "TCFD reporting used to take my team two months. Verdant does it in a day and it&apos;s better than anything we built manually.",
-    name: "Elena Vasquez", role: "Head of ESG, Coastal Energy Co-op", img: "https://i.pravatar.cc/64?img=23",
-  },
-];
-
-function Testimonials() {
-  return (
-    <section className={`bg-[#f7f7f5] ${SEC}`}>
-      <div className={G}>
-        <div className={COL}>
-          <SectionHeader label="Customers" heading="Heard from teams running it" />
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {TESTIMONIALS.map((t, i) => (
-              <div key={i} className="flex flex-col gap-6 rounded-2xl border border-black/[0.06] bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
-                <span className="select-none font-serif text-6xl leading-[0.75] text-black/10">&ldquo;</span>
-                <p className="flex-1 text-base leading-[1.7] text-black/65">{t.quote}</p>
-                <div className="flex items-center gap-3 border-t border-black/[0.08] pt-5">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={t.img} alt={t.name} className="size-10 shrink-0 rounded-full object-cover ring-2 ring-[#e1fcad] ring-offset-2" />
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold text-black">{t.name}</p>
-                    <p className="truncate text-base text-black/40">{t.role}</p>
-                  </div>
-                </div>
+                <p className="text-base leading-snug text-white/40">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -860,8 +881,7 @@ export default function ProductPage() {
       <FeatureDetail2 />
       <BentoFeatures />
       <FeatureDetail3 />
-      <SocialProof />
-      <Testimonials />
+      <ImpactStats />
       <Footer />
     </main>
   );
