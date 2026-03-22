@@ -14,8 +14,14 @@ import {
   Network,
   TrendingUp,
   ChevronRight,
+  Globe,
+  ShieldCheck,
+  Zap,
+  Clock,
+  MapPin,
 } from "lucide-react";
 import BlogCallout from "@/components/ui/blog-callout";
+import TrustedBy from "@/components/ui/trusted-by";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  12-column grid constants
@@ -96,22 +102,16 @@ const HOW_IT_WORKS: Record<string, { num: string; title: string; desc: string; i
 //  Stats
 // ─────────────────────────────────────────────────────────────────────────────
 const STATS = [
-  { value: "2.4M",  label: "Tonnes CO₂ avoided",         sub: "across all customers" },
-  { value: "90%+",  label: "Data error reduction",        sub: "vs. manual processes" },
-  { value: "60%",   label: "Faster reporting cycle",      sub: "first report to signed-off" },
-  { value: "2+ hrs", label: "Saved daily per analyst",    sub: "reclaimed for strategy" },
-  { value: "42",    label: "Countries deployed",          sub: "across 5 continents" },
+  { value: "2.4M",   label: "Tonnes CO₂ avoided",      sub: "across all customers",        icon: <Leaf className="h-5 w-5" /> },
+  { value: "90%+",   label: "Data error reduction",     sub: "vs. manual processes",        icon: <ShieldCheck className="h-5 w-5" /> },
+  { value: "60%",    label: "Faster reporting cycle",   sub: "first report to signed-off",  icon: <Zap className="h-5 w-5" /> },
+  { value: "2+ hrs", label: "Saved daily per analyst",  sub: "reclaimed for strategy",      icon: <Clock className="h-5 w-5" /> },
+  { value: "42",     label: "Countries deployed",       sub: "across 5 continents",         icon: <MapPin className="h-5 w-5" /> },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Integrations
 // ─────────────────────────────────────────────────────────────────────────────
-const INTEGRATIONS = [
-  "SAP S/4HANA", "Oracle NetSuite", "Microsoft 365", "Salesforce", "Workday",
-  "CDP", "Enablon", "Sphera", "Persefoni", "EcoVadis",
-  "Turvo", "Slack", "Google Workspace", "Power BI", "Tableau",
-  "Bloomberg", "AWS", "Azure", "Stripe", "DocuSign",
-];
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Hero — matches site design system: full-screen dark, content pinned bottom
@@ -274,10 +274,10 @@ function ValueProps({ active }: { active: string }) {
             <div key={p.icon} className="flex flex-col gap-5 px-0 py-10 md:px-8 md:first:pl-0 md:last:pr-0">
               <span className="font-mono text-xs font-bold tracking-[0.16em] text-[#4a7c59]">{p.icon}</span>
               <div>
-                <h3 className="mb-2.5 text-xl font-semibold leading-snug tracking-[-0.02em] text-[#122023]">
+                <h3 className="mb-2.5 text-2xl font-semibold leading-snug tracking-[-0.02em] text-[#122023]">
                   {p.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-black/45">{p.desc}</p>
+                <p className="text-base leading-relaxed text-black/45">{p.desc}</p>
               </div>
               <a href="#" className="group mt-auto flex w-fit items-center gap-1.5 text-sm font-semibold text-[#4a7c59] transition-colors hover:text-[#122023]">
                 Learn more
@@ -292,105 +292,190 @@ function ValueProps({ active }: { active: string }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-//  How it works — numbered steps + screenshot panel
+//  Capability cards — identical pattern to Impact's ProjectCategories
 // ─────────────────────────────────────────────────────────────────────────────
-function HowItWorks({ active }: { active: string }) {
-  const [step, setStep] = useState(0);
-  const steps = HOW_IT_WORKS[active];
-  const current = steps[step];
+const CAPABILITIES = [
+  {
+    icon: <BarChart3 className="h-7 w-7" />,
+    name: "Carbon Intelligence",
+    stat1: { label: "Coverage",     val: "Scope 1–3" },
+    stat2: { label: "Data sources", val: "50+" },
+    stat3: { label: "Time to live", val: "< 1 day" },
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+  },
+  {
+    icon: <FileCheck className="h-7 w-7" />,
+    name: "Compliance Reporting",
+    stat1: { label: "Frameworks",      val: "12+" },
+    stat2: { label: "Reporting cycle", val: "−60%" },
+    stat3: { label: "Audit trail",     val: "100%" },
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80",
+  },
+  {
+    icon: <Network className="h-7 w-7" />,
+    name: "Supply Chain",
+    stat1: { label: "Scope 3 coverage", val: "3×" },
+    stat2: { label: "Survey burden",    val: "−80%" },
+    stat3: { label: "Suppliers scored", val: "Auto" },
+    image: "https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=800&q=80",
+  },
+  {
+    icon: <TrendingUp className="h-7 w-7" />,
+    name: "Strategy Planner",
+    stat1: { label: "Scenario levers", val: "200+" },
+    stat2: { label: "Target standard", val: "SBTi" },
+    stat3: { label: "Roadmap",         val: "Live" },
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+  },
+];
 
+function FeatureCards() {
   return (
-    <section className="bg-[#f7f7f5] py-[120px]">
+    <section className="bg-[#f7f7f5] py-[150px]">
       <div className={G}>
         <div className={COL}>
 
-          {/* Header */}
-          <div className="mb-16 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-black/35">How it works</p>
-              <h2 className="text-4xl font-normal leading-[1.06] tracking-[-0.03em] text-[#122023] md:text-5xl">
-                Four steps to{" "}
-                <span className="text-black/30">full clarity</span>
-              </h2>
-            </div>
-            <a
-              href="#"
-              className="group hidden shrink-0 items-center gap-0 overflow-hidden rounded-full border border-black/10 bg-transparent transition-colors hover:border-black/30 md:flex"
-            >
-              <span className="pl-5 pr-4 text-sm font-medium text-black">See full demo</span>
-              <div className="relative flex size-9 items-center justify-center overflow-hidden rounded-full bg-[#122023] text-[#e1fcad]">
-                <ArrowUpRight className="absolute h-4 w-4 -translate-x-1/2 transition-all duration-500 group-hover:translate-x-10" />
-                <ArrowUpRight className="absolute h-4 w-4 -translate-x-10 transition-all duration-500 group-hover:-translate-x-1/2" />
-              </div>
-            </a>
+          <div className="mb-16">
+            <span className="mb-3 block text-xs font-bold uppercase tracking-[0.18em] text-black/35">
+              What we solve
+            </span>
+            <h2 className="text-5xl font-normal leading-[1.06] tracking-[-0.03em] text-[#122023] md:text-6xl">
+              Four capabilities,<br />one platform.
+            </h2>
           </div>
 
-          {/* Main layout: steps list left + screenshot right */}
-          <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[5fr_7fr]">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {CAPABILITIES.map((cap) => (
+              <div key={cap.name} className="group relative overflow-hidden rounded-3xl bg-white">
 
-            {/* Left: step list */}
-            <div className="flex flex-col gap-1">
-              {steps.map((s, i) => {
-                const isActive = i === step;
-                return (
-                  <button
-                    key={s.num}
-                    onClick={() => setStep(i)}
-                    className={`group flex items-start gap-5 rounded-2xl px-5 py-5 text-left transition-all duration-200 ${
-                      isActive
-                        ? "bg-white shadow-[0_2px_20px_rgba(0,0,0,0.08)]"
-                        : "hover:bg-white/60"
-                    }`}
-                  >
-                    {/* Step number */}
-                    <span
-                      className={`mt-0.5 shrink-0 font-mono text-xs font-bold tracking-[0.14em] transition-colors duration-200 ${
-                        isActive ? "text-[#4a7c59]" : "text-black/25"
-                      }`}
-                    >
-                      {s.num}
-                    </span>
+                {/* Image header */}
+                <div className="relative h-52 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={cap.image} alt=""
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-[#0a1618]/55" />
+                  <div
+                    className="pointer-events-none absolute inset-0"
+                    style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.4, mixBlendMode: "overlay" }}
+                  />
+                  {/* Icon badge */}
+                  <div className="absolute bottom-4 left-4 flex size-12 items-center justify-center rounded-xl bg-[#e1fcad] text-[#122023]">
+                    {cap.icon}
+                  </div>
+                </div>
 
-                    <div className="min-w-0">
-                      <p
-                        className={`text-base font-semibold leading-snug tracking-[-0.01em] transition-colors duration-200 ${
-                          isActive ? "text-[#122023]" : "text-black/45 group-hover:text-[#122023]"
-                        }`}
-                      >
-                        {s.title}
-                      </p>
-                      {isActive && (
-                        <p className="mt-2 text-sm leading-relaxed text-black/45">{s.desc}</p>
-                      )}
-                    </div>
-
-                    {/* Active indicator */}
-                    {isActive && (
-                      <div className="ml-auto mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-[#e1fcad]">
-                        <CheckCircle2 className="h-3.5 w-3.5 text-[#122023]" />
+                {/* Card body */}
+                <div className="p-6">
+                  <h3 className="mb-5 text-base font-semibold tracking-tight text-[#122023]">{cap.name}</h3>
+                  <div className="grid grid-cols-3 gap-3 border-t border-black/[0.06] pt-4">
+                    {[cap.stat1, cap.stat2, cap.stat3].map((s) => (
+                      <div key={s.label}>
+                        <p className="text-sm font-semibold text-[#122023]">{s.val}</p>
+                        <p className="text-[10px] text-black/38">{s.label}</p>
                       </div>
-                    )}
-                  </button>
-                );
-              })}
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  How it works — 2-col Methodology layout (mirrors Impact page)
+// ─────────────────────────────────────────────────────────────────────────────
+function HowItWorks({ active }: { active: string }) {
+  const steps = HOW_IT_WORKS[active];
+
+  // Concise intro per solution
+  const INTROS: Record<string, string> = {
+    carbon:    "Connect your existing tools in minutes. Verdant maps every emission source automatically — no custom integration work, no spreadsheet wrangling.",
+    reporting: "From compliance calendar to signed-off submission, Verdant handles the heavy lifting so your team focuses on decisions, not data entry.",
+    supply:    "Upload your supplier list and let Verdant do the rest. Scoring, engagement, and verified Scope 3 reporting — all in one workflow.",
+    strategy:  "Start with a complete audited baseline, model the optimal path to net zero, and track live progress against your published commitment.",
+  };
+
+  return (
+    <section className="relative overflow-hidden bg-[#0f1e22] py-[150px]">
+      {/* Grain overlay */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.22]"
+        style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", mixBlendMode: "overlay" }}
+      />
+
+      <div className={`relative z-10 ${G}`}>
+        <div className={COL}>
+
+          {/* ── 2-col body — mirrors Impact Methodology ── */}
+          <div className="grid grid-cols-1 gap-16 lg:grid-cols-[2fr_3fr] lg:items-start">
+
+            {/* Left: label + heading + intro + CTA (sticky) */}
+            <div className="lg:sticky lg:top-28">
+              <span className="mb-4 block text-xs font-bold uppercase tracking-[0.18em] text-[#e1fcad]/50">
+                How it works
+              </span>
+              <h2 className="mb-6 text-5xl font-normal leading-[1.06] tracking-[-0.03em] text-white md:text-6xl">
+                Four steps to{" "}
+                <span className="text-[#e1fcad]/60">full clarity</span>
+              </h2>
+              <p className="mb-10 text-base leading-relaxed text-white/50">
+                {INTROS[active]}
+              </p>
+
+              {/* Standards badges */}
+              <div className="mb-10 flex flex-col gap-3">
+                {["GHG Protocol aligned", "ISO 14064 certified", "CSRD & TCFD ready", "SOC 2 Type II"].map((l) => (
+                  <div key={l} className="flex items-center gap-3 text-base text-white/55">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-[#4a7c59]" />
+                    {l}
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="/product"
+                className="group inline-flex items-center gap-3 rounded-full border border-white/[0.12] bg-white/[0.05] px-6 py-3 text-sm font-semibold text-white/60 backdrop-blur-sm transition-all duration-200 hover:border-white/25 hover:bg-white/10 hover:text-white"
+              >
+                See full demo
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[#e1fcad] text-[#122023] transition-colors duration-200 group-hover:bg-[#d4f59a]">
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </span>
+              </a>
             </div>
 
-            {/* Right: screenshot */}
-            <div className="sticky top-28 overflow-hidden rounded-3xl bg-[#122023] shadow-[0_24px_80px_rgba(0,0,0,0.25)]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                key={`${active}-${step}`}
-                src={current.img}
-                alt={current.title}
-                className="aspect-[4/3] h-full w-full object-cover opacity-80 transition-opacity duration-500"
-              />
-              {/* Caption overlay */}
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0a1618]/90 to-transparent p-8">
-                <span className="mb-1 block font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#e1fcad]/55">
-                  Step {current.num}
-                </span>
-                <p className="text-lg font-semibold text-white">{current.title}</p>
-              </div>
+            {/* Right: numbered step list — all steps always visible */}
+            <div className="flex flex-col">
+              {steps.map((s, i) => (
+                <div
+                  key={s.num}
+                  className={`group flex gap-6 py-10 ${i < steps.length - 1 ? "border-b border-white/[0.10]" : ""}`}
+                >
+                  {/* Step counter — larger, lime, clear visual anchor */}
+                  <div className="shrink-0 pt-1">
+                    <span className="font-mono text-[13px] font-bold tracking-[0.18em] text-[#e1fcad]/50">
+                      {s.num}
+                    </span>
+                  </div>
+
+                  {/* Content — clear 3-level hierarchy */}
+                  <div className="min-w-0 flex-1">
+                    {/* Title — dominant, large, scannable */}
+                    <h3 className="mb-3 text-2xl font-semibold leading-snug tracking-[-0.02em] text-white">
+                      {s.title}
+                    </h3>
+                    {/* Description — clearly subordinate: smaller, muted */}
+                    <p className="text-base leading-relaxed text-white/45">{s.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
 
           </div>
@@ -405,18 +490,36 @@ function HowItWorks({ active }: { active: string }) {
 // ─────────────────────────────────────────────────────────────────────────────
 function StatsBar() {
   return (
-    <section className="bg-[#0d1a1c]">
+    <section className="bg-[#122023] py-[120px]">
       <div className={G}>
-        <div className={`${COL} flex flex-wrap divide-x divide-white/[0.07]`}>
-          {STATS.map((s) => (
-            <div key={s.value} className="flex min-w-[160px] flex-1 flex-col px-8 py-12">
-              <span className="text-[40px] font-normal leading-none tracking-[-0.04em] text-[#e1fcad]">
-                {s.value}
-              </span>
-              <span className="mt-2 text-sm font-semibold text-white/70">{s.label}</span>
-              <span className="mt-0.5 text-xs text-white/30">{s.sub}</span>
+        <div className={COL}>
+          <div className="mb-14 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <span className="mb-3 block text-xs font-bold uppercase tracking-[0.18em] text-[#e1fcad]/50">By the numbers</span>
+              <h2 className="text-5xl font-normal leading-[1.06] tracking-[-0.03em] text-white md:text-6xl">
+                The impact of switching to Verdant
+              </h2>
             </div>
-          ))}
+            <p className="max-w-sm text-sm leading-relaxed text-white/40 lg:text-right">
+              Aggregated across all active customers on the Verdant platform.
+            </p>
+          </div>
+
+          {/* gap-px grid — matches ImpactNumbers pattern */}
+          <div className="grid grid-cols-1 gap-px bg-white/[0.08] sm:grid-cols-2 lg:grid-cols-5">
+            {STATS.map((s) => (
+              <div key={s.value} className="flex flex-col gap-5 bg-[#122023] p-8">
+                <div className="flex size-11 items-center justify-center rounded-xl bg-[#e1fcad]/10 text-[#e1fcad]">
+                  {s.icon}
+                </div>
+                <div>
+                  <span className="mb-1 block text-xs font-bold uppercase tracking-[0.14em] text-white/35">{s.label}</span>
+                  <span className="text-5xl font-normal tracking-[-0.04em] text-white">{s.value}</span>
+                </div>
+                <p className="border-t border-white/[0.08] pt-4 text-xs leading-relaxed text-white/40">{s.sub}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -454,34 +557,32 @@ const INTEGRATION_LOGOS: { name: string; domain: string }[] = [
 ];
 
 function IntegrationLogo({ name, domain }: { name: string; domain: string }) {
-  const [status, setStatus] = useState<"loading" | "ok" | "failed">("loading");
-
   const src = `https://img.logo.dev/${domain}?token=${LOGODEV_TOKEN}&size=80&format=webp&theme=light`;
 
   return (
-    <div className="flex h-10 w-full items-center justify-center">
-      {/* Fallback text — shown while loading or on error */}
-      {status === "failed" && (
-        <span className="text-sm font-semibold tracking-tight text-black/45">{name}</span>
-      )}
-
-      {/* Logo.dev image — lazy loaded, hidden until loaded */}
-      {status !== "failed" && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={src}
-          alt={`${name} logo`}
-          loading="lazy"
-          decoding="async"
-          width={120}
-          height={40}
-          className={`h-8 w-auto max-w-[120px] object-contain transition-opacity duration-300 ${
-            status === "ok" ? "opacity-100" : "opacity-0"
-          }`}
-          onLoad={() => setStatus("ok")}
-          onError={() => setStatus("failed")}
-        />
-      )}
+    <div className="relative flex h-10 w-full items-center justify-center">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={`${name} logo`}
+        loading="eager"
+        decoding="async"
+        width={120}
+        height={40}
+        className="h-8 w-auto max-w-[120px] object-contain"
+        onError={(e) => {
+          // Hide broken image and show sibling text fallback
+          (e.currentTarget as HTMLImageElement).style.display = "none";
+          const fallback = (e.currentTarget as HTMLImageElement).nextElementSibling as HTMLElement | null;
+          if (fallback) fallback.style.display = "block";
+        }}
+      />
+      <span
+        className="hidden text-sm font-semibold tracking-tight text-black/45"
+        aria-hidden="true"
+      >
+        {name}
+      </span>
     </div>
   );
 }
@@ -496,8 +597,8 @@ function Integrations() {
             <p className="mb-5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-black/35">
               Integrations
             </p>
-            <h2 className="text-[2.6rem] font-bold leading-[1.08] tracking-[-0.02em] text-[#122023]">
-              Connected to<br />your existing<br />tools
+            <h2 className="text-4xl font-normal leading-[1.08] tracking-[-0.03em] text-[#122023] md:text-5xl">
+              Connected to your existing tools
             </h2>
           </div>
 
@@ -579,7 +680,7 @@ function SolutionsCTA() {
             <Leaf className="h-6 w-6 text-[#e1fcad]" />
           </div>
 
-          <h2 className="mb-5 max-w-2xl text-4xl font-normal leading-[1.06] tracking-[-0.03em] text-[#122023] md:text-5xl">
+          <h2 className="mb-5 max-w-2xl text-4xl font-normal leading-[1.08] tracking-[-0.03em] text-[#122023] md:text-5xl">
             Ready to see Verdant in your environment?
           </h2>
 
@@ -622,7 +723,9 @@ export default function SolutionsPage() {
     <>
       <Navbar />
       <SolutionsHero active={active} setActive={setActive} />
+      <TrustedBy />
       <ValueProps active={active} />
+      <FeatureCards />
       <HowItWorks active={active} />
       <TestimonialsCarousel />
       <StatsBar />
