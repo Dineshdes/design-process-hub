@@ -1,35 +1,19 @@
 import { ArrowUpRight, Clock } from "lucide-react";
+import { BLOG_POSTS } from "@/lib/blog-data";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  BlogCallout — 3-article preview strip placed above the footer on every page
+//  Pulls directly from the shared blog-data source of truth
 // ─────────────────────────────────────────────────────────────────────────────
 
 const G   = "grid grid-cols-12";
 const COL = "col-start-2 col-span-10";
 
+// Show the featured post first, then next 2 most recent
 const POSTS = [
-  {
-    tag: "Net-Zero Strategy",
-    title: "Why 90% of corporate net-zero targets will fail — and how to be in the 10%",
-    date: "18 Mar 2024",
-    readTime: "9 min",
-    image: "https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=800&q=80",
-  },
-  {
-    tag: "Technology",
-    title: "How AI is rewriting the rules of emissions accounting",
-    date: "28 Feb 2024",
-    readTime: "6 min",
-    image: "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=800&q=80",
-  },
-  {
-    tag: "Reporting",
-    title: "CSRD is here. Here's your 90-day readiness checklist",
-    date: "5 Mar 2024",
-    readTime: "5 min",
-    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80",
-  },
-];
+  ...BLOG_POSTS.filter((p) => p.featured),
+  ...BLOG_POSTS.filter((p) => !p.featured),
+].slice(0, 3);
 
 export default function BlogCallout() {
   return (

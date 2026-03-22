@@ -1,14 +1,10 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* Inter loaded via next/font — var(--font-inter) injected on <html> */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-
-  /* Floor all text utilities at 16px */
-  --text-xs: 1rem;   /* 16px */
-  --text-sm: 1rem;   /* 16px */
-  --text-base: 1rem; /* 16px */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -69,7 +65,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -373,7 +369,7 @@ body {
   border: none;
   border-bottom: 1px solid var(--rule);
   padding: 10px 0;
-  font-family: var(--font);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   font-size: 1.08rem;
   color: var(--text);
   background: transparent;
@@ -438,8 +434,5 @@ h1, h2, h3, h4, h5, h6 {
                "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-h2 {
-  font-size: 3.25rem; /* 52px — 44px + 8px */
-  max-width: 560px;
-}
+/* h2 sizing controlled by Tailwind utilities per-section */
 

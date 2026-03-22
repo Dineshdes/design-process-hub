@@ -44,12 +44,12 @@ function ImpactHero() {
           <div className="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
             {/* Headline */}
             <div className="max-w-3xl">
-              <h1 className="mb-6 text-5xl font-normal leading-[1.05] tracking-[-0.03em] text-white md:text-6xl lg:text-7xl">
+              <h1 className="mb-6 text-5xl font-normal leading-[1.04] tracking-[-0.03em] text-white md:text-7xl lg:text-8xl">
                 Turning data into
                 <br />
                 <span className="text-[#e1fcad]">measurable change</span>
               </h1>
-              <p className="max-w-xl text-base leading-relaxed text-white/55 md:text-lg">
+              <p className="max-w-xl text-lg leading-relaxed text-white/55 md:text-xl">
                 Every tonne of carbon tracked, every dollar of green finance mobilised, every organisation guided to net-zero — this is the real-world impact of Verdant.
               </p>
             </div>
@@ -124,11 +124,11 @@ function ImpactNumbers() {
           <div className="mb-16 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <span className="mb-3 block text-xs font-bold uppercase tracking-[0.18em] text-[#e1fcad]/50">By the numbers</span>
-              <h2 className="text-4xl font-normal leading-[1.08] tracking-[-0.03em] text-white md:text-5xl">
+              <h2 className="text-5xl font-normal leading-[1.06] tracking-[-0.03em] text-white md:text-6xl">
                 The scale of what we track
               </h2>
             </div>
-            <p className="max-w-sm text-base leading-relaxed text-white/45 lg:text-right">
+            <p className="max-w-sm text-lg leading-relaxed text-white/45 lg:text-right">
               Independently verified impact data updated in real time across every project in the Verdant network.
             </p>
           </div>
@@ -142,7 +142,7 @@ function ImpactNumbers() {
                 <div>
                   <span className="mb-1 block text-xs font-bold uppercase tracking-[0.15em] text-white/35">{n.tag}</span>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-5xl font-normal tracking-[-0.03em] text-white">{n.value}</span>
+                    <span className="text-6xl font-normal tracking-[-0.03em] text-white">{n.value}</span>
                     <span className="text-sm text-white/40">{n.unit}</span>
                   </div>
                   <span className="mt-1 block text-xs font-semibold text-[#e1fcad]/70">{n.delta}</span>
@@ -200,7 +200,7 @@ function ProjectCategories() {
         <div className={COL}>
           <div className="mb-16">
             <span className="mb-3 block text-xs font-bold uppercase tracking-[0.18em] text-black/35">Where impact happens</span>
-            <h2 className="text-4xl font-normal leading-[1.08] tracking-[-0.03em] text-[#122023] md:text-5xl">
+            <h2 className="text-5xl font-normal leading-[1.06] tracking-[-0.03em] text-[#122023] md:text-6xl">
               Four pillars of <br/>the green transition
             </h2>
           </div>
@@ -279,7 +279,7 @@ function CaseStudies() {
           <div className="mb-16 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <span className="mb-3 block text-xs font-bold uppercase tracking-[0.18em] text-[#e1fcad]/50">Case studies</span>
-              <h2 className="text-4xl font-normal leading-[1.08] tracking-[-0.03em] text-white md:text-5xl">
+              <h2 className="text-5xl font-normal leading-[1.06] tracking-[-0.03em] text-white md:text-6xl">
                 Proof, not promises
               </h2>
             </div>
@@ -310,8 +310,8 @@ function CaseStudies() {
                     {/* Bottom: headline + stats */}
                     <div>
                       <p className="mb-1 text-sm font-bold text-[#e1fcad]">{c.client}</p>
-                      <h3 className="mb-4 text-xl font-normal leading-snug tracking-tight text-white">{c.headline}</h3>
-                      <p className="mb-6 text-sm text-white/50">{c.result}</p>
+                      <h3 className="mb-4 text-2xl font-normal leading-snug tracking-tight text-white">{c.headline}</h3>
+                      <p className="mb-6 text-base text-white/50">{c.result}</p>
 
                       {/* Stat strip */}
                       <div className="flex items-center gap-8 border-t border-white/12 pt-5">
@@ -372,10 +372,10 @@ function Methodology() {
             {/* Left: copy */}
             <div>
               <span className="mb-4 block text-xs font-bold uppercase tracking-[0.18em] text-black/35">Methodology</span>
-              <h2 className="mb-6 text-4xl font-normal leading-[1.08] tracking-[-0.03em] text-[#122023] md:text-5xl">
+              <h2 className="mb-6 text-5xl font-normal leading-[1.06] tracking-[-0.03em] text-[#122023] md:text-6xl">
                 Impact you can defend in an audit
               </h2>
-              <p className="mb-8 text-base leading-relaxed text-black/50">
+              <p className="mb-8 text-lg leading-relaxed text-black/50">
                 Every number in our impact reports is traceable to a data source, a model, and a verifier. Verdant does not publish estimates — only independently validated outcomes.
               </p>
               <div className="flex flex-col gap-3">
@@ -397,8 +397,8 @@ function Methodology() {
                 <div key={s.num} className={`flex gap-6 py-8 ${i < STEPS.length - 1 ? "border-b border-black/06" : ""}`}>
                   <span className="shrink-0 font-mono text-xs font-semibold tracking-[0.14em] text-black/25 pt-0.5">{s.num}</span>
                   <div>
-                    <h3 className="mb-2 text-base font-semibold tracking-tight text-[#122023]">{s.title}</h3>
-                    <p className="text-sm leading-relaxed text-black/48">{s.desc}</p>
+                    <h3 className="mb-2 text-lg font-semibold tracking-tight text-[#122023]">{s.title}</h3>
+                    <p className="text-base leading-relaxed text-black/48">{s.desc}</p>
                   </div>
                 </div>
               ))}
@@ -432,7 +432,7 @@ function GlobalReach() {
           {/* LEFT-ALIGNED heading */}
           <div className="mb-16">
             <span className="mb-3 block text-xs font-bold uppercase tracking-[0.18em] text-[#e1fcad]/50">Geographic reach</span>
-            <h2 className="text-4xl font-normal leading-[1.08] tracking-[-0.03em] text-white md:text-5xl">
+            <h2 className="text-5xl font-normal leading-[1.06] tracking-[-0.03em] text-white md:text-6xl">
               42 countries, one platform
             </h2>
           </div>
@@ -472,7 +472,7 @@ function Milestones() {
         <div className={COL}>
           <div className="mb-16">
             <span className="mb-3 block text-xs font-bold uppercase tracking-[0.18em] text-black/35">2024 Milestones</span>
-            <h2 className="text-4xl font-normal leading-[1.08] tracking-[-0.03em] text-[#122023] md:text-5xl">
+            <h2 className="text-5xl font-normal leading-[1.06] tracking-[-0.03em] text-[#122023] md:text-6xl">
               A year of compounding progress
             </h2>
           </div>
@@ -496,8 +496,8 @@ function Milestones() {
                 </div>
                 {/* Content */}
                 <div className="flex-1">
-                  <h3 className="mb-2 text-lg font-semibold tracking-tight text-[#122023]">{m.title}</h3>
-                  <p className="text-sm leading-relaxed text-black/48">{m.desc}</p>
+                  <h3 className="mb-2 text-xl font-semibold tracking-tight text-[#122023]">{m.title}</h3>
+                  <p className="text-base leading-relaxed text-black/48">{m.desc}</p>
                 </div>
               </div>
             ))}
@@ -520,7 +520,7 @@ function ImpactCTA() {
           <div className="mx-auto mb-8 flex size-16 items-center justify-center rounded-full bg-[#e1fcad]">
             <Leaf className="h-7 w-7 text-[#122023]" />
           </div>
-          <h2 className="mx-auto mb-6 max-w-2xl text-4xl font-normal leading-[1.08] tracking-[-0.03em] text-white md:text-5xl">
+          <h2 className="mx-auto mb-6 max-w-2xl text-5xl font-normal leading-[1.06] tracking-[-0.03em] text-white md:text-6xl">
             Add your organisation to the impact
           </h2>
           <p className="mx-auto mb-12 max-w-xl text-base leading-relaxed text-white/45">

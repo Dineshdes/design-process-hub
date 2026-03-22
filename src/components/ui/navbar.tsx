@@ -132,7 +132,7 @@ const NAV_LINKS = [
   { label: "About",     href: "/about",     dropdown: null },
 ];
 
-export default function Navbar() {
+export default function Navbar({ theme = "dark" }: { theme?: "light" | "dark" }) {
   const [scrolled,        setScrolled]        = useState(false);
   const [mobileOpen,      setMobileOpen]      = useState(false);
   const [activeDropdown,  setActiveDropdown]  = useState<string | null>(null);
@@ -157,13 +157,18 @@ export default function Navbar() {
   const handleEnter   = (key: string) => openDropdown(key);
 
   const hasOpenDropdown = activeDropdown !== null;
+  // On light-theme pages the navbar starts with dark text even before scrolling
+  const isLight = theme === "light";
+  const solidBar = scrolled || hasOpenDropdown;
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled || hasOpenDropdown
+        solidBar
           ? "bg-white/98 backdrop-blur-xl shadow-[0_1px_0_rgba(0,0,0,0.06),0_4px_24px_rgba(0,0,0,0.06)]"
-          : "bg-transparent"
+          : isLight
+            ? "bg-[#f7f7f5]/80 backdrop-blur-md border-b border-black/[0.06]"
+            : "bg-transparent"
       }`}
     >
       {/* ── Main bar ── */}
@@ -174,20 +179,20 @@ export default function Navbar() {
           <a href="/hero" className="group flex items-center gap-3">
             <div
               className={`relative flex size-9 shrink-0 items-center justify-center rounded-full transition-all duration-300 group-hover:shadow-[0_0_0_5px_rgba(18,32,35,0.08)] ${
-                scrolled || hasOpenDropdown
+                solidBar || isLight
                   ? "bg-[#122023] shadow-[0_0_0_3px_rgba(18,32,35,0.06)]"
                   : "bg-[#e1fcad] shadow-[0_0_0_3px_rgba(225,252,173,0.15)]"
               }`}
             >
               <Leaf
                 className={`h-[18px] w-[18px] transition-colors duration-300 ${
-                  scrolled || hasOpenDropdown ? "text-[#e1fcad]" : "text-[#122023]"
+                  solidBar || isLight ? "text-[#e1fcad]" : "text-[#122023]"
                 }`}
               />
             </div>
             <span
               className={`text-base font-semibold tracking-tight transition-colors duration-300 ${
-                scrolled || hasOpenDropdown ? "text-[#122023]" : "text-white"
+                solidBar || isLight ? "text-[#122023]" : "text-white"
               }`}
             >
               Verdant
@@ -206,7 +211,7 @@ export default function Navbar() {
                   onMouseLeave={link.dropdown ? handleLeave : undefined}
                   onClick={link.dropdown ? (e) => e.preventDefault() : undefined}
                   className={`rounded-full px-4 py-2 text-base font-medium transition-colors duration-200 cursor-pointer select-none ${
-                    scrolled || hasOpenDropdown
+                    solidBar || isLight
                       ? isActive
                         ? "bg-black/[0.05] text-[#122023]"
                         : "text-[#122023]/70 hover:bg-black/[0.04] hover:text-[#122023]"
@@ -224,7 +229,7 @@ export default function Navbar() {
             <a
               href="#"
               className={`text-base font-medium transition-colors duration-200 ${
-                scrolled || hasOpenDropdown
+                solidBar || isLight
                   ? "text-[#122023]/50 hover:text-[#122023]"
                   : "text-white/60 hover:text-white"
               }`}
@@ -258,7 +263,7 @@ export default function Navbar() {
           {/* Mobile hamburger */}
           <button
             className={`flex size-9 items-center justify-center rounded-full transition-colors md:hidden ${
-              scrolled || hasOpenDropdown
+              solidBar || isLight
                 ? "text-[#122023]/60 hover:bg-black/[0.05] hover:text-[#122023]"
                 : "text-white/70 hover:bg-white/10 hover:text-white"
             }`}
