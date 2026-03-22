@@ -102,9 +102,9 @@ function AboutHero() {
         style={{ backgroundImage: GRAIN, backgroundSize: "200px 200px", opacity: 0.22, mixBlendMode: "overlay" }}
       />
 
-      {/* Interactive amCharts globe — right side, 60% visible */}
-      <div className="absolute right-0 top-1/2 z-[1] -translate-y-[48%] translate-x-[40%]
-                      w-[580px] h-[580px] md:w-[720px] md:h-[720px] lg:w-[860px] lg:h-[860px]">
+      {/* Interactive amCharts globe — right side, 80% visible */}
+      <div className="absolute right-0 top-1/2 z-[1] -translate-y-[48%] translate-x-[20%]
+                      w-[700px] h-[700px] md:w-[900px] md:h-[900px] lg:w-[1080px] lg:h-[1080px]">
         <AmChartsGlobe />
       </div>
 
