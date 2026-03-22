@@ -103,7 +103,7 @@ function AboutHero() {
       />
 
       {/* Interactive amCharts globe — right side, 80% visible */}
-      <div className="absolute right-0 top-1/2 z-[1] -translate-y-[48%] translate-x-[20%]
+      <div className="absolute right-0 top-1/2 z-[1] -translate-y-[35%] translate-x-[20%]
                       w-[700px] h-[700px] md:w-[900px] md:h-[900px] lg:w-[1080px] lg:h-[1080px]">
         <AmChartsGlobe />
       </div>
